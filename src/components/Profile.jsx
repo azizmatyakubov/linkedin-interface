@@ -1,25 +1,28 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import AdSectionProfile from "./AdSectionProfile";
-import EditSectionProfile from "./EditSectionProfile";
 import MyFooter from "./MyFooter";
+import AdSectionProfile from './AdSectionProfile'
+import EditSectionProfile from "./EditSectionProfile";
 
 const Profile = () => {
   return (
-    <Container>
-      <Row>
-        <Col md={8}>
-          <Right>LEFT SECTION</Right>
-        </Col>
-        <Col md={4}>
+   <div style={{backgroundColor: "#F3F2EF"}}>
+      <Container>
+        <Row>
+          <Col md={8}>
+            <Right>LEFT SECTION</Right>
+          </Col>
+          <Col md={4}>
           <EditSectionProfile />
-          <AdSectionProfile />
-        </Col>
-      </Row>
-      <Footer>footer</Footer>
-      <MyFooter />
-    </Container>
+            <AdSectionProfile />
+     
+          </Col>
+        </Row>
+        <Footer>footer</Footer>
+        <MyFooter />
+      </Container>
+   </div>
   );
 };
 

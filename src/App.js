@@ -6,9 +6,10 @@ import MyNavbar from './components/MyNavbar';
 function App() {
   return (
     <div className="App">
-      <Profile />
+    
       <BrowserRouter>
      <MyNavbar />
+     <Profile />
         <Routes>
           <Route />
         </Routes>

@@ -1,0 +1,135 @@
+/*NAVBAR*/
+
+.navbar {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .input-field {
+    margin-left: 10px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background-color: #eef3f8;
+    width: 300px;
+  }
+  
+  .input-field:focus {
+    outline: none !important;
+  }
+  
+  .navbar-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row-navbar {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .col-md-5 {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .col-md5-icons {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+    padding:0px;
+  }
+  
+  .col-md5-icons> div>  p {
+      color:rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+      margin-bottom: 0px;
+      margin-top: -10px;
+      text-align: center;
+      
+  }
+  
+  .col-md5-icons>div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+     
+  }
+  
+  .col-md5-icons> div> img {
+      width:34px;
+      height: 34px;
+  }
+  
+  .col-md5-icons > div >img:hover {
+      cursor: pointer;
+  }
+  
+  
+  .col-md-2 {
+    display: flex;
+    flex-direction: row;
+   
+  }
+  
+  #work-border {
+      border-left: 1px solid rgb(189, 189, 184);
+      margin-top:10px;
+  }
+  
+  .col-md-2 > .col >div> p {
+      color:rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+      margin-bottom: 0px;
+      margin-top: -10px;
+      text-align: center;
+  }
+  
+  .col-md-2 > span {
+      font-size: 14px;
+      color: #5D3B09;
+  
+  }
+  
+  #user-img {
+      width: 25px;
+      height:25px;
+      border-radius: 50%;
+  }
+  
+  #user-wrapper {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+  }
+  
+  #bg-nested-dropdown {
+      background-color: transparent;
+      border: 0px transparent;
+      
+  }
+  
+  .work-div {
+      display: flex;
+      flex-direction: row;
+      align-items: self-start;
+  }
+  
+  
+  .work-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+     
+  
+  }
+
+  .work-wrapper>img {
+    margin-bottom: -10px;
+}
