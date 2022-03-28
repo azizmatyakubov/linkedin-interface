@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import MyFooter from "./MyFooter";
+import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from './AdSectionProfile'
 import EditSectionProfile from "./EditSectionProfile";
 

@@ -1,10 +1,10 @@
-import "../components/myfooter.css/myfooter.css";
+import "./myfooter.css";
 import { Container, Row, Col } from "react-bootstrap";
 
 const MyFooter = () => {
   return (
-   <div className="wrapper-container">
-      <Container  className="fixed-bottom" >
+    <div className="wrapper-container">
+      <Container>
         <Row>
           <img src="/images/login-logo.svg" alt="" />
         </Row>
@@ -34,7 +34,7 @@ const MyFooter = () => {
               <li>Small Business</li>
             </ul>
           </Col>
-          <Col md={3}  className="col-md-3-footer">
+          <Col md={3} className="col-md-3-footer">
             <Row>
               <div>
                 <svg
@@ -72,37 +72,42 @@ const MyFooter = () => {
               </div>
             </Row>
           </Col>
-          <Col md={3}  className="col-md-3-footer">
+          <Col md={3} className="col-md-3-footer">
             <div className="language-picker js-language-picker">
               <form action="" className="language-picker__form">
                 <label for="language-picker-select">Select language</label>
-     
-               <div>
-                    <select name="language-picker-select" id="language-picker-select">
-                      <option lang="de" value="english">
-                        English
-                      </option>
-                      <option lang="en" value="italiano" selected>
-                        Italiano
-                      </option>
-                      <option lang="en" value="deutsch" selected>
-                        Deutsch
-                      </option>
-                      <option lang="fr" value="francais">
-                        Français
-                      </option>
-                      <option lang="it" value="nihongo">
-                        日本語
-                      </option>
-                    </select>
-               </div>
+
+                <div>
+                  <select
+                    name="language-picker-select"
+                    id="language-picker-select"
+                  >
+                    <option lang="de" value="english">
+                      English
+                    </option>
+                    <option lang="en" value="italiano" selected>
+                      Italiano
+                    </option>
+                    <option lang="en" value="deutsch" selected>
+                      Deutsch
+                    </option>
+                    <option lang="fr" value="francais">
+                      Français
+                    </option>
+                    <option lang="it" value="nihongo">
+                      日本語
+                    </option>
+                  </select>
+                </div>
               </form>
             </div>
           </Col>
-          <p style={{color:"grey", fontSize: "12px"}}>LinkedIn Corporation ©2022</p>
+          <p style={{ color: "grey", fontSize: "12px" }}>
+            LinkedIn Corporation ©2022
+          </p>
         </Row>
       </Container>
-   </div>
+    </div>
   );
 };
 

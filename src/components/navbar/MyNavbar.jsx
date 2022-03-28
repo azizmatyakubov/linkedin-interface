@@ -7,11 +7,11 @@ import {
   DropdownButton,
   Dropdown,
 } from "react-bootstrap";
-import "../components/mynavbar/mynavbar.css";
+import "./mynavbar.css";
 
 const MyNavbar = () => {
   return (
-    <Navbar  className="navbar">
+    <Navbar className="navbar">
       <Container className="navbar-container">
         <Row className="w-100 row-navbar">
           <Col md={5} className="col-md5">
@@ -55,22 +55,25 @@ const MyNavbar = () => {
             </ButtonGroup>
           </Col>
           <Col md={2} id="work-border" className="px-0">
-            
-              <ButtonGroup>
-                <div id="user-wrapper">
-                  <img src="/images/nav-work.svg" alt="" style={{marginBottom:"-5px"}}/>
+            <ButtonGroup>
+              <div id="user-wrapper">
+                <img
+                  src="/images/nav-work.svg"
+                  alt=""
+                  style={{ marginBottom: "-5px" }}
+                />
 
-                  <DropdownButton
-                    variant="light"
-                    title="Work"
-                    id="bg-nested-dropdown"
-                  >
-                    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-                  </DropdownButton>
-                </div>
-              </ButtonGroup>
-           
+                <DropdownButton
+                  variant="light"
+                  title="Work"
+                  id="bg-nested-dropdown"
+                >
+                  <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+                  <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+                </DropdownButton>
+              </div>
+            </ButtonGroup>
+
             <span>Get Sales Navigator</span>
           </Col>
         </Row>
