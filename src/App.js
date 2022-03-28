@@ -4,9 +4,15 @@ import Profile from './components/Profile';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import MyNavbar from './components/navbar/MyNavbar';
 function App() {
+  
+
+
+
   return (
     <div className="App">
     
+
+
       <BrowserRouter>
      <MyNavbar />
      <Profile />

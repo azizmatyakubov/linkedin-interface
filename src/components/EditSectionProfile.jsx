@@ -26,7 +26,7 @@ const EditSectionProfile = () => {
 export default EditSectionProfile;
 
 const Wrapper = styled.div`
-  border: 1px solid gray;
+  border: 1px solid #e6e6e6;
   padding: 1rem;
   max-height: 7rem;
   border-radius: 8px;
