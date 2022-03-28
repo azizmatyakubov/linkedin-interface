@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
+import MyFooter from "./MyFooter";
 
 const Profile = () => {
   return (
@@ -17,6 +18,7 @@ const Profile = () => {
         </Col>
       </Row>
       <Footer>footer</Footer>
+      <MyFooter />
     </Container>
   );
 };
