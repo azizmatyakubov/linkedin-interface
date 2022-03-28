@@ -2,13 +2,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Profile from './components/Profile';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { Navbar } from 'react-bootstrap';
 
 function App() {
   return (
     <div className="App">
       <Profile />
       <BrowserRouter>
-      {/* Navbar  */}
+     <Navbar />
         <Routes>
           <Route />
         </Routes>
