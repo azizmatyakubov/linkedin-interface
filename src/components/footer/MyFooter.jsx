@@ -9,7 +9,7 @@ const MyFooter = () => {
           <img src="/images/login-logo.svg" alt="" />
         </Row>
         <Row className="mt-2">
-          <Col md={2} className="px-0">
+          <Col xs={4} md={2} className="px-0">
             <ul id="list-footer">
               <li>About</li>
               <li>Community Guidelines</li>
@@ -18,7 +18,7 @@ const MyFooter = () => {
               <li>Safety Center</li>
             </ul>
           </Col>
-          <Col md={2} className="px-0">
+          <Col xs={4} md={2} className="px-0">
             <ul id="list-footer">
               <li>Accessibility</li>
               <li>Careers</li>
@@ -26,7 +26,7 @@ const MyFooter = () => {
               <li>Mobile</li>
             </ul>
           </Col>
-          <Col md={2} className="px-0">
+          <Col xs={4} md={2} className="px-0">
             <ul id="list-footer">
               <li>Talent Solutions</li>
               <li>Marketing Solutions</li>
@@ -34,7 +34,7 @@ const MyFooter = () => {
               <li>Small Business</li>
             </ul>
           </Col>
-          <Col md={3} className="col-md-3-footer">
+          <Col xs={6} md={3} className="col-md-3-footer">
             <Row>
               <div>
                 <svg
@@ -72,7 +72,7 @@ const MyFooter = () => {
               </div>
             </Row>
           </Col>
-          <Col md={3} className="col-md-3-footer">
+          <Col xs={6} md={3} className="col-md-3-footer">
             <div className="language-picker js-language-picker">
               <form action="" className="language-picker__form">
                 <label for="language-picker-select">Select language</label>
