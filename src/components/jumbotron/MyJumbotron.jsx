@@ -1,14 +1,18 @@
 import { Container, Row, Col } from "react-bootstrap";
 import React from "react";
 import styled from "styled-components";
-import "../MyJumbotron.css";
+import "./MyJumbotron.css";
 
 const MyJumbotron = () => {
   return (
     <Wrapper className="border-round-pill">
       <Header></Header>
       <AvatarLogo>
-        <img src="/images/aminface.png" alt="avatar" />
+        <img
+          className="jumbotron-img"
+          src="/images/aminface.png"
+          alt="avatar"
+        />
       </AvatarLogo>
       <Body>
         <Container>

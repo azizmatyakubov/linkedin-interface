@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import MyJumbotrons from "./MyJumbotron";
+import MyJumbotrons from "./jumbotron/MyJumbotron";
 import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
 import People from "./People";
 
-
 const Profile = () => {
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState([]);
 
   useEffect(() => {
     fetchApi();
@@ -32,12 +31,11 @@ const Profile = () => {
   };
 
   return (
-
     <div style={{ backgroundColor: "#F3F2EF" }}>
       <Container>
         <Row>
           <Col md={8}>
-             <MyJumbotrons />
+            <MyJumbotrons />
           </Col>
           <Col md={4}>
             <EditSectionProfile />
@@ -50,7 +48,6 @@ const Profile = () => {
         <MyFooter />
       </Container>
     </div>
-
   );
 };
 
