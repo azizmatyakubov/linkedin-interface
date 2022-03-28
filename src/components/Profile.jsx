@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
+import AdSectionProfile from "./AdSectionProfile";
+import EditSectionProfile from "./EditSectionProfile";
 
 const Profile = () => {
   return (
@@ -10,7 +12,8 @@ const Profile = () => {
           <Right>LEFT SECTION</Right>
         </Col>
         <Col md={4}>
-          <Left>RIGHT SECTION</Left>
+          <EditSectionProfile />
+          <AdSectionProfile />
         </Col>
       </Row>
       <Footer>footer</Footer>
