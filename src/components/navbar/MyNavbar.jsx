@@ -14,30 +14,30 @@ const MyNavbar = () => {
     <Navbar className="navbar">
       <Container className="navbar-container">
         <Row className="w-100 row-navbar">
-          <Col md={5} className="col-md5">
+          <Col xs={2} sm={4} md={5} className="left-section">
             <img src="/images/home-logo.svg" alt="" />
             <input className="input-field" type="text" placeholder="Search" />
           </Col>
-          <Col md={5} className="col-md5-icons">
+          <Col xs={4} md={5} className="col-md5-icons">
             <div>
               <img src="/images/nav-home.svg" alt="" />
-              <p>Home</p>
+              <p className="navbar-icon__text">Home</p>
             </div>
             <div>
               <img src="/images/nav-network.svg" alt="" />
-              <p>My Network</p>
+              <p className="navbar-icon__text">My Network</p>
             </div>
             <div>
               <img src="/images/nav-jobs.svg" alt="" />
-              <p>Jobs</p>
+              <p className="navbar-icon__text">Jobs</p>
             </div>
             <div>
               <img src="/images/nav-messaging.svg" alt="" />
-              <p>Messaging</p>
+              <p className="navbar-icon__text">Messaging</p>
             </div>
             <div>
               <img src="/images/nav-notifications.svg" alt="" />
-              <p>Notifications</p>
+              <p className="navbar-icon__text">Notifications</p>
             </div>
             <ButtonGroup>
               <div id="user-wrapper">
@@ -54,7 +54,7 @@ const MyNavbar = () => {
               </div>
             </ButtonGroup>
           </Col>
-          <Col md={2} id="work-border" className="px-0">
+          <Col xs={4} md={2} id="work-border" className="px-0">
             <ButtonGroup>
               <div id="user-wrapper">
                 <img

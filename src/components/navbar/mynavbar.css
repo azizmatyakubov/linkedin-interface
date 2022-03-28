@@ -1,4 +1,18 @@
 /*NAVBAR*/
+@media screen and (max-width: 687px) {
+  .input-field {
+    display: none;
+    width: 0;
+  }
+
+  .navbar-icon__text {
+    display: none;
+  }
+
+  .navbar-container {
+    margin: -1rem;
+  }
+}
 
 .navbar {
     background-color: rgb(255, 255, 255);
@@ -11,15 +25,18 @@
     background-color: #eef3f8;
     width: 300px;
   }
+
+    
+  .navbar-container {
+    display: flex;
+    flex-direction: column;
+    margin:  -1.5rem 2rem;
+  }
   
   .input-field:focus {
     outline: none !important;
   }
-  
-  .navbar-container {
-    display: flex;
-    flex-direction: column;
-  }
+
   
   .row-navbar {
     display: flex;
@@ -30,7 +47,7 @@
     align-items: center;
   }
   
-  .col-md-5 {
+  .left-section {
     display: flex;
     flex-direction: row;
   }
@@ -39,8 +56,7 @@
     flex-direction: row;
     display: flex;
     justify-content: space-between;
-    column-gap: 20px;
-    padding:0px;
+    padding: 0px;
   }
   
   .col-md5-icons> div>  p {
