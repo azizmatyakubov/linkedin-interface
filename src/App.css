@@ -1,3 +1,8 @@
+.App {
+    background-color: #F3F2EF;
+}
+
+
 /*NAVBAR*/
 
 .navbar {
@@ -47,4 +52,50 @@
   flex-direction: row;
   column-gap: 10px;
 }
+
 /*END OF NAVBAR*/
+
+/*FOOTER*/
+.fixed-bottom {
+    background-color: #F3F2EF;
+}
+
+
+#list-footer {
+ list-style-type: none;
+ padding-left:0;
+ list-style-type: none;
+ padding-left: 0;
+ font-size: 12px;
+ color: rgb(0 0 0 / 60%);
+ font-weight: 500;
+}
+
+#list-footer li {
+    padding-bottom:3px;
+}
+
+.col-md-3-footer {
+    font-size: 14px;
+    color: rgb(0 0 0 / 60%);
+    font-weight: 500;
+}
+
+.p-style p{
+    font-size: 12px;
+}
+
+#language-picker-select {
+    margin-left: 10px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background-color: #ffffff;
+    width: 270px;
+    height: 30px;
+    color: rgb(0 0 0 / 60%);
+}
+
+#language-picker-select {
+    outline: none!important;
+}
+/*END OF FOOTER*/
