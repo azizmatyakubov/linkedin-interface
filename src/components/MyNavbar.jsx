@@ -11,7 +11,7 @@ import "../App.css";
 
 const MyNavbar = () => {
   return (
-    <Navbar /* fixed="top" */ className="navbar">
+    <Navbar fixed="top" className="navbar">
       <Container className="navbar-container">
         <Row className="w-100 row-navbar">
           <Col md={5} className="col-md5">
@@ -54,7 +54,7 @@ const MyNavbar = () => {
              </div>
               </ButtonGroup>
           </Col>
-          <Col md={2}>
+          <Col md={2} id="work-border">
             <Col>
                 <ButtonGroup>
              <div id="user-wrapper">
