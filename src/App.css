@@ -1,0 +1,50 @@
+/*NAVBAR*/
+
+.navbar {
+  background-color: rgb(255, 255, 255);
+}
+
+.input-field {
+  margin-left: 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background-color: #eef3f8;
+  width: 300px;
+}
+
+.input-field:focus {
+  outline: none !important;
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-navbar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.col-md-5 {
+  display: flex;
+  flex-direction: row;
+}
+
+.col-md5-icons {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+}
+
+.col-md-2 {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+/*END OF NAVBAR*/
