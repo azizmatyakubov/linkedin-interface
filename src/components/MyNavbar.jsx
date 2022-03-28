@@ -39,27 +39,27 @@ const MyNavbar = () => {
               <img src="/images/nav-notifications.svg" alt="" />
               <p>Notifications</p>
             </div>
-              <ButtonGroup>
-             <div id="user-wrapper">
-                <img src="/images/user.svg" alt="" id="user-img"/>
-               
-                  <DropdownButton
-                    variant="light"
-                    title="Me"
-                    id="bg-nested-dropdown"
-                  >
-                    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-                  </DropdownButton>
-             </div>
-              </ButtonGroup>
+            <ButtonGroup>
+              <div id="user-wrapper">
+                <img src="/images/user.svg" alt="" id="user-img" />
+
+                <DropdownButton
+                  variant="light"
+                  title="Me"
+                  id="bg-nested-dropdown"
+                >
+                  <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+                  <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+                </DropdownButton>
+              </div>
+            </ButtonGroup>
           </Col>
-          <Col md={2} id="work-border">
+          <Col md={2} id="work-border" className="px-0">
             <Col>
-                <ButtonGroup>
-             <div id="user-wrapper">
-                <img src="/images/nav-work.svg" alt=""/>
-               
+              <ButtonGroup>
+                <div id="user-wrapper">
+                  <img src="/images/nav-work.svg" alt="" />
+
                   <DropdownButton
                     variant="light"
                     title="Work"
@@ -68,7 +68,7 @@ const MyNavbar = () => {
                     <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
                     <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
                   </DropdownButton>
-             </div>
+                </div>
               </ButtonGroup>
             </Col>
             <span>Get Sales Navigator</span>
