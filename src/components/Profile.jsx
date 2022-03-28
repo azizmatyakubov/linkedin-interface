@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
+import MyJumbotrons from "./MyJumbotron";
 import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
 import People from "./People";
+
 
 const Profile = () => {
   const [profile, setProfile] = useState();
@@ -30,11 +32,12 @@ const Profile = () => {
   };
 
   return (
+
     <div style={{ backgroundColor: "#F3F2EF" }}>
       <Container>
         <Row>
           <Col md={8}>
-            <Right>LEFT SECTION</Right>
+             <MyJumbotrons />
           </Col>
           <Col md={4}>
             <EditSectionProfile />
@@ -47,18 +50,11 @@ const Profile = () => {
         <MyFooter />
       </Container>
     </div>
+
   );
 };
 
 export default Profile;
-
-const Right = styled.div`
-  background-color: green;
-`;
-
-const Left = styled.div`
-  background-color: #002fff;
-`;
 
 const Footer = styled.div`
   background-color: pink;
