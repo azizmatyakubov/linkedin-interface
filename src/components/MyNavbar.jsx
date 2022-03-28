@@ -55,10 +55,10 @@ const MyNavbar = () => {
             </ButtonGroup>
           </Col>
           <Col md={2} id="work-border" className="px-0">
-            <Col>
+            
               <ButtonGroup>
                 <div id="user-wrapper">
-                  <img src="/images/nav-work.svg" alt="" />
+                  <img src="/images/nav-work.svg" alt="" style={{marginBottom:"-5px"}}/>
 
                   <DropdownButton
                     variant="light"
@@ -70,7 +70,7 @@ const MyNavbar = () => {
                   </DropdownButton>
                 </div>
               </ButtonGroup>
-            </Col>
+           
             <span>Get Sales Navigator</span>
           </Col>
         </Row>
