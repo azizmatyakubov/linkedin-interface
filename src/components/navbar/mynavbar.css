@@ -17,6 +17,7 @@
 .navbar {
     background-color: rgb(255, 255, 255);
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
   }
   
   .input-field {
@@ -46,6 +47,7 @@
     margin-left: -15px;
     flex-direction: row;
     align-items: center;
+    transform: translateY(-10px);
   }
   
   .left-section {
@@ -118,6 +120,7 @@
       border-radius: 50%;
   }
   
+
   #user-wrapper {
       display:flex;
       flex-direction: column;
@@ -128,7 +131,15 @@
   #bg-nested-dropdown {
       background-color: transparent;
       border: 0px transparent;
+      font-size:14px;
       
+  }
+
+  #bg-nested-dropdown-2 {
+    background-color: transparent;
+      border: 0px transparent;
+      margin-top:-10px;
+      font-size: 14px;
   }
   
   .work-div {

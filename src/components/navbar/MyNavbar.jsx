@@ -39,7 +39,7 @@ const MyNavbar = () => {
               <img src="/images/nav-notifications.svg" alt="" />
               <p className="navbar-icon__text">Notifications</p>
             </div>
-            <ButtonGroup>
+             <ButtonGroup>
               <div id="user-wrapper">
                 <img src="/images/user.svg" alt="" id="user-img" />
 
@@ -53,6 +53,10 @@ const MyNavbar = () => {
                 </DropdownButton>
               </div>
             </ButtonGroup>
+           {/*   <div id="user-wrapper">
+              <img src="/images/user.svg" alt="" id="user-img"/>
+              <p style ={{paddingTop: "5px"}}>Me</p>
+            </div> */}
           </Col>
           <Col xs={4} md={2} id="work-border" className="px-0">
             <ButtonGroup>
@@ -66,7 +70,7 @@ const MyNavbar = () => {
                 <DropdownButton
                   variant="light"
                   title="Work"
-                  id="bg-nested-dropdown"
+                  id="bg-nested-dropdown-2"
                 >
                   <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
                   <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
