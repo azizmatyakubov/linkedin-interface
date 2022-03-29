@@ -10,7 +10,9 @@ import { useParams } from "react-router";
 
 function App() {
   const [profile, setProfile] = useState([]);
+  const [myProfile, setMyProfile] = useState({});
 
+  
   // get the id from the url
   const param = useParams();
   console.log(param)
@@ -18,6 +20,8 @@ function App() {
   // it is like componetDidMount
   useEffect(() => {
     fetchApi();
+    fetchMyProfile()
+    console.log(myProfile)
   }, []);
 
   // Get people from API and assign to state
@@ -33,18 +37,32 @@ function App() {
       }
     );
     const data = await response.json();
-    console.log(data)
     setProfile(data);
   };
 
+  // Get only profile data from API and assign to state
+  const fetchMyProfile = async () => {
+    const response = await fetch('https://striveschool-api.herokuapp.com/api/profile/me', {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+      },
+    }
+    );
+    const data = await response.json();
+    setMyProfile(data)
+    // this is the data that we get from the api
 
+  }
 
   return (
     <div className="App">
       <BrowserRouter>
         <MyNavbar />
         <Routes>
-          <Route path="/profile/" element={<Profile data={profile} />} />
+          <Route path="/profile/" element={<Profile data={profile} me={myProfile} />} />
+          <Route path="/profile/:id" element={<Profile data={profile} me={myProfile} />} />
           <Route path="/feed/" element={<Home data={profile} />} />
         </Routes>
         <MyFooter />

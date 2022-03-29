@@ -12,31 +12,35 @@ import { useParams} from 'react-router'
 
 const Profile = (props) => {
 
-const [experience, setExperience] =  useState()
-const param ="5fc4af0bb708c200175de88e"
+  const myID = "6242131ed339840015c883bb";
+  const [experience, setExperience] = useState();
+  const param = useParams();
 
+  // check if url has id then show data related to id else show data related to myID
+  useEffect(() => {
+    if (param.id) {
+      fetchExperiences(param.id);
+    } else {
+      fetchExperiences(myID);
+    }
+  }, []);
 
-
-
-useEffect(() => {
-fetchExperiences()
-  }, [])
-
-const fetchExperiences = async () => {
-const response = await fetch (
-  `https://striveschool-api.herokuapp.com/api/profile/${param}/experiences`,
-  {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyZGE4YmRhMTNhZjAwMTUyYzFjNjAiLCJpYXQiOjE2NDg1NDg0OTEsImV4cCI6MTY0OTc1ODA5MX0.nDFXChjgeLm2c9zj1Nhwvj4A16nI_kFdxUuP3p_dy4A",
-    },
-  }
-)
-const data = await response.json();
-setExperience(data);
-}
-
+  const fetchExperiences = async (id) => {
+    const response = await fetch(
+      "https://striveschool-api.herokuapp.com/api/profile/" +
+        id +
+        "/experiences",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyZGE4YmRhMTNhZjAwMTUyYzFjNjAiLCJpYXQiOjE2NDg1NDg0OTEsImV4cCI6MTY0OTc1ODA5MX0.nDFXChjgeLm2c9zj1Nhwvj4A16nI_kFdxUuP3p_dy4A",
+        },
+      }
+    );
+    const data = await response.json();
+    setExperience(data);
+  };
 
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
@@ -46,12 +50,9 @@ setExperience(data);
           <Col md={8}>
             <MyJumbotron />
 
-            <ExperienceSection data={experience} /> 
+            <ExperienceSection data={experience} />
 
-            
-
-         {/*    <Section /> */}
-
+            {/*    <Section /> */}
           </Col>
           {/* RIGHT SIDE  */}
           <Col md={4}>
@@ -62,10 +63,6 @@ setExperience(data);
             <People title="People you may know" data={props.data} />
           </Col>
         </Row>
-
-        
-
-
       </Container>
     </div>
   );

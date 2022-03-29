@@ -101,8 +101,10 @@ const Wrapper = styled.div`
   position: relative;
   min-height: 65vh;
   background-color: rgb(255, 255, 255);
-  border: 1px solid grey;
+  border: 1px solid #e6e6e6;
   border-radius: 15px;
+  overflow: hidden;
+  padding-bottom: 2rem;
 `;
 
 const Header = styled.div`
