@@ -1,10 +1,11 @@
 import React from "react";
-import { Container, Col, Row } from "react-bootstrap";
 import AboutHome from "./AboutHome";
 import AdSectionProfile from "./AdSectionProfile";
 import People from "./People";
 import PostHome from "./PostHome";
 import styled from "styled-components";
+import CommunityPanel from "./CommunityPanel";
+import Message from "./Message";
 
 const Home = (props) => {
   return (
@@ -12,12 +13,15 @@ const Home = (props) => {
       <Wrapper>
         <Left>
           <AboutHome />
+          <CommunityPanel />
         </Left>
         <Main>
           <PostHome />
+          <Message />
         </Main>
         <Right>
           <People title="Add to your feed" data={props.data} />
+          <AdSectionProfile />
         </Right>
       </Wrapper>
     </>
