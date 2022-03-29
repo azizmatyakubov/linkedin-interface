@@ -1,17 +1,13 @@
-
 import { Container, Row, Col } from "react-bootstrap";
-import MyJumbotron from "./jumbotron/MyJumbotron";
-import AdSectionProfile from "./AdSectionProfile";
-import EditSectionProfile from "./EditSectionProfile";
-import People from "./People";
-
-import ExperienceSection from "./experience/ExperienceSection";
+import MyJumbotron from "../components/jumbotron/MyJumbotron";
+import AdSectionProfile from "../components/AdSectionProfile";
+import EditSectionProfile from "../components/EditSectionProfile";
+import People from "../components/People";
+import ExperienceSection from "../components/experience/ExperienceSection";
 import React, { useEffect, useState } from "react";
-import { useParams} from 'react-router'
-
+import { useParams } from "react-router";
 
 const Profile = (props) => {
-
   const myID = "6242131ed339840015c883bb";
   const [experience, setExperience] = useState();
   const param = useParams();
@@ -34,11 +30,12 @@ const Profile = (props) => {
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyZGE4YmRhMTNhZjAwMTUyYzFjNjAiLCJpYXQiOjE2NDg1NDg0OTEsImV4cCI6MTY0OTc1ODA5MX0.nDFXChjgeLm2c9zj1Nhwvj4A16nI_kFdxUuP3p_dy4A",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
         },
       }
     );
     const data = await response.json();
+    console.log(data, "this is experience");
     setExperience(data);
   };
 
@@ -48,7 +45,7 @@ const Profile = (props) => {
         <Row>
           {/* LEFT SIDE  */}
           <Col md={8}>
-            <MyJumbotron />
+            <MyJumbotron me={props.me} />
 
             <ExperienceSection data={experience} />
 
@@ -69,6 +66,3 @@ const Profile = (props) => {
 };
 
 export default Profile;
-
-
-

@@ -3,7 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import "./MyJumbotron.css";
 
-const MyJumbotron = () => {
+const MyJumbotron = (props) => {
+  console.log(props.me, "this is me");
   return (
     <Wrapper className="border-round-pill">
       <Header></Header>
@@ -20,7 +21,7 @@ const MyJumbotron = () => {
             <Col md={8}>
               <div className="jumbotron-body">
                 <h3>
-                  Micheal Manza
+                  {props.me.name} {props.me.surname}
                   <span className="text-muted">(Him/He)</span>
                 </h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -130,6 +131,7 @@ const AvatarLogo = styled.div`
   margin-top: -6rem;
   margin-left: 1.5rem;
   overflow: hidden;
+  border: 4 px solid white;
 `;
 
 const ButtonsClick = styled.div`

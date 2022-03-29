@@ -1,11 +1,11 @@
 import React from "react";
-import AboutHome from "./AboutHome";
-import AdSectionProfile from "./AdSectionProfile";
-import People from "./People";
-import PostHome from "./PostHome";
+import AboutHome from "../components/AboutHome";
+import AdSectionProfile from "../components/AdSectionProfile";
+import People from "../components/People";
+import PostHome from "../components/PostHome";
 import styled from "styled-components";
-import CommunityPanel from "./CommunityPanel";
-import Message from "./Message";
+import CommunityPanel from "../components/CommunityPanel";
+import Message from "../components/Message";
 
 const Home = (props) => {
   return (
