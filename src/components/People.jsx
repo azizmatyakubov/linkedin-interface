@@ -3,8 +3,6 @@ import styled from "styled-components";
 import SingleUser from "./singleUser/SingleUser";
 
 const People = (props) => {
-  console.log(props, "this");
-
   return (
     <Wrapper>
       <HeaderText>{props.title}</HeaderText>

@@ -6,14 +6,19 @@ import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
 import People from "./People";
+import { useParams } from "react-router";
 
 const Profile = () => {
   const [profile, setProfile] = useState([]);
+  // get the id from the url
+  const param = useParams();
 
+  // it is like componetDidMount
   useEffect(() => {
     fetchApi();
   }, []);
 
+  // Get people from API and assign to state
   const fetchApi = async () => {
     const response = await fetch(
       "https://striveschool-api.herokuapp.com/api/profile",
@@ -26,7 +31,6 @@ const Profile = () => {
       }
     );
     const data = await response.json();
-    console.log(data);
     setProfile(data);
   };
 
@@ -34,18 +38,19 @@ const Profile = () => {
     <div style={{ backgroundColor: "#F3F2EF" }}>
       <Container>
         <Row>
+          {/* LEFT SIDE  */}
           <Col md={8}>
             <MyJumbotrons />
           </Col>
+          {/* RIGHT SIDE  */}
           <Col md={4}>
             <EditSectionProfile />
             <AdSectionProfile />
+            {/* People component takes state as a props data = [{user1}, {user2}, {user3}] */}
             <People title="People also viewed" data={profile} />
             <People title="People you may know" data={profile} />
           </Col>
         </Row>
-        <Footer>footer</Footer>
-        <MyFooter />
       </Container>
     </div>
   );
