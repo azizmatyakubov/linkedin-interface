@@ -6,8 +6,12 @@ import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
 import People from "./People";
+
+import ExperienceSection from "./experience/ExperienceSection";
+
 import { useParams } from "react-router";
 import Section from "./section/Section";
+
 
 const Profile = (props) => {
   return (
@@ -17,7 +21,11 @@ const Profile = (props) => {
           {/* LEFT SIDE  */}
           <Col md={8}>
             <MyJumbotrons />
+
+            <ExperienceSection />
+
             <Section />
+
           </Col>
           {/* RIGHT SIDE  */}
           <Col md={4}>
@@ -28,6 +36,10 @@ const Profile = (props) => {
             <People title="People you may know" data={props.data} />
           </Col>
         </Row>
+
+        
+
+
       </Container>
     </div>
   );
