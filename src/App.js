@@ -13,6 +13,7 @@ function App() {
 
   // get the id from the url
   const param = useParams();
+  console.log(param)
 
   // it is like componetDidMount
   useEffect(() => {
@@ -32,8 +33,10 @@ function App() {
       }
     );
     const data = await response.json();
+    console.log(data)
     setProfile(data);
   };
+
 
 
   return (
@@ -41,7 +44,7 @@ function App() {
       <BrowserRouter>
         <MyNavbar />
         <Routes>
-          <Route path="/profile" element={<Profile data={profile} />} />
+          <Route path="/profile/" element={<Profile data={profile} />} />
           <Route path="/feed/" element={<Home data={profile} />} />
         </Routes>
         <MyFooter />
