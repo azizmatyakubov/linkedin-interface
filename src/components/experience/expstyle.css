@@ -48,3 +48,21 @@
 .style-hr {
     border-top: 1px solid #cecece96;
 }
+
+
+/*SINGLE-EXPERIENCE STYLE*/
+
+.modal-body > form > div {
+    margin-bottom: 2rem;
+}
+
+.modal-body > form > div> input, select{
+    margin-top: -1.5rem;
+    border:1px solid #e6e6e6;
+}
+
+.icons-col >img:last-of-type:hover {
+    background-color: #e6e6e6;
+    border-radius: 50%;
+    cursor: pointer;
+}
