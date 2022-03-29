@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
 
 const PostHome = () => {
   return (
@@ -8,26 +7,34 @@ const PostHome = () => {
       <Header>
         <img
           src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
-          alt=""
-          srcset=""
+          alt="profile-avatar"
         />
         <Input type="text" placeholder="Start post" />
       </Header>
       <Footer>
         <Section>
-          <img src="https://img.icons8.com/color/48/000000/picture--v1.png" />
+          <img src="/images/photo-home.png" alt="photo" />
           Photo
         </Section>
         <Section>
-          <img src="https://img.icons8.com/color/48/000000/icons8-new-logo.png" />
+          <img
+            src="https://img.icons8.com/color/48/000000/icons8-new-logo.png"
+            alt="video"
+          />
           Video
         </Section>
         <Section>
-          <img src="https://img.icons8.com/color/48/000000/clock--v4.png" />
+          <img
+            src="https://img.icons8.com/color/48/000000/clock--v4.png"
+            alt="event"
+          />
           Event
         </Section>
         <Section>
-          <img src="https://img.icons8.com/color/48/000000/scroll.png" />
+          <img
+            src="https://img.icons8.com/color/48/000000/scroll.png"
+            alt="article"
+          />
           Write article
         </Section>
       </Footer>
@@ -77,6 +84,7 @@ const Footer = styled.div`
 `;
 
 const Section = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
