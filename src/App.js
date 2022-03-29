@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 
 function App() {
   const [profile, setProfile] = useState([]);
+
   // get the id from the url
   const param = useParams();
 
@@ -33,6 +34,7 @@ function App() {
     const data = await response.json();
     setProfile(data);
   };
+
 
   return (
     <div className="App">
