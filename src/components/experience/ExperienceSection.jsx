@@ -1,11 +1,11 @@
 import { Container,Row, Col} from "react-bootstrap"
 import "./expstyle.css"
 
+
 const ExperienceSection =() => {
+
     return (
     
-    
-   
     <Container id="container-wrapper" className="mt-4">
         <Row className="mt-3">
         <Col>

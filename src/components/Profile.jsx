@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import MyJumbotrons from "./jumbotron/MyJumbotron";
-import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
 import People from "./People";
 
 import ExperienceSection from "./experience/ExperienceSection";
 
-import { useParams } from "react-router";
-import Section from "./section/Section";
-
 
 const Profile = (props) => {
+
+
+
+
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
       <Container>
@@ -24,7 +24,7 @@ const Profile = (props) => {
 
             <ExperienceSection />
 
-            <Section />
+         {/*    <Section /> */}
 
           </Col>
           {/* RIGHT SIDE  */}
