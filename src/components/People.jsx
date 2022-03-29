@@ -3,8 +3,6 @@ import styled from "styled-components";
 import SingleUser from "./singleUser/SingleUser";
 
 const People = (props) => {
-  console.log(props, "this");
-
   return (
     <Wrapper>
       <HeaderText>{props.title}</HeaderText>
@@ -19,16 +17,13 @@ const People = (props) => {
 export default People;
 
 const Wrapper = styled.div`
-  padding: 1rem 1rem;
-  min-height: 10rem;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
-  margin-top: 1rem;
   border: 1px solid #e6e6e6;
   background-color: white;
-
   margin-bottom: 1rem;
   border-radius: 8px;
-  max-height: 30rem;
+  max-height: 28.5rem;
   overflow: hidden;
 `;
 
