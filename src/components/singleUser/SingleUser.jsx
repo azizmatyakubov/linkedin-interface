@@ -15,7 +15,7 @@ const SingleUser = (props) => {
             className="single-user-img"
           />
         </Col>
-        <Col md={8} className="mt-1">
+        <Col md={9} className="mt-1">
           <Link to={`/home/` + props.data._id}>
             <p className="name__singleUser">
               {props.data.name} <span>- 2nd</span>
