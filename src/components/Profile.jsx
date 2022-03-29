@@ -6,6 +6,7 @@ import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
 import People from "./People";
+import ExperienceSection from "./experience/ExperienceSection";
 
 const Profile = () => {
   const [profile, setProfile] = useState([]);
@@ -36,6 +37,7 @@ const Profile = () => {
         <Row>
           <Col md={8}>
             <MyJumbotrons />
+            <ExperienceSection />
           </Col>
           <Col md={4}>
             <EditSectionProfile />
@@ -44,7 +46,6 @@ const Profile = () => {
             <People title="People you may know" data={profile} />
           </Col>
         </Row>
-        <Footer>footer</Footer>
         <MyFooter />
       </Container>
     </div>
