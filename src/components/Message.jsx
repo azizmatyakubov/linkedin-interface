@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import { formatDistanceStrict } from "date-fns";
+import TimeAgo from "timeago-react";
 
 const Message = (props) => {
   // let post = moment(props.data[0]).format("YYYY MM DD");
@@ -31,7 +32,10 @@ const Message = (props) => {
               <div>
                 <h6>{post.username}</h6>
                 <p>{post.user.title}</p>
-                <p>{moment(post.updatedAt).format("YYYY MM DD")}</p>
+
+                <p>
+                  <TimeAgo datetime={post.updatedAt} />
+                </p>
               </div>
             </Header>
             <Body>
