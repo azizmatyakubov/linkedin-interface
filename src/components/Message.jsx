@@ -163,7 +163,7 @@ export default Message;
 const Wrapper = styled.div`
   background-color: #ffffff;
   border: 1px solid #e6e6e6;
-  border-radius: 4px;
+  border-radius: 8px;
   width: 100%;
   min-height: 5rem;
   padding: 1rem 1rem;
