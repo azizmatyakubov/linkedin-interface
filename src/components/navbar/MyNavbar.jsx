@@ -29,7 +29,7 @@ const MyNavbar = () => {
           </InputGroup>
         </div>
         <Container id="icons-container">
-         <ul>
+         <ul id="ul-nav">
            <li>
              <img src="images/nav-home.svg" alt=""/>
              <span>Home</span>
