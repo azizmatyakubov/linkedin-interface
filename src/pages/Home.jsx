@@ -57,22 +57,52 @@ const Home = (props) => {
 
 export default Home;
 
+
 const Wrapper = styled.div`
   display: flex;
   padding: 0rem 6.5rem;
+  background-color: #f3f2ef;
+
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 1020px) {
+    padding: 0 1rem;
+  }
 `;
 const Left = styled.div`
   width: 14rem;
   min-height: 10rem;
   margin-right: 2rem;
+
+  @media (max-width: 768px) {
+    margin: auto;
+    width: 100%;
+  }
 `;
 const Main = styled.div`
   width: 10rem;
   min-height: 10rem;
   flex-grow: 1;
   margin-right: 2rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 const Right = styled.div`
   width: 20rem;
   min-height: 10rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    display: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    display: none;
+  }
 `;

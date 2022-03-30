@@ -21,51 +21,54 @@ const Message = (props) => {
 
   return (
     <div>
-      {props.data.slice(-5).map((post) => (
-        <>
-          <Wrapper>
-            <Header>
-              <img src={post.image} alt="img" />
-              <div>
-                <h6>{post.username}</h6>
-                <p>{post.user.title}</p>
+      {props.data
+        .slice(-5)
+        .reverse()
+        .map((post) => (
+          <>
+            <Wrapper>
+              <Header>
+                <img src={post.image} alt="img" />
+                <div>
+                  <h6>{post.username}</h6>
+                  <p>{post.user.title}</p>
 
-                <p>
-                  <TimeAgo datetime={post.updatedAt} />
-                </p>
-              </div>
-            </Header>
-            <Body>
-              <p>{post.text}</p>
+                  <p>
+                    <TimeAgo datetime={post.updatedAt} />
+                  </p>
+                </div>
+              </Header>
+              <Body>
+                <p>{post.text}</p>
 
-              <div>
-                <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
-                <span>129</span>
-                <span>1 comments</span>
-              </div>
-            </Body>
+                <div>
+                  <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
+                  <span>129</span>
+                  <span>1 comments</span>
+                </div>
+              </Body>
 
-            <Footer>
-              <Section>
-                <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
-                Like
-              </Section>
-              <Section>
-                <img src="/images/chat-dots.svg" alt="" srcset="" />
-                Comment
-              </Section>
-              <Section>
-                <img src="/images/share.svg" alt="" srcset="" />
-                Share
-              </Section>
-              <Section>
-                <img src="/images/send.svg" alt="" srcset="" />
-                Send
-              </Section>
-            </Footer>
-          </Wrapper>
-        </>
-      ))}
+              <Footer>
+                <Section>
+                  <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
+                  Like
+                </Section>
+                <Section>
+                  <img src="/images/chat-dots.svg" alt="" srcset="" />
+                  Comment
+                </Section>
+                <Section>
+                  <img src="/images/share.svg" alt="" srcset="" />
+                  Share
+                </Section>
+                <Section>
+                  <img src="/images/send.svg" alt="" srcset="" />
+                  Send
+                </Section>
+              </Footer>
+            </Wrapper>
+          </>
+        ))}
     </div>
   );
 };
@@ -80,6 +83,10 @@ const Wrapper = styled.div`
   min-height: 5rem;
   padding: 1rem 1rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Header = styled.div`
