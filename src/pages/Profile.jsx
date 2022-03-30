@@ -45,7 +45,7 @@ const Profile = (props) => {
         <Row>
           {/* LEFT SIDE  */}
           <Col md={8}>
-            <MyJumbotron me={props.me} />
+            <MyJumbotron me={props.me} getMe={props.getMe} />
 
             <ExperienceSection data={experience} />
 
