@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Modal, Form, Button } from "react-bootstrap";
-import { useParams } from "react-router";
 
 const PostHome = (props) => {
   const [inputValue, setInputValue] = useState("");
-  const [showEdit, setShowEdit] = useState(true);
 
+  // when you write anything on post and press Enter, this function runs
   const _handleSubmit = async (e) => {
     if (e.key === "Enter") {
+      // checking: if users press Enter, function will send POST request
       try {
         const response = await fetch(
           "https://striveschool-api.herokuapp.com/api/posts/",
           {
             method: "POST",
             body: JSON.stringify({
-              text: inputValue,
+              text: inputValue, // inputValue from state
             }),
             headers: {
               "Content-Type": "application/json",
@@ -25,11 +24,8 @@ const PostHome = (props) => {
           }
         );
         if (response.ok) {
-          // alert("Your posted message successfully");
-          // setInputValue("");
-          props.getPosts();
-          console.log("new post posted", inputValue);
-          setInputValue("");
+          props.getPosts(); // if we send POST reqeust successfully, we need to get all posts one more time
+          setInputValue(""); // Clearing input value
         } else {
           console.log("fetch failed");
         }
@@ -51,7 +47,7 @@ const PostHome = (props) => {
             type="text"
             placeholder="Start post"
             value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
+            onChange={(event) => setInputValue(event.target.value)} // whem users type something, this function setState
             onKeyPress={_handleSubmit}
           />
         </Header>

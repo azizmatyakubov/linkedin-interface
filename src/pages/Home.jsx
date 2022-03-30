@@ -16,8 +16,7 @@ const Home = (props) => {
     getPosts();
   }, []);
 
-
-
+  // get all posts from API and storing Posts state
   const getPosts = async () => {
     const response = await fetch(
       "https://striveschool-api.herokuapp.com/api/posts",

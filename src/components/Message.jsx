@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import moment from "moment";
-import { formatDistanceStrict } from "date-fns";
 import TimeAgo from "timeago-react";
-import { Link } from "react-router-dom";
 import { Modal, Form, Button } from "react-bootstrap";
 
 const Message = (props) => {
   const [show, setShow] = useState(false); // this is for showing Modal
   const [postText, setPostText] = useState("there should be post text"); // this is for modal
-  const [selectedPostId, setSelectedPostId] = useState();
+  const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
 
   const handleClose = () => setShow(false);
+
+  // when user click edit post text, this function runs
   const handleShow = (id) => {
     console.log(id, "this is post id");
-    setShow(true);
+    setShow(true); // display modal
     fetchPostById(id);
     setSelectedPostId(id);
   };
 
+  // fetch post with id and storing to 'postText' state 
   const fetchPostById = async (id) => {
     let res = await fetch(
       "https://striveschool-api.herokuapp.com/api/posts/" + id,
@@ -31,14 +31,15 @@ const Message = (props) => {
       }
     );
     let data = await res.json();
-    console.log(data);
-    setPostText(data);
+    setPostText(data); //setting state
   };
 
+  // there is button on Modal, when it clicks, this function runs 
   const handleChange = async () => {
-    changePostById(selectedPostId);
+    changePostById(selectedPostId); //selectedPostId is coming from state
   };
 
+  // it will send PUT request to server in order to change POST text 
   const changePostById = async (id) => {
     let res = await fetch(
       "https://striveschool-api.herokuapp.com/api/posts/" + id,
@@ -54,16 +55,16 @@ const Message = (props) => {
     );
     if (res.ok) {
       console.log("UPDATED");
-      props.getPosts();
-      handleClose();
+      props.getPosts(); // if response is ok, we need to get all posts one more time from server
+      handleClose(); // after all operation, we need to close modal
     }
   };
 
   return (
     <div>
       {props.data
-        .slice(-5)
-        .reverse()
+        .slice(-5) // only showing last 5 posts
+        .reverse() // last messages should be on top
         .map((post) => (
           <>
             <Wrapper>
@@ -73,16 +74,15 @@ const Message = (props) => {
                   <h6>{post.username}</h6>
                   <p>{post.user.title}</p>
                   <p>
-                    <TimeAgo datetime={post.updatedAt} />
+                    <TimeAgo datetime={post.updatedAt} /> 
                   </p>
                 </div>
-                {/* <Link to={"/post/" + post._id}> */}
-                <p onClick={() => handleShow(post._id)}>Edit Post</p>
-                {/* </Link> */}
+
+                <p onClick={() => handleShow(post._id)}>Edit Post</p> 
+               
               </Header>
               <Body>
                 <p>{post.text}</p>
-
                 <div>
                   <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
                   <span>129</span>
@@ -142,7 +142,7 @@ const Message = (props) => {
         ))}
     </div>
   );
-};
+};;
 
 export default Message;
 
