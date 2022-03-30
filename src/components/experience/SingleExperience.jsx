@@ -1,5 +1,4 @@
-import { Container, Row, Col, Modal, Button } from "react-bootstrap";
-import React, { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import './expstyle.css'
 
 const SingleExperience = (props) => {

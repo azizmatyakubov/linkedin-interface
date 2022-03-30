@@ -1,88 +1,70 @@
 import {
   Container,
   Navbar,
+  Nav,
   Row,
   Col,
   ButtonGroup,
   DropdownButton,
   Dropdown,
+  InputGroup,
+  FormControl,
 } from "react-bootstrap";
 import "./mynavbar.css";
 
 const MyNavbar = () => {
   return (
-    <Navbar className="navbar">
-      <Container className="navbar-container">
-        <Row className="w-100 row-navbar">
-          <Col xs={2} sm={4} md={5} className="left-section">
-            <img src="/images/home-logo.svg" alt="" />
-            <input className="input-field" type="text" placeholder="Search" />
-          </Col>
-          <Col xs={4} md={5} className="col-md5-icons">
-            <div>
-              <img src="/images/nav-home.svg" alt="" />
-              <p className="navbar-icon__text">Home</p>
-            </div>
-            <div>
-              <img src="/images/nav-network.svg" alt="" />
-              <p className="navbar-icon__text">My Network</p>
-            </div>
-            <div>
-              <img src="/images/nav-jobs.svg" alt="" />
-              <p className="navbar-icon__text">Jobs</p>
-            </div>
-            <div>
-              <img src="/images/nav-messaging.svg" alt="" />
-              <p className="navbar-icon__text">Messaging</p>
-            </div>
-            <div>
-              <img src="/images/nav-notifications.svg" alt="" />
-              <p className="navbar-icon__text">Notifications</p>
-            </div>
-             <ButtonGroup>
-              <div id="user-wrapper">
-                <img src="/images/user.svg" alt="" id="user-img" />
-
-                <DropdownButton
-                  variant="light"
-                  title="Me"
-                  id="bg-nested-dropdown"
-                >
-                  <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-                  <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-                </DropdownButton>
-              </div>
-            </ButtonGroup>
-           {/*   <div id="user-wrapper">
-              <img src="/images/user.svg" alt="" id="user-img"/>
-              <p style ={{paddingTop: "5px"}}>Me</p>
-            </div> */}
-          </Col>
-          <Col xs={4} md={2} id="work-border" className="px-0">
-            <ButtonGroup>
-              <div id="user-wrapper">
-                <img
-                  src="/images/nav-work.svg"
-                  alt=""
-                  style={{ marginBottom: "-5px" }}
-                />
-
-                <DropdownButton
-                  variant="light"
-                  title="Work"
-                  id="bg-nested-dropdown-2"
-                >
-                  <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-                  <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-                </DropdownButton>
-              </div>
-            </ButtonGroup>
-
-            <span>Get Sales Navigator</span>
-          </Col>
-        </Row>
-      </Container>
-    </Navbar>
+    <Container id="nav-container">
+      <Navbar bg="light">
+        <img src="/images/home-logo.svg" alt="" />
+        <div id="search">
+          <InputGroup size="sm" className="mx-2">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroup-sizing-sm"><img src="/images/search-icon.svg" alt="" /></InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              aria-label="Small"
+              aria-describedby="inputGroup-sizing-sm"
+            />
+          </InputGroup>
+        </div>
+        <Container id="icons-container">
+         <ul>
+           <li>
+             <img src="images/nav-home.svg" alt=""/>
+             <span>Home</span>
+           </li>
+           <li>
+             <img src="images/nav-network.svg" alt=""/>
+             <span>My Network</span>
+           </li>
+           <li>
+             <img src="images/nav-jobs.svg" alt=""/>
+             <span>Jobs</span>
+           </li>
+           <li>
+             <img src="images/nav-messaging.svg" alt=""/>
+             <span>Messaging</span>
+           </li>
+           <li>
+             <img src="images/nav-notifications.svg" alt=""/>
+             <span>Notifications</span>
+           </li>
+           <li>
+             <div>
+               <img src="images/user.svg" alt="" id="user-icon" />
+             </div>
+             <span>Me</span>
+           </li>
+           <li>
+             <img src="images/nav-work.svg" alt=""/>
+             <span>Work</span>
+           </li>
+           <span>Get Sales Navigator</span>
+         </ul>
+        </Container>
+      </Navbar>
+    </Container>
   );
 };
 
