@@ -4,6 +4,7 @@ import TimeAgo from "timeago-react";
 import { Modal, Form, Button } from "react-bootstrap";
 
 const Message = (props) => {
+  console.log("THIS IS PROPS", props)
   const [show, setShow] = useState(false); // this is for showing Modal
   const [postText, setPostText] = useState("there should be post text"); // this is for modal
   const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
