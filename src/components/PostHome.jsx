@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Modal, Form, Button } from "react-bootstrap";
+import { useParams } from "react-router";
 
-const PostHome = () => {
+const PostHome = (props) => {
   const [inputValue, setInputValue] = useState("");
+  const [showEdit, setShowEdit] = useState(true);
 
   const _handleSubmit = async (e) => {
     if (e.key === "Enter") {
@@ -22,7 +25,11 @@ const PostHome = () => {
           }
         );
         if (response.ok) {
-          console.log("POSTED NEW MESSAGE");
+          // alert("Your posted message successfully");
+          // setInputValue("");
+          props.getPosts();
+          console.log("new post posted", inputValue);
+          setInputValue("");
         } else {
           console.log("fetch failed");
         }
@@ -33,48 +40,50 @@ const PostHome = () => {
   };
 
   return (
-    <Wrapper>
-      <Header>
-        <img
-          src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
-          alt="profile-avatar"
-        />
-        <Input
-          type="text"
-          placeholder="Start post"
-          value={inputValue}
-          onChange={(event) => setInputValue(event.target.value)}
-          onKeyPress={_handleSubmit}
-        />
-      </Header>
-      <Footer>
-        <Section>
-          <img src="/images/photo-home.png" alt="photo" />
-          Photo
-        </Section>
-        <Section>
+    <>
+      <Wrapper>
+        <Header>
           <img
-            src="https://img.icons8.com/color/48/000000/icons8-new-logo.png"
-            alt="video"
+            src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
+            alt="profile-avatar"
           />
-          Video
-        </Section>
-        <Section>
-          <img
-            src="https://img.icons8.com/color/48/000000/clock--v4.png"
-            alt="event"
+          <Input
+            type="text"
+            placeholder="Start post"
+            value={inputValue}
+            onChange={(event) => setInputValue(event.target.value)}
+            onKeyPress={_handleSubmit}
           />
-          Event
-        </Section>
-        <Section>
-          <img
-            src="https://img.icons8.com/color/48/000000/scroll.png"
-            alt="article"
-          />
-          Write article
-        </Section>
-      </Footer>
-    </Wrapper>
+        </Header>
+        <Footer>
+          <Section>
+            <img src="/images/photo-home.png" alt="photo" />
+            Photo
+          </Section>
+          <Section>
+            <img
+              src="https://img.icons8.com/color/48/000000/icons8-new-logo.png"
+              alt="video"
+            />
+            Video
+          </Section>
+          <Section>
+            <img
+              src="https://img.icons8.com/color/48/000000/clock--v4.png"
+              alt="event"
+            />
+            Event
+          </Section>
+          <Section>
+            <img
+              src="https://img.icons8.com/color/48/000000/scroll.png"
+              alt="article"
+            />
+            Write article
+          </Section>
+        </Footer>
+      </Wrapper>
+    </>
   );
 };
 

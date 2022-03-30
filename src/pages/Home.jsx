@@ -16,9 +16,7 @@ const Home = (props) => {
     getPosts();
   }, []);
 
-  useEffect(() => {
-    console.log("posts", posts);
-  }, [posts]);
+
 
   const getPosts = async () => {
     const response = await fetch(
@@ -43,8 +41,8 @@ const Home = (props) => {
           <CommunityPanel />
         </Left>
         <Main>
-          <PostHome />
-          <Message data={posts} />
+          <PostHome getPosts={getPosts} />
+          <Message data={posts} getPosts={getPosts} />
         </Main>
         <Right>
           <People title="Add to your feed" data={props.data} />

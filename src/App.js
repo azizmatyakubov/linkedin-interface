@@ -75,6 +75,10 @@ function App() {
             element={<Profile data={profile} me={myProfile} />}
           />
           <Route path="/" element={<Home data={profile} me={myProfile} />} />
+          <Route
+            path="/post/:id"
+            element={<Home data={profile} me={myProfile} />}
+          />
         </Routes>
         <MyFooter />
       </BrowserRouter>
