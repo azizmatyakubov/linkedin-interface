@@ -7,6 +7,7 @@ import MyFooter from "./components/footer/MyFooter";
 import Home from "./pages/Home";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import ExperienceDetails from './components/experience/ExperienceDetails';
 
 function App() {
   const [profile, setProfile] = useState([]);
@@ -75,6 +76,7 @@ function App() {
             element={<Profile data={profile} me={myProfile} />}
           />
           <Route path="/" element={<Home data={profile} />} />
+          <Route path="/experience-details" element={<ExperienceDetails />} />
         </Routes>
         <MyFooter />
       </BrowserRouter>

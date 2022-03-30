@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const MyFooter = () => {
   return (
-    <div className="wrapper-container">
+    <div className="wrapper-container sticky-bottom">
       <Container>
         <Row>
           <img src="/images/login-logo.svg" alt="" />
