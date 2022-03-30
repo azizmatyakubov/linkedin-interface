@@ -74,7 +74,7 @@ function App() {
             path="/profile/:id"
             element={<Profile data={profile} me={myProfile} />}
           />
-          <Route path="/" element={<Home data={profile} />} />
+          <Route path="/" element={<Home data={profile} me={myProfile} />} />
         </Routes>
         <MyFooter />
       </BrowserRouter>

@@ -21,14 +21,11 @@ const Message = (props) => {
 
   return (
     <div>
-      {props.data.slice(-3).map((post) => (
+      {props.data.slice(-5).map((post) => (
         <>
           <Wrapper>
             <Header>
-              <img
-                src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
-                alt="profile-avatar"
-              />
+              <img src={post.image} alt="img" />
               <div>
                 <h6>{post.username}</h6>
                 <p>{post.user.title}</p>

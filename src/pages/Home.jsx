@@ -39,7 +39,7 @@ const Home = (props) => {
     <>
       <Wrapper>
         <Left>
-          <AboutHome />
+          <AboutHome data={props.me} />
           <CommunityPanel />
         </Left>
         <Main>
