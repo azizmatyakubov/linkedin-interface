@@ -7,7 +7,6 @@ import styled from "styled-components";
 import CommunityPanel from "../components/CommunityPanel";
 import Message from "../components/Message";
 import { useState, useEffect } from "react";
-import moment from "moment";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);

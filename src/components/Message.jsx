@@ -16,9 +16,10 @@ const Message = (props) => {
     setShow(true); // display modal
     fetchPostById(id);
     setSelectedPostId(id);
+    console.log(props.data[0].user);
   };
 
-  // fetch post with id and storing to 'postText' state 
+  // fetch post with id and storing to 'postText' state
   const fetchPostById = async (id) => {
     let res = await fetch(
       "https://striveschool-api.herokuapp.com/api/posts/" + id,
@@ -34,17 +35,21 @@ const Message = (props) => {
     setPostText(data); //setting state
   };
 
-  // there is button on Modal, when it clicks, this function runs 
+  // there is button on Modal, when it clicks, this function runs
   const handleChange = async () => {
-    changePostById(selectedPostId); //selectedPostId is coming from state
+    changePostById(selectedPostId, "PUT"); //selectedPostId is coming from state
   };
 
-  // it will send PUT request to server in order to change POST text 
-  const changePostById = async (id) => {
+  const handleDelete = async () => {
+    changePostById(selectedPostId, "DELETE");
+  };
+
+  // it will send PUT request to server in order to change POST text
+  const changePostById = async (id, method) => {
     let res = await fetch(
       "https://striveschool-api.herokuapp.com/api/posts/" + id,
       {
-        method: "PUT",
+        method: method,
         body: JSON.stringify(postText),
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +59,7 @@ const Message = (props) => {
       }
     );
     if (res.ok) {
-      console.log("UPDATED");
+      console.log(method);
       props.getPosts(); // if response is ok, we need to get all posts one more time from server
       handleClose(); // after all operation, we need to close modal
     }
@@ -69,17 +74,22 @@ const Message = (props) => {
           <>
             <Wrapper>
               <Header>
-                <img src={post.image} alt="img" />
+                <img src={post.user.image} alt="img" />
                 <div>
                   <h6>{post.username}</h6>
                   <p>{post.user.title}</p>
                   <p>
-                    <TimeAgo datetime={post.updatedAt} /> 
+                    <TimeAgo datetime={post.updatedAt} />
                   </p>
                 </div>
-
-                <p onClick={() => handleShow(post._id)}>Edit Post</p> 
-               
+                {post.user._id === "6242131ed339840015c883bb" && (
+                  <Button
+                    variant="outline-dark"
+                    onClick={() => handleShow(post._id)}
+                  >
+                    Edit Post
+                  </Button>
+                )}
               </Header>
               <Body>
                 <p>{post.text}</p>
@@ -116,7 +126,7 @@ const Message = (props) => {
               <Modal.Body>
                 <Form>
                   <Form.Group>
-                    <Form.Label>Company</Form.Label>
+                    <Form.Label>Your post</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Company"
@@ -132,8 +142,12 @@ const Message = (props) => {
                     variant="success"
                     type="button"
                     onClick={handleChange}
+                    className="mr-2"
                   >
-                    Add
+                    Update
+                  </Button>
+                  <Button variant="danger" type="button" onClick={handleDelete}>
+                    Delete
                   </Button>
                 </Form>
               </Modal.Body>

@@ -2,10 +2,19 @@
 
 #nav-container {
   padding: 0;
+  background-color: #f3f2ef;
+ 
+}
+
+.wrapper-nav {
+   min-width: 100vw;
+   background-color: white;
+   margin-bottom: 1rem;
 }
 
 .navbar {
-  background-color: transparent !important;
+  background-color: white !important;
+  
 }
 
 #icons-container {

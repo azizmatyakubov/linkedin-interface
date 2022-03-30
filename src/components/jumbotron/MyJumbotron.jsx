@@ -1,94 +1,281 @@
-import { Container, Row, Col } from "react-bootstrap";
-import React from "react";
+import { Container, Row, Col, Modal, Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "./MyJumbotron.css";
 
 const MyJumbotron = (props) => {
-  console.log(props.me, "this is me");
+  const [show, setShow] = useState(false); // this is for showing Modal
+
+  const handleSHow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const [profileDetails, setProfileDetails] = useState({
+    profileName: props.me.name,
+    surname: props.me.surname,
+    email: props.me.email,
+    bio: props.me.bio,
+    title: props.me.title,
+    area: props.me.area,
+    images: props.me.images,
+  });
+
+  const handleChangeProfile = () => {
+    handleSHow();
+  };
+
+  const updateProfile = () => {
+    updateProfileDetails();
+    props.getMe();
+    handleClose();
+  };
+
+  const body = {
+    name: profileDetails.profileName,
+    surname: profileDetails.surname,
+    email: profileDetails.email,
+    bio: profileDetails.bio,
+    title: profileDetails.title,
+    area: profileDetails.area,
+    image: profileDetails.image,
+  };
+
+  const updateProfileDetails = async () => {
+    let res = await fetch(
+      "https://striveschool-api.herokuapp.com/api/profile/",
+      {
+        method: "PUT",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
+        },
+      }
+    );
+    if (res.ok) {
+      alert("updated");
+    }
+  };
   return (
-    <Wrapper className="border-round-pill">
-      <Header></Header>
-      <AvatarLogo>
-        <img className="jumbotron-img" src={props.me.image} alt="avatar" />
-      </AvatarLogo>
-      <Body>
-        <Container>
-          <Row>
-            <Col md={8}>
-              <div className="jumbotron-body">
-                <h3>
-                  {props.me.name} {props.me.surname}
-                  <span className="text-muted">(Him/He)</span>
-                </h3>
-                <p>{props.me.title}</p>
-                <p>
-                  <span className="text-muted">{props.me.area}</span>
+    <>
+      <Wrapper className="border-round-pill">
+        <Header></Header>
+        <AvatarLogo>
+          <img className="jumbotron-img" src={props.me.image} alt="avatar" />
+        </AvatarLogo>
+        <Body>
+          <Container className="jumbotron-container">
+            <Row>
+              <Col md={8}>
+                <div className="jumbotron-body">
+                  <h3>
+                    {props.me.name} {props.me.surname}
+                    <span className="text-muted">(Him/He)</span>
+                  </h3>
+                  <p>{props.me.title}</p>
+                  <p>
+                    <span className="text-muted">{props.me.area}</span>
+                    <b>
+                      <a href="asd#" target="_blank" className="ml-2">
+                        Contact Info
+                      </a>
+                    </b>
+                  </p>
+
+                  <p className="my-2">
+                    <b>
+                      <a href="asd#" target="_blank">
+                        100 Connections
+                      </a>
+                    </b>
+                  </p>
+                </div>
+              </Col>
+              <Col md={4}>
+                <p className="edit-profile" onClick={handleChangeProfile}>
+                  Edit
+                </p>
+                <h6>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                </h6>
+                <p>Facilis odit mollitia aliquam harum corporis quibusdam</p>
+              </Col>
+            </Row>
+            <ButtonsClick>
+              <button className="jumbotron-btn mr-2  rounded-pill bg-primary text-white text-center px-4 py-2">
+                Open to
+              </button>
+              <button className="jumbotron-btn  mr-2 rounded-pill bg-light border-primary text-primary text-center px-4">
+                Add profile section
+              </button>
+              <button className="jumbotron-btn mr-2 rounded-pill text-center px-4">
+                More
+              </button>
+            </ButtonsClick>
+          </Container>
+          <Container className="mt-3">
+            <Row>
+              <Col md={6}>
+                <div className="jumbotron-footer-left">
+                  <p>
+                    <strong> Lorem ipsum dolor</strong> sit amet consectetur
+                    adipisicing elit.
+                  </p>
                   <b>
-                    <a href="asd#" target="_blank" className="ml-2">
-                      Contact Info
+                    <a href="asd#" target="_blank" className="">
+                      See all details
                     </a>
                   </b>
-                </p>
+                </div>
+              </Col>
 
-                <p className="my-2">
-                  <b>
-                    <a href="asd#" target="_blank">
-                      100 Connections
+              <Col md={6}>
+                <div className="jumbotron-footer-right">
+                  <p>
+                    <strong> Lorem ipsum dolor</strong> sit amet consectetur
+                    adipisicing elit.
+                  </p>
+                  <b className="mt-2">
+                    <a href="asd#" target="_blank" className="">
+                      Get started
                     </a>
                   </b>
-                </p>
-              </div>
-            </Col>
-            <Col md={4}>
-              <h6>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h6>
-              <p>Facilis odit mollitia aliquam harum corporis quibusdam</p>
-            </Col>
-          </Row>
-          <ButtonsClick>
-            <button className="jumbotron-btn mr-2  rounded-pill bg-primary text-white text-center px-4 py-2">
-              Open to
-            </button>
-            <button className="jumbotron-btn  mr-2 rounded-pill bg-light border-primary text-primary text-center px-4">
-              Add profile section
-            </button>
-            <button className="jumbotron-btn mr-2 rounded-pill text-center px-4">
-              More
-            </button>
-          </ButtonsClick>
-        </Container>
-        <Container className="mt-3">
-          <Row>
-            <Col md={6}>
-              <div className="jumbotron-footer-left">
-                <p>
-                  <strong> Lorem ipsum dolor</strong> sit amet consectetur
-                  adipisicing elit.
-                </p>
-                <b>
-                  <a href="asd#" target="_blank" className="">
-                    See all details
-                  </a>
-                </b>
-              </div>
-            </Col>
-
-            <Col md={6}>
-              <div className="jumbotron-footer-right">
-                <p>
-                  <strong> Lorem ipsum dolor</strong> sit amet consectetur
-                  adipisicing elit.
-                </p>
-                <b className="mt-2">
-                  <a href="asd#" target="_blank" className="">
-                    Get started
-                  </a>
-                </b>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </Body>
-    </Wrapper>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </Body>
+      </Wrapper>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Experience</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            {/* NAME  */}
+            <Form.Group>
+              <Form.Label>Your name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Write here"
+                className="mt-1"
+                required
+                value={profileDetails.profileName}
+                onChange={(e) =>
+                  setProfileDetails({
+                    ...profileDetails,
+                    profileName: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            {/* SURNAME  */}
+            <Form.Group>
+              <Form.Label>Your surname</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Write here"
+                className="mt-1"
+                required
+                value={profileDetails.surname}
+                onChange={(e) =>
+                  setProfileDetails({
+                    ...profileDetails,
+                    surname: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            {/* EMAIL  */}
+            <Form.Group>
+              <Form.Label>Your email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Write here"
+                className="mt-1"
+                required
+                value={profileDetails.email}
+                onChange={(e) =>
+                  setProfileDetails({
+                    ...profileDetails,
+                    email: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            {/* BIO  */}
+            <Form.Group>
+              <Form.Label>Your bio</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Write here"
+                className="mt-1"
+                required
+                value={profileDetails.bio}
+                onChange={(e) =>
+                  setProfileDetails({ ...profileDetails, bio: e.target.value })
+                }
+              />
+            </Form.Group>
+            {/* TITLE  */}
+            <Form.Group>
+              <Form.Label>Your title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Write here"
+                className="mt-1"
+                required
+                value={profileDetails.title}
+                onChange={(e) =>
+                  setProfileDetails({
+                    ...profileDetails,
+                    title: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            {/* AREA  */}
+            <Form.Group>
+              <Form.Label>Your area</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Write here"
+                className="mt-1"
+                required
+                value={profileDetails.area}
+                onChange={(e) =>
+                  setProfileDetails({ ...profileDetails, area: e.target.value })
+                }
+              />
+            </Form.Group>
+            {/* IMAGE  */}
+            <Form.Group>
+              <Form.Label>Your image</Form.Label>
+              <Form.Control
+                type="url"
+                placeholder="Write here"
+                className="mt-1"
+                required
+                value={profileDetails.image}
+                onChange={(e) =>
+                  setProfileDetails({
+                    ...profileDetails,
+                    image: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Button
+              variant="success"
+              type="button"
+              onClick={updateProfile}
+              className="mr-2"
+            >
+              Update
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 

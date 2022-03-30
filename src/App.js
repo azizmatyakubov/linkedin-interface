@@ -69,7 +69,7 @@ function App() {
         <Routes>
           <Route
             path="/profile/"
-            element={<Profile data={profile} me={myProfile} />}
+            element={<Profile data={profile} me={myProfile} getMe={fetchMyProfile} />}
           />
           <Route
             path="/profile/:id"
