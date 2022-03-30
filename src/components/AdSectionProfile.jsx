@@ -30,6 +30,7 @@ const Wrapper = styled.div`
   min-height: 10rem;
   border-radius: 6px;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   border: 1px solid #e6e6e6;
   text-align: center;
   background-color: white;

@@ -6,8 +6,33 @@ import PostHome from "../components/PostHome";
 import styled from "styled-components";
 import CommunityPanel from "../components/CommunityPanel";
 import Message from "../components/Message";
-
+import { useState, useEffect } from "react";
 const Home = (props) => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+  useEffect(() => {
+    console.log(posts);
+  }, [posts]);
+
+  const getPosts = async () => {
+    const response = await fetch(
+      "https://striveschool-api.herokuapp.com/api/posts",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      }
+    );
+    const data = await response.json();
+    setPosts(data);
+  };
+
   return (
     <>
       <Wrapper>
@@ -17,7 +42,7 @@ const Home = (props) => {
         </Left>
         <Main>
           <PostHome />
-          <Message />
+          <Message data={posts} />
         </Main>
         <Right>
           <People title="Add to your feed" data={props.data} />

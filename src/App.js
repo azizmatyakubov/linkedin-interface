@@ -20,9 +20,13 @@ function App() {
   // it is like componetDidMount
   useEffect(() => {
     fetchApi();
-    fetchMyProfile()
-    
+    fetchMyProfile();
+    console.log(myProfile);
   }, []);
+
+  useEffect(() => {
+    console.log(myProfile);
+  }, [myProfile]);
 
   // Get people from API and assign to state
   const fetchApi = async () => {
@@ -42,28 +46,35 @@ function App() {
 
   // Get only profile data from API and assign to state
   const fetchMyProfile = async () => {
-    const response = await fetch('https://striveschool-api.herokuapp.com/api/profile/me', {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
-      },
-    }
+    const response = await fetch(
+      "https://striveschool-api.herokuapp.com/api/profile/me",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
+        },
+      }
     );
     const data = await response.json();
-    setMyProfile(data)
+    setMyProfile(data);
     // this is the data that we get from the api
-
-  }
+  };
 
   return (
     <div className="App">
       <BrowserRouter>
         <MyNavbar />
         <Routes>
-          <Route path="/profile/" element={<Profile data={profile} me={myProfile} />} />
-          <Route path="/profile/:id" element={<Profile data={profile} me={myProfile} />} />
-          <Route path="/feed/" element={<Home data={profile} />} />
+          <Route
+            path="/profile/"
+            element={<Profile data={profile} me={myProfile} />}
+          />
+          <Route
+            path="/profile/:id"
+            element={<Profile data={profile} me={myProfile} />}
+          />
+          <Route path="/" element={<Home data={profile} />} />
         </Routes>
         <MyFooter />
       </BrowserRouter>

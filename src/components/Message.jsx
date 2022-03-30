@@ -1,54 +1,55 @@
 import React from "react";
 import styled from "styled-components";
 
-const Message = () => {
+const Message = (props) => {
   return (
-    <Wrapper>
-      <Header>
-        <img
-          src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
-          alt="profile-avatar"
-        />
-        <div>
-          <h6>Bill Gates</h6>
-          <p>Software engineer</p>
-          <p>19 mins ago</p>
-        </div>
-      </Header>
-      <Body>
-        <p>
-          Career switching isn't a new concept. It's been happening forever.
-          Darryl from The Office left his warehouse job and went to Athlead. Jim
-          left his sales job and went to Athlead. Chandler Bing left his boring
-          job and became an intern doing whatever it was he die.
-        </p>
+    <div>
+      {props.data.slice(0, 10).map((post) => (
+        <>
+          <Wrapper>
+            <Header>
+              <img
+                src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
+                alt="profile-avatar"
+              />
+              <div>
+                <h6>{post.username}</h6>
+                <p>{post.user.title}</p>
+                <p>{post.updatedAt}</p>
+              </div>
+            </Header>
+            <Body>
+              <p>{post.text}</p>
 
-        <div>
-          <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
-          <span>129</span>
-          <span>1 comments</span>
-        </div>
-      </Body>
+              <div>
+                <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
+                <span>129</span>
+                <span>1 comments</span>
+              </div>
+            </Body>
 
-      <Footer>
-        <Section>
-          <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
-          Like
-        </Section>
-        <Section>
-          <img src="/images/chat-dots.svg" alt="" srcset="" />
-          Comment
-        </Section>
-        <Section>
-          <img src="/images/share.svg" alt="" srcset="" />
-          Share
-        </Section>
-        <Section>
-          <img src="/images/send.svg" alt="" srcset="" />
-          Send
-        </Section>
-      </Footer>
-    </Wrapper>
+            <Footer>
+              <Section>
+                <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
+                Like
+              </Section>
+              <Section>
+                <img src="/images/chat-dots.svg" alt="" srcset="" />
+                Comment
+              </Section>
+              <Section>
+                <img src="/images/share.svg" alt="" srcset="" />
+                Share
+              </Section>
+              <Section>
+                <img src="/images/send.svg" alt="" srcset="" />
+                Send
+              </Section>
+            </Footer>
+          </Wrapper>
+        </>
+      ))}
+    </div>
   );
 };
 
@@ -61,6 +62,7 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: 5rem;
   padding: 1rem 1rem;
+  margin-bottom: 1rem;
 `;
 
 const Header = styled.div`

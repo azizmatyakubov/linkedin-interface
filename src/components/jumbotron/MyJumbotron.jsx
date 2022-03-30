@@ -9,11 +9,7 @@ const MyJumbotron = (props) => {
     <Wrapper className="border-round-pill">
       <Header></Header>
       <AvatarLogo>
-        <img
-          className="jumbotron-img"
-          src="/images/aminface.png"
-          alt="avatar"
-        />
+        <img className="jumbotron-img" src={props.me.image} alt="avatar" />
       </AvatarLogo>
       <Body>
         <Container>
@@ -24,9 +20,9 @@ const MyJumbotron = (props) => {
                   {props.me.name} {props.me.surname}
                   <span className="text-muted">(Him/He)</span>
                 </h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>{props.me.title}</p>
                 <p>
-                  <span className="text-muted"> Greater Manchester Area</span>
+                  <span className="text-muted">{props.me.area}</span>
                   <b>
                     <a href="asd#" target="_blank" className="ml-2">
                       Contact Info

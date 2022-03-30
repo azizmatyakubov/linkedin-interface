@@ -8,7 +8,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 
 const ExperienceSection = (props) => {
   const [experiences, setExperiences] = useState(null);
-  const [experienceChanged, setExperienceChanged] = useState(0);
+  // const [experienceChanged, setExperienceChanged] = useState(0);
   const [addExperience, setAddExperience] = useState(false);
 
   const closeAddExperience = () => setAddExperience(false);
@@ -23,7 +23,7 @@ const ExperienceSection = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("here");
     const experience = {
       role: role,
       company: company,
@@ -42,14 +42,12 @@ const ExperienceSection = (props) => {
           headers: {
             "Content-Type": "application/json",
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
           },
         }
       );
       if (response.ok) {
-        const data = await response.json();
-        setExperiences(data);
-        setExperienceChanged((count) => count + 1);
+        console.log("POSTED");
       } else {
         console.error("fetch failed");
       }
@@ -70,7 +68,6 @@ const ExperienceSection = (props) => {
             <img src="/images/plus-icon.svg" alt="" />
             <img src="/images/pencil.svg" alt="" onClick={showAddExperience} />
           </Col>
-          {/* onClick={setShow(true)} */}
 
           {props.data &&
             props.data.map((value) => {
