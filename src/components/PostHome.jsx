@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const PostHome = () => {
+  const [inputValue, setInputValue] = useState("");
+
+  const _handleSubmit = async (e) => {
+    if (e.key === "Enter") {
+      try {
+        const response = await fetch(
+          "https://striveschool-api.herokuapp.com/api/posts/",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              text: inputValue,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+            },
+          }
+        );
+        if (response.ok) {
+          console.log("POSTED NEW MESSAGE");
+        } else {
+          console.log("fetch failed");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <Wrapper>
       <Header>
@@ -9,7 +39,13 @@ const PostHome = () => {
           src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
           alt="profile-avatar"
         />
-        <Input type="text" placeholder="Start post" />
+        <Input
+          type="text"
+          placeholder="Start post"
+          value={inputValue}
+          onChange={(event) => setInputValue(event.target.value)}
+          onKeyPress={_handleSubmit}
+        />
       </Header>
       <Footer>
         <Section>

@@ -7,6 +7,8 @@ import styled from "styled-components";
 import CommunityPanel from "../components/CommunityPanel";
 import Message from "../components/Message";
 import { useState, useEffect } from "react";
+import moment from "moment";
+
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
 
@@ -15,7 +17,7 @@ const Home = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(posts);
+    console.log("posts", posts);
   }, [posts]);
 
   const getPosts = async () => {

@@ -1,10 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
+import { formatDistanceStrict } from "date-fns";
 
 const Message = (props) => {
+  // let post = moment(props.data[0]).format("YYYY MM DD");
+  // let now = moment().format("YYYY MM DD");
+  // let post = moment(props.data[0].created).format("YYYY MM DD");
+  // let time = formatDistanceStrict(new Date(post), new Date(now));
+  // console.log(time);
+  // console.log(new Date(post), post);
+
+  // let now = moment();
+  // let post = moment(props.data[0].created);
+
+  // var duration = moment.duration(now.diff(post));
+  // var days = duration.asDays();
+  // console.log(days);
+
   return (
     <div>
-      {props.data.slice(0, 10).map((post) => (
+      {props.data.slice(-3).map((post) => (
         <>
           <Wrapper>
             <Header>
@@ -15,7 +31,7 @@ const Message = (props) => {
               <div>
                 <h6>{post.username}</h6>
                 <p>{post.user.title}</p>
-                <p>{post.updatedAt}</p>
+                <p>{moment(post.updatedAt).format("YYYY MM DD")}</p>
               </div>
             </Header>
             <Body>
