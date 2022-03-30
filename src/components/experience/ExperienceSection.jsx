@@ -3,6 +3,7 @@ import "./expstyle.css";
 import SingleExperience from "./SingleExperience";
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // 6242131ed339840015c883bb
 
@@ -65,8 +66,10 @@ const ExperienceSection = (props) => {
           </Col>
 
           <Col className="icons-col">
-            <img src="/images/plus-icon.svg" alt="" />
-            <img src="/images/pencil.svg" alt="" onClick={showAddExperience} />
+            <img src="/images/plus-icon.svg" alt="" onClick={showAddExperience}/>
+           <Link to="/experience-details">
+              <img src="/images/pencil.svg" alt="" id="pencil-icon"/>
+           </Link>
           </Col>
 
           {props.data &&
