@@ -68,7 +68,7 @@ const Message = (props) => {
   return (
     <div>
       {props.data
-        .slice(-5) // only showing last 5 posts
+        .slice(-12) // only showing last 5 posts
         .reverse() // last messages should be on top
         .map((post) => (
           <>

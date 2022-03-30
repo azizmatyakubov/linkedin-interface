@@ -44,6 +44,7 @@ const Wrapper = styled.div`
   margin-bottom: 1rem;
   border-radius: 8px;
   overflow: hidden;
+
 `;
 
 const Header = styled.div`

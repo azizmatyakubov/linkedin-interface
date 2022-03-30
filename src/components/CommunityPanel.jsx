@@ -61,7 +61,8 @@ const Wrapper = styled.div`
   overflow: hidden;
   background-color: white;
   padding: 0.8rem;
-
+  position: sticky;
+  top: 1rem;
   p {
     font-size: 0.8rem;
   }

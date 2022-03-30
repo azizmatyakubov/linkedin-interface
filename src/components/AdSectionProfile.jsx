@@ -34,6 +34,8 @@ const Wrapper = styled.div`
   border: 1px solid #e6e6e6;
   text-align: center;
   background-color: white;
+  position: sticky;
+  top: 1rem;
 
   span {
     font-size: 12px;
