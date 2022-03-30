@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const AboutHome = () => {
+const AboutHome = (props) => {
+  let me = props.data;
   return (
     <Wrapper>
       <Header>
@@ -13,10 +14,12 @@ const AboutHome = () => {
         />
       </Header>
       <Body>
-        <ProfileImg src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg" />
+        <ProfileImg src={me.image} />
       </Body>
-      <ProfileName>Bill Gates</ProfileName>
-      <ProfileTitle>Software engineer</ProfileTitle>
+      <ProfileName>
+        {me.name} {me.surname}
+      </ProfileName>
+      <ProfileTitle>{me.title}</ProfileTitle>
       <Views>
         <View>
           <p>Who viewed your profile </p>

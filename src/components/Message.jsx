@@ -1,54 +1,145 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import moment from "moment";
+import { formatDistanceStrict } from "date-fns";
+import TimeAgo from "timeago-react";
+import { Link } from "react-router-dom";
+import { Modal, Form, Button } from "react-bootstrap";
 
 const Message = (props) => {
+  const [show, setShow] = useState(false); // this is for showing Modal
+  const [postText, setPostText] = useState("there should be post text"); // this is for modal
+  const [selectedPostId, setSelectedPostId] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    console.log(id, "this is post id");
+    setShow(true);
+    fetchPostById(id);
+    setSelectedPostId(id);
+  };
+
+  const fetchPostById = async (id) => {
+    let res = await fetch(
+      "https://striveschool-api.herokuapp.com/api/posts/" + id,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      }
+    );
+    let data = await res.json();
+    console.log(data);
+    setPostText(data);
+  };
+
+  const handleChange = async () => {
+    changePostById(selectedPostId);
+  };
+
+  const changePostById = async (id) => {
+    let res = await fetch(
+      "https://striveschool-api.herokuapp.com/api/posts/" + id,
+      {
+        method: "PUT",
+        body: JSON.stringify(postText),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      }
+    );
+    if (res.ok) {
+      console.log("UPDATED");
+      props.getPosts();
+      handleClose();
+    }
+  };
+
   return (
     <div>
-      {props.data.slice(0, 10).map((post) => (
-        <>
-          <Wrapper>
-            <Header>
-              <img
-                src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
-                alt="profile-avatar"
-              />
-              <div>
-                <h6>{post.username}</h6>
-                <p>{post.user.title}</p>
-                <p>{post.updatedAt}</p>
-              </div>
-            </Header>
-            <Body>
-              <p>{post.text}</p>
+      {props.data
+        .slice(-5)
+        .reverse()
+        .map((post) => (
+          <>
+            <Wrapper>
+              <Header>
+                <img src={post.image} alt="img" />
+                <div>
+                  <h6>{post.username}</h6>
+                  <p>{post.user.title}</p>
+                  <p>
+                    <TimeAgo datetime={post.updatedAt} />
+                  </p>
+                </div>
+                {/* <Link to={"/post/" + post._id}> */}
+                <p onClick={() => handleShow(post._id)}>Edit Post</p>
+                {/* </Link> */}
+              </Header>
+              <Body>
+                <p>{post.text}</p>
 
-              <div>
-                <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
-                <span>129</span>
-                <span>1 comments</span>
-              </div>
-            </Body>
+                <div>
+                  <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
+                  <span>129</span>
+                  <span>1 comments</span>
+                </div>
+              </Body>
 
-            <Footer>
-              <Section>
-                <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
-                Like
-              </Section>
-              <Section>
-                <img src="/images/chat-dots.svg" alt="" srcset="" />
-                Comment
-              </Section>
-              <Section>
-                <img src="/images/share.svg" alt="" srcset="" />
-                Share
-              </Section>
-              <Section>
-                <img src="/images/send.svg" alt="" srcset="" />
-                Send
-              </Section>
-            </Footer>
-          </Wrapper>
-        </>
-      ))}
+              <Footer>
+                <Section>
+                  <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
+                  Like
+                </Section>
+                <Section>
+                  <img src="/images/chat-dots.svg" alt="" srcset="" />
+                  Comment
+                </Section>
+                <Section>
+                  <img src="/images/share.svg" alt="" srcset="" />
+                  Share
+                </Section>
+                <Section>
+                  <img src="/images/send.svg" alt="" srcset="" />
+                  Send
+                </Section>
+              </Footer>
+            </Wrapper>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Add Experience</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group>
+                    <Form.Label>Company</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Company"
+                      className="mt-1"
+                      value={postText.text}
+                      onChange={(e) =>
+                        setPostText({ ...postText, text: e.target.value })
+                      }
+                    />
+                  </Form.Group>
+
+                  <Button
+                    variant="success"
+                    type="button"
+                    onClick={handleChange}
+                  >
+                    Add
+                  </Button>
+                </Form>
+              </Modal.Body>
+            </Modal>
+          </>
+        ))}
     </div>
   );
 };
@@ -63,6 +154,10 @@ const Wrapper = styled.div`
   min-height: 5rem;
   padding: 1rem 1rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Header = styled.div`
@@ -88,6 +183,7 @@ const Header = styled.div`
     h6 {
       margin: 0;
     }
+    margin-right: auto;
   }
 `;
 

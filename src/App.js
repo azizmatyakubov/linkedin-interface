@@ -75,8 +75,16 @@ function App() {
             path="/profile/:id"
             element={<Profile data={profile} me={myProfile} />}
           />
-          <Route path="/" element={<Home data={profile} />} />
+
+          <Route path="/" element={<Home data={profile} me={myProfile} />} />
+          <Route
+            path="/post/:id"
+            element={<Home data={profile} me={myProfile} />}
+          />
+
+          
           <Route path="/experience-details" element={<ExperienceDetails />} />
+
         </Routes>
         <MyFooter />
       </BrowserRouter>

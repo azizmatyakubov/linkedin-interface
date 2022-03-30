@@ -7,6 +7,8 @@ import styled from "styled-components";
 import CommunityPanel from "../components/CommunityPanel";
 import Message from "../components/Message";
 import { useState, useEffect } from "react";
+import moment from "moment";
+
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
 
@@ -14,9 +16,7 @@ const Home = (props) => {
     getPosts();
   }, []);
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
+
 
   const getPosts = async () => {
     const response = await fetch(
@@ -37,12 +37,12 @@ const Home = (props) => {
     <>
       <Wrapper>
         <Left>
-          <AboutHome />
+          <AboutHome data={props.me} />
           <CommunityPanel />
         </Left>
         <Main>
-          <PostHome />
-          <Message data={posts} />
+          <PostHome getPosts={getPosts} />
+          <Message data={posts} getPosts={getPosts} />
         </Main>
         <Right>
           <People title="Add to your feed" data={props.data} />
@@ -55,22 +55,52 @@ const Home = (props) => {
 
 export default Home;
 
+
 const Wrapper = styled.div`
   display: flex;
   padding: 0rem 6.5rem;
+  background-color: #f3f2ef;
+
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 1020px) {
+    padding: 0 1rem;
+  }
 `;
 const Left = styled.div`
   width: 14rem;
   min-height: 10rem;
   margin-right: 2rem;
+
+  @media (max-width: 768px) {
+    margin: auto;
+    width: 100%;
+  }
 `;
 const Main = styled.div`
   width: 10rem;
   min-height: 10rem;
   flex-grow: 1;
   margin-right: 2rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 const Right = styled.div`
   width: 20rem;
   min-height: 10rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    display: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    display: none;
+  }
 `;
