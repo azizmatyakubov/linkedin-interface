@@ -8,7 +8,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 // 6242131ed339840015c883bb
 
 const ExperienceSection = (props) => {
-  const [experiences, setExperiences] = useState(null);
+  // const [experiences, setExperiences] = useState(null);
   // const [experienceChanged, setExperienceChanged] = useState(0);
   const [addExperience, setAddExperience] = useState(false);
 
@@ -66,10 +66,13 @@ const ExperienceSection = (props) => {
           </Col>
 
           <Col className="icons-col">
-            <img src="/images/plus-icon.svg" alt="" onClick={showAddExperience}/>
-           
-              <img src="/images/pencil.svg" alt="" id="pencil-icon"/>
-          
+            <img
+              src="/images/plus-icon.svg"
+              alt=""
+              onClick={showAddExperience}
+            />
+
+            <img src="/images/pencil.svg" alt="" id="pencil-icon" />
           </Col>
 
           {props.data &&
