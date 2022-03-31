@@ -127,6 +127,18 @@ console.log("this is changeExpID",_id)
         <Modal.Body>
           <Form>
             <Form.Group>
+              <Form.Label>Role</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Role"
+                value={experience.role}
+                onChange={(e) => setExperience({...experience, role: e.target.value})} 
+                required 
+                className="mt-1"
+              />
+            </Form.Group>
+
+            <Form.Group>
               <Form.Label>Company</Form.Label>
               <Form.Control
                 type="text"
@@ -138,6 +150,17 @@ console.log("this is changeExpID",_id)
               />
             </Form.Group>
 
+            <Form.Group>
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Location"
+                value={experience.area}
+                onChange={(e) => setExperience({...experience, area: e.target.value})} 
+                required 
+                className="mt-1"
+              />
+            </Form.Group>
 
             <Button variant="danger" type="button" onClick={handleDelete} >
               Delete
