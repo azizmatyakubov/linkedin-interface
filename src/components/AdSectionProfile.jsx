@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { Button } from "react-bootstrap";
-const AdSectionProfile = () => {
+const AdSectionProfile = (props) => {
   return (
-    <Wrapper>
+    <Wrapper style={props.sticky}>
       <TopSection>
         <span className="mr-2">Ad</span> <BiDotsHorizontalRounded />
       </TopSection>

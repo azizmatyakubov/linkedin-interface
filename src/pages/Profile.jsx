@@ -54,7 +54,7 @@ const Profile = (props) => {
           {/* RIGHT SIDE  */}
           <Col md={4}>
             <EditSectionProfile />
-            <AdSectionProfile />
+            <AdSectionProfile sticky={{position:"static"}}/>
             {/* People component takes state as a props data = [{user1}, {user2}, {user3}] */}
             <People title="People also viewed" data={props.data} />
             <People title="People you may know" data={props.data} />
