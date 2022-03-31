@@ -49,6 +49,7 @@ const ExperienceSection = (props) => {
       );
       if (response.ok) {
         console.log("POSTED");
+        props.getExp()
       } else {
         console.error("fetch failed");
       }
@@ -74,7 +75,7 @@ const ExperienceSection = (props) => {
 
           {props.data &&
             props.data.map((value) => {
-              return <SingleExperience key={value._id} data={value} />;
+              return <SingleExperience key={value._id} data={value}  getExp={props.getExp} />;
             })}
         </Row>
       </Container>

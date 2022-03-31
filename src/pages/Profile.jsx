@@ -11,6 +11,7 @@ const Profile = (props) => {
   const myID = "6242131ed339840015c883bb";
   const [experience, setExperience] = useState();
   const param = useParams();
+  console.log("this is param",param)
 
   // check if url has id then show data related to id else show data related to myID
   useEffect(() => {
@@ -47,7 +48,7 @@ const Profile = (props) => {
           <Col md={8}>
             <MyJumbotron me={props.me} getMe={props.getMe} />
 
-            <ExperienceSection data={experience} />
+            <ExperienceSection data={experience} getExp={fetchExperiences} />
 
             {/*    <Section /> */}
           </Col>
