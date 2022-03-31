@@ -48,7 +48,7 @@ const Profile = (props) => {
           <Col md={8}>
             <MyJumbotron me={props.me} />
 
-            <ExperienceSection data={experience} />
+            <ExperienceSection data={experience} getExp={fetchExperiences} />
 
             {/*    <Section /> */}
           </Col>
