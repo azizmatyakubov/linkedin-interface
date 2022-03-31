@@ -9,22 +9,21 @@ const SingleExperience = (props) => {
   const [show, setShow] = useState(false);
   const [experience, setExperience] = useState("");
   const [selectedExpId, setSelectedExpId] = useState();
+  const [image, setImage] = useState(null);
 
   const handleClose = () => setShow(false);
-
-  //I RETRIEVED THE ID BUT IT DOESNT WORK WHEN I PASS IT INTO
-  // handleSHow as a parameter
 
   const handleShow = () => {
     console.log(props.data._id, "this is exp id");
     setShow(true);
     fetchExpById(props.data._id);
-    setSelectedExpId(props.data._id) 
+    setSelectedExpId(props.data._id);
   };
 
   const fetchExpById = async (_id) => {
     let response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences/"  + _id,
+      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences/" +
+        _id,
       {
         headers: {
           "Content-Type": "application/json",
@@ -35,18 +34,14 @@ const SingleExperience = (props) => {
     );
     let data = await response.json();
     console.log("THIS IS DATA", data);
-    setExperience(data)
-   
+    setExperience(data);
   };
-
-
 
   const handleChange = async () => {
     changeExpById(selectedExpId, "PUT");
     handleClose();
-    fetchExperiences("6242131ed339840015c883bb")
-  }
-  
+    fetchExperiences("6242131ed339840015c883bb");
+  };
 
   const fetchExperiences = async (id) => {
     const response = await fetch(
@@ -66,36 +61,63 @@ const SingleExperience = (props) => {
     setExperience(data);
   };
 
-
-
-
-
-
   const handleDelete = async () => {
     changeExpById(selectedExpId, "DELETE");
-  }
+  };
 
-
-const changeExpById = async (_id, method) => {
-console.log("this is changeExpID",_id)
-  let response = fetch (
-    "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences/"  + _id,
-    {
-      method: method,
-      body: JSON.stringify(experience),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-      },
+  const changeExpById = async (_id, method) => {
+    console.log("this is changeExpID", _id);
+    let response = fetch(
+      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences/" +
+        _id,
+      {
+        method: method,
+        body: JSON.stringify(experience),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      }
+    );
+    if (response.ok) {
+      props.getExp();
+      handleClose();
     }
-  )
-  if (response.ok) {
-    props.getExp()
-    handleClose();
-  }
-}
- 
+  };
+
+  const handleFile = (e) => {
+    console.log(e.target.files);
+    let file = e.target.files[0];
+    setImage(file);
+    submitPicture(props.data._id);
+  };
+
+  const submitPicture = async (_id) => {
+    console.log(props.data._id);
+    const data = new FormData();
+    data.append("experience", image);
+    let res = await fetch(
+      "https://striveschool-api.herokuapp.com/api/profile/62458b0aec507a0015740d18/experiences/" +
+        _id +
+        "/picture",
+      {
+        method: "POST",
+        body: data,
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      }
+    );
+    let resData = await res.json();
+    if (resData.ok) {
+      props.getExp();
+      console.log("picture uploaded");
+    } else {
+      console.log("failed");
+    }
+  };
 
   return (
     <>
@@ -105,10 +127,7 @@ console.log("this is changeExpID",_id)
             <img src={props.data.image} alt="" />
           </Col>
           <Col md={4} id="text-col">
-            <h6
-              onClick={handleShow}
-              style={{ cursor: "pointer" }}
-            >
+            <h6 onClick={handleShow} style={{ cursor: "pointer" }}>
               {props.data.role}
             </h6>
             <span>{props.data.company}</span>
@@ -132,8 +151,10 @@ console.log("this is changeExpID",_id)
                 type="text"
                 placeholder="Role"
                 value={experience.role}
-                onChange={(e) => setExperience({...experience, role: e.target.value})} 
-                required 
+                onChange={(e) =>
+                  setExperience({ ...experience, role: e.target.value })
+                }
+                required
                 className="mt-1"
               />
             </Form.Group>
@@ -144,8 +165,10 @@ console.log("this is changeExpID",_id)
                 type="text"
                 placeholder="Company"
                 value={experience.company}
-                onChange={(e) => setExperience({...experience, company: e.target.value})} 
-                required 
+                onChange={(e) =>
+                  setExperience({ ...experience, company: e.target.value })
+                }
+                required
                 className="mt-1"
               />
             </Form.Group>
@@ -156,20 +179,63 @@ console.log("this is changeExpID",_id)
                 type="text"
                 placeholder="Location"
                 value={experience.area}
-                onChange={(e) => setExperience({...experience, area: e.target.value})} 
-                required 
+                onChange={(e) =>
+                  setExperience({ ...experience, area: e.target.value })
+                }
+                required
                 className="mt-1"
               />
             </Form.Group>
 
-            <Button variant="danger" type="button" onClick={handleDelete} >
+            <Form.Group>
+              <Form.Label>Start Date</Form.Label>
+              <Form.Control
+                type="date"
+                value={experience.startDate}
+                onChange={(e) =>
+                  setExperience({ ...experience, startDate: e.target.value })
+                }
+                required
+                className="mt-1"
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>End Date</Form.Label>
+              <Form.Control
+                type="date"
+                value={experience.endDate}
+                onChange={(e) =>
+                  setExperience({ ...experience, endDate: e.target.value })
+                }
+                className="mt-1"
+              />
+            </Form.Group>
+
+            <Form.Group id="formData">
+              <Form.Label>Choose your Image</Form.Label>
+              <Form.Control
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+                className="mt-1"
+              />
+            </Form.Group>
+
+            <Button variant="danger" type="button" onClick={handleDelete}>
               Delete
             </Button>
             <Button
               variant="success"
               className="mx-2"
               type="button"
-              onClick={handleChange} >
+              onClick={() => {
+                handleChange();
+                if(image) {
+                   submitPicture(props.data._id);
+                }
+               
+              }}
+            >
               Add
             </Button>
           </Form>
