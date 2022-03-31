@@ -5,9 +5,9 @@ import { Modal } from "react-bootstrap";
 const PostHome = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [image, setImage] = useState(null);
+
   // when you write anything on post and press Enter, this function runs
   const _handleSubmit = async (e) => {
-    submit();
     if (e.key === "Enter") {
       // checking: if users press Enter, function will send POST request
       try {
@@ -26,6 +26,7 @@ const PostHome = (props) => {
           }
         );
         if (response.ok) {
+          console.log(JSON.stringify(response.body));
           props.getPosts(); // if we send POST reqeust successfully, we need to get all posts one more time
           setInputValue(""); // Clearing input value
         } else {
@@ -45,7 +46,7 @@ const PostHome = (props) => {
 
   const submit = async () => {
     const data = new FormData();
-    data.append("picture", image);
+    data.append("post", image);
     let res = await fetch(
       "https://striveschool-api.herokuapp.com/api/posts/62458b0aec507a0015740d18",
       {
