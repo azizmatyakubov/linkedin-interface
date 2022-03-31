@@ -20,7 +20,7 @@ const Profile = (props) => {
     } else {
       fetchExperiences(myID);
     }
-  }, []);
+  }, [param.id]);
 
   const fetchExperiences = async (id) => {
     const response = await fetch(

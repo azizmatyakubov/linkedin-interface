@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Modal } from "react-bootstrap";
 
 const PostHome = (props) => {
   const [inputValue, setInputValue] = useState("");
+  const [image, setImage] = useState(null);
 
   // when you write anything on post and press Enter, this function runs
   const _handleSubmit = async (e) => {
@@ -24,6 +26,7 @@ const PostHome = (props) => {
           }
         );
         if (response.ok) {
+          console.log(JSON.stringify(response.body));
           props.getPosts(); // if we send POST reqeust successfully, we need to get all posts one more time
           setInputValue(""); // Clearing input value
         } else {
@@ -32,6 +35,34 @@ const PostHome = (props) => {
       } catch (error) {
         console.log(error);
       }
+    }
+  };
+
+  const handleFile = (e) => {
+    console.log(e.target.files);
+    let file = e.target.files[0];
+    setImage(file);
+  };
+
+  const submit = async () => {
+    const data = new FormData();
+    data.append("post", image);
+    let res = await fetch(
+      "https://striveschool-api.herokuapp.com/api/posts/62458b0aec507a0015740d18",
+      {
+        method: "POST",
+        body: data,
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      }
+    );
+    let resData = await res.json();
+    if (resData.ok) {
+      console.log("picture uploaded");
+    } else {
+      console.log("failed");
     }
   };
 
@@ -50,6 +81,7 @@ const PostHome = (props) => {
             onChange={(event) => setInputValue(event.target.value)} // whem users type something, this function setState
             onKeyPress={_handleSubmit}
           />
+          <input type="file" onChange={(e) => handleFile(e)} />
         </Header>
         <Footer>
           <Section>
@@ -79,6 +111,7 @@ const PostHome = (props) => {
           </Section>
         </Footer>
       </Wrapper>
+      <Modal></Modal>
     </>
   );
 };
