@@ -4,7 +4,6 @@ import SingleExperience from "./SingleExperience";
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-
 // 6242131ed339840015c883bb
 
 const ExperienceSection = (props) => {
@@ -48,7 +47,7 @@ const ExperienceSection = (props) => {
         }
       );
       if (response.ok) {
-        console.log("POSTED");
+        console.log("ED");
       } else {
         console.error("fetch failed");
       }

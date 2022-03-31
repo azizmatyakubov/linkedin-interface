@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const AboutHome = (props) => {
-  let me = props.data;
+const AboutHome = ({ data, show, setShow }) => {
+  const me = data;
+  // const [profilePicture, setProfilePicture]
   return (
     <Wrapper>
       <Header>
@@ -14,7 +15,9 @@ const AboutHome = (props) => {
         />
       </Header>
       <Body>
-        <ProfileImg src={me.image} />
+        <div onClick={() => setShow(true)}>
+          <ProfileImg src={me.image} />
+        </div>
       </Body>
       <ProfileName>
         {me.name} {me.surname}
@@ -44,7 +47,6 @@ const Wrapper = styled.div`
   margin-bottom: 1rem;
   border-radius: 8px;
   overflow: hidden;
-
 `;
 
 const Header = styled.div`

@@ -7,9 +7,11 @@ import styled from "styled-components";
 import CommunityPanel from "../components/CommunityPanel";
 import Message from "../components/Message";
 import { useState, useEffect } from "react";
+import MyModal from "../components/jumbotron/MyModal";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     getPosts();
@@ -35,12 +37,13 @@ const Home = (props) => {
     <>
       <Wrapper>
         <Left>
-          <AboutHome data={props.me} />
+          <AboutHome data={props.me} show={show} setShow={setShow} />
           <CommunityPanel />
         </Left>
         <Main>
+          <MyModal show={show} setShow={setShow} />
           <PostHome getPosts={getPosts} />
-          <Message data={posts} getPosts={getPosts} />
+          {/* <Message data={posts} getPosts={getPosts} /> */}
         </Main>
         <Right>
           <People title="Add to your feed" data={props.data} />
@@ -52,7 +55,6 @@ const Home = (props) => {
 };
 
 export default Home;
-
 
 const Wrapper = styled.div`
   display: flex;
