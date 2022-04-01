@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
+  const [skeleton, setSkeleton] = useState(true);
 
   useEffect(() => {
     getPosts();
@@ -29,6 +30,7 @@ const Home = (props) => {
     );
     const data = await response.json();
     setPosts(data);
+    setSkeleton(false);
   };
 
   return (
@@ -40,7 +42,7 @@ const Home = (props) => {
         </Left>
         <Main>
           <PostHome getPosts={getPosts} />
-          <Message data={posts} getPosts={getPosts} />
+          <Message data={posts} getPosts={getPosts} skeleton={skeleton} />
         </Main>
         <Right>
           <People title="Add to your feed" data={props.data} />
