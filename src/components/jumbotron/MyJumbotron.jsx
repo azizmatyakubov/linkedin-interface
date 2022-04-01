@@ -2,6 +2,7 @@ import { Container, Row, Col, Modal, Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import styled from "styled-components";
 import "./MyJumbotron.css";
+import MyModal from "../MyModal";
 
 const MyJumbotron = (props) => {
   const [show, setShow] = useState(false); // this is for showing Modal
