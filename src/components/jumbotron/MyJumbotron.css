@@ -74,3 +74,36 @@
 }
 
 
+/*RESPONSIVNESS*/
+
+@media (min-width:768px) and (max-width:1024px) {
+
+  .sc-papXJ {
+    margin-bottom: 0px;
+  }
+
+}
+
+@media (max-width: 425px) {
+
+  #root > div > div:nth-child(2) > div > div > div.col-md-8 > div.sc-bczRLJ.fTpyZl.border-round-pill > div.sc-dkzDqf.kFPMoi > div.mt-3.container > div > div:nth-child(2) {
+    margin-top: 1rem;
+  }
+
+
+
+}
+
+@media (max-width: 768px) {
+  #text-col {
+    margin-left: 0!important;
+  }
+}
+
+@media (min-width: 320px) {
+
+  .edit-profile {
+    margin-left: 0;
+    padding: 0;
+  }
+}
