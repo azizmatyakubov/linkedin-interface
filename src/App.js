@@ -11,23 +11,13 @@ import { useParams } from "react-router";
 
 function App() {
   const [profile, setProfile] = useState([]);
-  const [myProfile, setMyProfile] = useState({});
-
-  
-  // get the id from the url
-  const param = useParams();
-
+  const [myProfile, setMyProfile] = useState({})
 
   // it is like componetDidMount
   useEffect(() => {
-    fetchApi();
-    fetchMyProfile();
-    console.log(myProfile);
+    fetchApi(); 
+    fetchMyProfile() 
   }, []);
-
-  useEffect(() => {
-    console.log(myProfile);
-  }, [myProfile]);
 
   // Get people from API and assign to state
   const fetchApi = async () => {
@@ -45,7 +35,6 @@ function App() {
     setProfile(data);
   };
 
-  // Get only profile data from API and assign to state
   const fetchMyProfile = async () => {
     const response = await fetch(
       "https://striveschool-api.herokuapp.com/api/profile/me",
@@ -53,7 +42,7 @@ function App() {
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
         },
       }
     );
@@ -62,6 +51,9 @@ function App() {
     // this is the data that we get from the api
   };
 
+
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -69,17 +61,17 @@ function App() {
         <Routes>
           <Route
             path="/profile/"
-            element={<Profile data={profile} me={myProfile} getMe={fetchMyProfile} />}
+            element={<Profile data={profile} me={myProfile} />}
           />
           <Route
             path="/profile/:id"
-            element={<Profile data={profile} me={myProfile} />}
+            element={<Profile data={profile} />}
           />
 
-          <Route path="/" element={<Home data={profile} me={myProfile} />} />
+          <Route path="/" element={<Home data={profile} me={myProfile}/>} />
           <Route
             path="/post/:id"
-            element={<Home data={profile} me={myProfile} />}
+            element={<Home data={profile} />}
           />
 
           
