@@ -134,8 +134,7 @@ const SingleExperience = (props) => {
             </h6>
             <span>{props.data.company}</span>
             <p>
-              {format(new Date(props.data.startDate), "LLLL yyyy")} -
-              {format(new Date(props.data.endDate), "LLLL yyyy")}
+              {format(new Date(props.data.startDate), "LLLL yyyy")}
               <p>{props.data.area}</p>
             </p>
           </Col>
