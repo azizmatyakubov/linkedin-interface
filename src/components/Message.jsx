@@ -69,6 +69,47 @@ const Message = (props) => {
 
   return (
     <div>
+      {props.skeleton && (
+        <Wrapper>
+          <Header>
+            <img className="skeleton-profile-pic skeleton" />
+            <div>
+              <h6 className="skeleton-name skeleton"></h6>
+              <p className="skeleton-text skeleton"></p>
+            </div>
+          </Header>
+          <Body>
+            <p className="skeleton-text mb-2 skeleton"></p>
+            <p className="skeleton-text mb-2 skeleton"></p>
+            <p className="skeleton-text mb-2 skeleton"></p>
+
+            <div>
+              <img className="skeleton skeleton-text mr-2" />
+              <p className="skeleton skeleton-text ml-2 mr-2"></p>
+              <p className="skeleton skeleton-text"></p>
+            </div>
+          </Body>
+
+          <Footer>
+            <Section>
+              <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
+              Like
+            </Section>
+            <Section>
+              <img src="/images/chat-dots.svg" alt="" srcset="" />
+              Comment
+            </Section>
+            <Section>
+              <img src="/images/share.svg" alt="" srcset="" />
+              Share
+            </Section>
+            <Section>
+              <img src="/images/send.svg" alt="" srcset="" />
+              Send
+            </Section>
+          </Footer>
+        </Wrapper>
+      )}
       {props.data
         .slice(-12) // only showing last 5 posts
         .reverse() // last messages should be on top
@@ -125,6 +166,7 @@ const Message = (props) => {
                 </Section>
               </Footer>
             </Wrapper>
+
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Add Experience</Modal.Title>

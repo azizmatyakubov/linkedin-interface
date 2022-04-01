@@ -1,3 +1,50 @@
 .App {
     background-color: #f3f2ef;
 }
+
+.skeleton-profile-pic {
+    background-color: lightgray;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid lightgray;
+  }
+  
+  .skeleton-name {
+    background-color: lightgray;
+    margin: 0.25rem 0;
+    height: 14px;
+    width: 45px;
+    margin-bottom: 1rem;
+  }
+  
+
+  .skeleton-text {
+    background-color: lightgray;
+    margin:0;
+    height: 10px;
+  }
+  
+  .skeleton-action {
+    background-color: lightgray;
+    margin: 0.25rem 0;
+    height: 10px;
+  }
+
+  .skeleton {
+      opacity: .7;
+      animation: skeleton-loading 1s linear infinite alternate;
+
+  }
+
+  @keyframes skeleton-loading {
+      0% {
+          background-color: hsl(200, 20%, 70%);
+      }
+
+      100% {
+            background-color: hsl(200, 20%, 95%);
+      }
+  }
+  
