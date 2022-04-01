@@ -16,7 +16,7 @@ const SingleUser = (props) => {
           />
         </Col>
         <Col md={9} className="mt-1">
-          <Link to={`/home/` + props.data._id}>
+          <Link to={`/profile/` + props.data._id}>
             <p className="name__singleUser">
               {props.data.name} <span>- 2nd</span>
             </p>

@@ -1,15 +1,5 @@
-import {
-  Container,
-  Navbar,
-  Nav,
-  Row,
-  Col,
-  ButtonGroup,
-  DropdownButton,
-  Dropdown,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import { Container, Navbar, InputGroup, FormControl } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./mynavbar.css";
 
 const MyNavbar = () => {
@@ -17,7 +7,9 @@ const MyNavbar = () => {
     <div className="wrapper-nav">
       <Container id="nav-container">
         <Navbar bg="light">
-          <img src="/images/home-logo.svg" alt="" />
+          <Link to="/">
+            <img src="/images/home-logo.svg" alt="" />
+          </Link>
           <div id="search">
             <InputGroup size="sm" className="mx-2">
               <InputGroup.Prepend>
@@ -54,10 +46,12 @@ const MyNavbar = () => {
                 <span>Notifications</span>
               </li>
               <li>
-                <div>
-                  <img src="images/user.svg" alt="" id="user-icon" />
-                </div>
-                <span>Me</span>
+                <Link to="/profile" className="text-center text-dark">
+                  <div>
+                    <img src="images/user.svg" alt="" id="user-icon" />
+                  </div>
+                  <span>Me</span>
+                </Link>
               </li>
               <li>
                 <img src="images/nav-work.svg" alt="" />

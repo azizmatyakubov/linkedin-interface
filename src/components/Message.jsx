@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import TimeAgo from "timeago-react";
 import { Modal, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Message = (props) => {
-  console.log("THIS IS PROPS", props)
+  console.log("THIS IS PROPS", props.data);
   const [show, setShow] = useState(false); // this is for showing Modal
   const [postText, setPostText] = useState("there should be post text"); // this is for modal
   const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
@@ -77,7 +78,11 @@ const Message = (props) => {
               <Header>
                 <img src={post.user.image} alt="img" />
                 <div>
-                  <h6>{post.username}</h6>
+                  <h6>
+                    <Link to={"/profile/" + post.user._id}>
+                      {post.username}
+                    </Link>
+                  </h6>
                   <p>{post.user.title}</p>
                   <p>
                     <TimeAgo datetime={post.updatedAt} />

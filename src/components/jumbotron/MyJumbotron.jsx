@@ -2,9 +2,16 @@ import { Container, Row, Col, Modal, Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import styled from "styled-components";
 import "./MyJumbotron.css";
+import MyModal from "../MyModal";
 
 const MyJumbotron = (props) => {
   const [show, setShow] = useState(false); // this is for showing Modal
+
+  const [image, setImage] = useState(null);
+  const [showImg, setShowImg] = useState(false);
+
+  const handleShowImg = () => setShowImg(true);
+  const handleCloseImg = () => setShowImg(false);
 
   const handleSHow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -40,14 +47,14 @@ const MyJumbotron = (props) => {
 
   const updateProfileDetails = async () => {
     let res = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/",
+      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb",
       {
         method: "PUT",
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
         },
       }
     );
@@ -55,12 +62,47 @@ const MyJumbotron = (props) => {
       alert("updated");
     }
   };
+
+  const uploadImage = async () => {
+    try {
+      const data = new FormData();
+      data.append("profile", image);
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/picture",
+        {
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+          },
+        }
+      );
+      if (response.ok) {
+        // setProfilePicture(image);
+        props.getMe();
+        handleCloseImg();
+        console.log("Image Successfully Uploaded");
+      } else {
+        console.error("Uploading Failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    setShow(false);
+  };
+
   return (
     <>
       <Wrapper className="border-round-pill">
         <Header></Header>
         <AvatarLogo>
-          <img className="jumbotron-img" src={props.me.image} alt="avatar" />
+          <img
+            className="jumbotron-img"
+            src={props.me.image}
+            alt="avatar"
+            onClick={setShowImg}
+          />
         </AvatarLogo>
         <Body>
           <Container className="jumbotron-container">
@@ -145,6 +187,8 @@ const MyJumbotron = (props) => {
           </Container>
         </Body>
       </Wrapper>
+
+      {/* Changing title  */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Experience</Modal.Title>
@@ -274,6 +318,36 @@ const MyJumbotron = (props) => {
             </Button>
           </Form>
         </Modal.Body>
+      </Modal>
+
+      {/* Change profile image  */}
+      <Modal show={showImg} onHide={handleCloseImg}>
+        <Modal.Header closeButton>
+          <Modal.Title>Upload Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <input
+              type="text"
+              placeholder="upload image url"
+              value={image}
+              onChange={(e) => handleChange(e.target.value)}
+            /> */}
+          <Form.Group id="formData">
+            <Form.Label> Upload Image </Form.Label>
+            <Form.Control
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseImg}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={uploadImage}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

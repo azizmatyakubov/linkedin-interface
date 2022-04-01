@@ -1,6 +1,7 @@
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import "./expstyle.css";
 import { useState } from "react";
+import format from "date-fns/format";
 
 const SingleExperience = (props) => {
   console.log("THIS IS PROPS", props);
@@ -81,8 +82,9 @@ const SingleExperience = (props) => {
       }
     );
     if (response.ok) {
-      props.getExp();
       handleClose();
+      props.getMyExp();
+      fetchExperiences("6242131ed339840015c883bb");
     }
   };
 
@@ -132,7 +134,9 @@ const SingleExperience = (props) => {
             </h6>
             <span>{props.data.company}</span>
             <p>
-              {props.data.startDate} - {props.data.endDate} - {props.data.area}
+              {format(new Date(props.data.startDate), "LLLL yyyy")} -
+              {format(new Date(props.data.endDate), "LLLL yyyy")}
+              <p>{props.data.area}</p>
             </p>
           </Col>
         </Row>
@@ -230,10 +234,9 @@ const SingleExperience = (props) => {
               type="button"
               onClick={() => {
                 handleChange();
-                if(image) {
-                   submitPicture(props.data._id);
+                if (image) {
+                  submitPicture(props.data._id);
                 }
-               
               }}
             >
               Add
