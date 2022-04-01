@@ -44,6 +44,22 @@ const Profile = (props) => {
     setExperience(data);
   };
 
+  const fetchMyExperience = async () => {
+    const response = await fetch(
+      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data, "this is experience");
+    setExperience(data);
+  };
+
   // Get only profile data from API and assign to state
   const fetchMyProfile = async () => {
     const response = await fetch(
@@ -89,7 +105,11 @@ const Profile = (props) => {
           <Col md={8}>
             <MyJumbotron me={userProfile} getMe={fetchMyProfile} />
 
-            <ExperienceSection data={experience} getExp={fetchExperiences} />
+            <ExperienceSection
+              data={experience}
+              getExp={fetchExperiences}
+              getMyExp={fetchMyExperience}
+            />
 
             {/*    <Section /> */}
           </Col>

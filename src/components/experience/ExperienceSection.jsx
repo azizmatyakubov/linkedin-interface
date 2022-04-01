@@ -49,7 +49,7 @@ const ExperienceSection = (props) => {
       );
       if (response.ok) {
         console.log("POSTED");
-        props.getExp()
+        props.getMyExp();
       } else {
         console.error("fetch failed");
       }
@@ -67,15 +67,25 @@ const ExperienceSection = (props) => {
           </Col>
 
           <Col className="icons-col">
-            <img src="/images/plus-icon.svg" alt="" onClick={showAddExperience}/>
-           
-              <img src="/images/pencil.svg" alt="" id="pencil-icon"/>
-          
+            <img
+              src="/images/plus-icon.svg"
+              alt=""
+              onClick={showAddExperience}
+            />
+
+            <img src="/images/pencil.svg" alt="" id="pencil-icon" />
           </Col>
 
           {props.data &&
             props.data.map((value) => {
-              return <SingleExperience key={value._id} data={value}  getExp={props.getExp} />;
+              return (
+                <SingleExperience
+                  key={value._id}
+                  data={value}
+                  getMyExp={props.getMyExp}
+                  getExp={props.getExp}
+                />
+              );
             })}
         </Row>
       </Container>
