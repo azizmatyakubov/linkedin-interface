@@ -1,0 +1,16 @@
+.network-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.network-infos {
+  font-size: 12px;
+}
+
+.network {
+  font-size: 12px;
+}
+
+.nettop {
+  font-size: 14px;
+}

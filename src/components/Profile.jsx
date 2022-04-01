@@ -6,6 +6,7 @@ import MyFooter from "./footer/MyFooter";
 import AdSectionProfile from "./AdSectionProfile";
 import EditSectionProfile from "./EditSectionProfile";
 import People from "./People";
+import MyNetwork from "./MyNetwork";
 
 const Profile = () => {
   const [profile, setProfile] = useState([]);
