@@ -62,3 +62,35 @@ width:28px;
 border-radius:50%;
 
 }
+
+/*ADDING RESPONSIVNESS*/
+
+@media only screen and (max-width: 1000px) {
+  #ul-nav > li> span {
+     display: none;
+  }
+
+  .text-dark > span{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #search > div > input {
+    display: none;
+  }
+
+  #inputGroup-sizing-sm {
+    background-color: transparent;
+  }
+}
+
+@media only screen and ( max-width: 425px) {
+
+  #ul-nav > span { display: none}
+
+  #ul-nav >li:nth-of-type(6) { display: none}
+  #ul-nav >li:nth-of-type(7) { display: none}
+
+
+}
