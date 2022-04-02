@@ -7,10 +7,10 @@ const MyNetwork = () => {
   return (
     <Container>
       <Row>
-        <Col md={4}>
+        <Col md={3}>
           <LeftNetwork />
         </Col>
-        <Col md={8}>
+        <Col md={9}>
           <RightNetwork />
         </Col>
       </Row>

@@ -14,3 +14,63 @@
 .nettop {
   font-size: 14px;
 }
+
+.card {
+  box-shadow: 0 4px 8px 0;
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.imgs {
+  border-radius: 50%;
+  width: 68px;
+  height: 68px;
+  text-align: center;
+}
+.newDiv {
+  background-color: rgb(160, 180, 183);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(246, 244, 244, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}

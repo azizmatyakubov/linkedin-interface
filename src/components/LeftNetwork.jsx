@@ -11,8 +11,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/305294/people.svg"
-                width="25"
-                height="25"
+                width="20"
+                height="20"
                 alt="connection"
               />
               <span className="ml-2 mt-3">Connection</span>
@@ -25,8 +25,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/343062/contacts.svg"
-                width="28"
-                height="28"
+                width="23"
+                height="23"
                 alt="contacts"
               />
               <span className="ml-2">Contact</span>
@@ -36,8 +36,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/381914/avatar-people-user.svg"
-                width="28"
-                height="28"
+                width="23"
+                height="23"
                 alt="people"
               />
               <span className="ml-2">People | Follow</span>
@@ -50,8 +50,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/374902/groups.svg"
-                width="28"
-                height="28"
+                width="23"
+                height="23"
                 alt="groups"
               />
               <span className="ml-2">Groups</span>
@@ -61,8 +61,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/133706/events-calendar.svg"
-                width="23"
-                height="23"
+                width="18"
+                height="18"
                 alt="events"
               />
               <span className="ml-3">Event</span>
@@ -75,8 +75,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/347249/pages.svg"
-                width="25"
-                height="25"
+                width="20"
+                height="20"
                 alt="pages"
               />
               <span className="ml-3">Pages</span>
@@ -89,8 +89,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/353218/newsletter.svg"
-                width="23"
-                height="23"
+                width="18"
+                height="18"
                 alt="newsletter"
               />
               <span className="ml-3">Newsletters</span>
@@ -100,8 +100,8 @@ const LeftNetwork = () => {
             <div>
               <img
                 src="https://www.svgrepo.com/show/42960/hashtag.svg"
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 color="gray"
                 alt="hashtag"
               />
@@ -136,12 +136,24 @@ const Wrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
   margin: 10px;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  p {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 
 const MainDiv = styled.div`
   margin: 20px 20px
   padding-left: 10px;
   padding-right: 10px; ;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 
 const Body = styled.div`
@@ -152,8 +164,7 @@ const Body = styled.div`
   font-size: 20px;
   h2 {
     color: gray;
-
-    font-size: 20px;
+    font-size: 15px;
     line-height: 24px;
   }
 `;
@@ -162,28 +173,48 @@ const DivWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   color: gray;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 
 const CWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   color: gray;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 
 const PWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   color: gray;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 const GWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   color: gray;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 const EWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   color: gray;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 const PaWrapper = styled.div`
   display: flex;
@@ -199,10 +230,18 @@ const HaWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   color: gray;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;
 
 const ShowDiv = styled.div`
   display: inline-flex;
   font-size: 18px;
   color: gray;
+  span {
+    font-size: 15px;
+    line-height: 24px;
+  }
 `;

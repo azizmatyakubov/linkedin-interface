@@ -8,10 +8,10 @@ const RightNetwork = () => {
       <FirstWrapper>
         <Header>
           <div>
-            <h3 className="ml-2">Invitations</h3>
+            <h3 className="ml-2 text-muted">Invitations</h3>
           </div>
           <div>
-            <h3>Manage</h3>
+            <h3 className="text-muted">Manage</h3>
           </div>
         </Header>
         <Body>
@@ -19,14 +19,14 @@ const RightNetwork = () => {
             <img
               src="/images/aminface.png"
               alt="avatar"
-              className="mt-2 ml-3"
+              className=" mb-3 ml-3"
             />
-            <div className="network-header">
-              <h4 className="nettop d-block">Umud Valizada</h4>
+            <div className="network-header mb-3 ml-2">
+              <h4 className="nettop d-block ">Umud Valizada</h4>
               <p className="network-infos d-block">
                 Chief Executive Officer and Co-Founder at OnFuture Consultancy
               </p>
-              <p className="network d-block">Emin Alizada and 46 others</p>
+              <p className="network d-block mb-4">Emin Alizada and 46 others</p>
             </div>
           </div>
         </Body>
@@ -34,15 +34,224 @@ const RightNetwork = () => {
       <SecondWrapper>
         <Headers>
           <div>
-            <h3>Industry Leader in Polad you may know</h3>
+            <h3 className="text-muted">
+              Industry Leader in Polad you may know
+            </h3>
           </div>
           <div>
-            <h3>See all</h3>
+            <h3 className="text-muted">See all</h3>
           </div>
         </Headers>
         <SecondBody>
-          <div>
-            <div className="network-image"></div>
+          <div className="row mt-2">
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="row mt-3">
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="row mt-3">
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div className="column">
+              <div className="card">
+                <div className=" imgavatar d-flex justify-content-center py-3">
+                  <img
+                    className="imgs"
+                    src="/images/aminface.png"
+                    alt="avarta"
+                  />
+                </div>
+                <strong>Jamal Azim</strong>
+                <p className="mt-1 text-muted">Developer</p>
+                <p className="text-muted">Strive School</p>
+                <button className="rounded-pill p-1 border-primary text-primary bg-white">
+                  Connect
+                </button>
+              </div>
+            </div>
           </div>
         </SecondBody>
       </SecondWrapper>
@@ -88,7 +297,6 @@ const Header = styled.div`
 `;
 
 const Body = styled.div`
-  background-color: rgb(226, 240, 254);
   width: 100%;
   height: 100px;
   padding: auto;
@@ -107,6 +315,4 @@ const Headers = styled.div`
   }
 `;
 
-const SecondBody = styled.div`
-  background-color: yellow;
-`;
+const SecondBody = styled.div``;
