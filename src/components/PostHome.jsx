@@ -10,11 +10,12 @@ const PostHome = (props) => {
       // checking: if users press Enter, function will send POST request
       try {
         const response = await fetch(
-          "https://striveschool-api.herokuapp.com/api/posts/",
+          "https://linkedin-backend-01.herokuapp.com/post",
           {
             method: "POST",
             body: JSON.stringify({
               text: inputValue, // inputValue from state
+              user: "6270f5980270f1272fff0340",
             }),
             headers: {
               "Content-Type": "application/json",

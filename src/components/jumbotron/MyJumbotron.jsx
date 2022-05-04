@@ -66,16 +66,12 @@ const MyJumbotron = (props) => {
   const uploadImage = async () => {
     try {
       const data = new FormData();
-      data.append("profile", image);
+      data.append("avatar", image);
       const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/picture",
+        "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/uploadAvatar",
         {
-          method: "POST",
+          method: "PUT",
           body: data,
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-          },
         }
       );
       if (response.ok) {
@@ -84,7 +80,7 @@ const MyJumbotron = (props) => {
         handleCloseImg();
         console.log("Image Successfully Uploaded");
       } else {
-        console.error("Uploading Failed");
+        console.error("image uploading failed");
       }
     } catch (error) {
       console.error(error);

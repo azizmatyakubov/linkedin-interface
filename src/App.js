@@ -22,14 +22,7 @@ function App() {
   // Get people from API and assign to state
   const fetchApi = async () => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-        },
-      }
+      "https://linkedin-backend-01.herokuapp.com/profile/"
     );
     const data = await response.json();
     setProfile(data);
@@ -37,7 +30,7 @@ function App() {
 
   const fetchMyProfile = async () => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/me",
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340",
       {
         headers: {
           "Content-Type": "application/json",

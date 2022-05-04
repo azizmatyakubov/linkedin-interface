@@ -19,14 +19,7 @@ const Home = (props) => {
   // get all posts from API and storing Posts state
   const getPosts = async () => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/posts",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-        },
-      }
+      "https://linkedin-backend-01.herokuapp.com/post"
     );
     const data = await response.json();
     setPosts(data);

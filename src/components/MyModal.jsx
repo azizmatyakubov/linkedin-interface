@@ -15,9 +15,9 @@ export default function MyModal({ show, setShow }) {
   const uploadImage = async () => {
     try {
       const data = new FormData();
-      data.append("profile", image);
+      data.append("avatar", image);
       const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/picture",
+        "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/uploadAvatar",
         {
           method: "POST",
           body: data,

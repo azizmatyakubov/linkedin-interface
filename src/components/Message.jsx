@@ -162,7 +162,7 @@ const Message = (props) => {
                 <div>
                   <h6>
                     <Link to={"/profile/" + post.user._id}>
-                      {post.username}
+                      {post.user.name}
                     </Link>
                   </h6>
                   <p>{post.user.title}</p>
@@ -170,14 +170,14 @@ const Message = (props) => {
                     <TimeAgo datetime={post.updatedAt} />
                   </p>
                 </div>
-                {post.user._id === "6242131ed339840015c883bb" && (
-                  <Button
-                    variant="outline-dark"
-                    onClick={() => handleShow(post._id)}
-                  >
-                    Edit Post
-                  </Button>
-                )}
+                {/* {post.user._id === "6242131ed339840015c883bb" && ( */}
+                <Button
+                  variant="outline-dark"
+                  onClick={() => handleShow(post._id)}
+                >
+                  Edit Post
+                </Button>
+                {/* )} */}
               </Header>
               <Body>
                 <p>{post.text}</p>

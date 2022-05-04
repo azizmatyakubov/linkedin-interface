@@ -10,10 +10,9 @@ import { useParams } from "react-router";
 const Profile = (props) => {
   const [myProfile, setMyProfile] = useState({});
   const [userProfile, setUserProfile] = useState({});
-  const myID = "6242131ed339840015c883bb";
+  const myID = "6270f5980270f1272fff0340";
   const [experience, setExperience] = useState();
   const param = useParams();
-  console.log("this is param", param);
 
   // check if url has id then show data related to id else show data related to myID
   useEffect(() => {
@@ -28,7 +27,7 @@ const Profile = (props) => {
 
   const fetchExperiences = async (id) => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/" +
+      "https://linkedin-backend-01.herokuapp.com/profile/" +
         id +
         "/experiences",
       {
@@ -40,7 +39,6 @@ const Profile = (props) => {
       }
     );
     const data = await response.json();
-    console.log(data, "this is experience");
     setExperience(data);
   };
 
@@ -63,7 +61,7 @@ const Profile = (props) => {
   // Get only profile data from API and assign to state
   const fetchMyProfile = async () => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/me",
+      "https://linkedin-backend-01.herokuapp.com/profile/" + myID,
       {
         headers: {
           "Content-Type": "application/json",
