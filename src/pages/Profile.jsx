@@ -44,7 +44,7 @@ const Profile = (props) => {
 
   const fetchMyExperience = async () => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences",
+      "https://linkedin-backend-01.herokuapp.com/profile/6242131ed339840015c883bb/experiences",
       {
         headers: {
           "Content-Type": "application/json",
