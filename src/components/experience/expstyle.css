@@ -34,10 +34,10 @@
   background-color: #e6e6e6;
   border-radius: 50%;
 }
-#addIcon {
-  width: 50px;
+.bg-hover:hover {
+  background-color: #e6e6e6;
+  border-radius: 50%;
 }
-
 #text-col {
   margin-left: -2.5rem;
 }

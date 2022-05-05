@@ -90,7 +90,7 @@ const MyJumbotron = (props) => {
         <AvatarLogo>
           <img className="jumbotron-img" src={props.me.image} alt="avatar" onClick={setShowImg} />
         </AvatarLogo>
-        <i className="edit-profile bi bi-pencil position-absolute text-muted" id="jumboPencil" onClick={handleChangeProfile}></i>
+        <i className="edit-profile bi bi-pencil position-absolute text-muted p-3 mr-4" id="jumboPencil" onClick={handleChangeProfile}></i>
         <Body>
           <Container className="jumbotron-container">
             <Row>
@@ -126,7 +126,7 @@ const MyJumbotron = (props) => {
               </Col>
             </Row>
             <ButtonsClick>
-              <button className="jumbotron-btn mr-2  rounded-pill bg-primary text-white text-center px-3 py-1">Open to</button>
+              <button className="jumbotron-btn mr-2  rounded-pill bg-primary text-white text-center px-3 py-1 font-weight-bold">Open to</button>
               <button className="jumbotron-btn  mr-2 rounded-pill bg-light border-primary text-primary text-center px-3">Add profile section</button>
               <button className="jumbotron-btn mr-2 rounded-pill text-center px-3">More</button>
             </ButtonsClick>

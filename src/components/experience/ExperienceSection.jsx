@@ -58,15 +58,15 @@ const ExperienceSection = (props) => {
     <>
       <Container id="container-wrapper" className="mt-4 pb-3">
         <Row className="mt-3">
-          <Col>
-            <h4>Experience</h4>
+          <Col className="d-flex">
+            <h4 className="align-self-end">Experience</h4>
           </Col>
 
           <Col className="icons-col">
             {/* <img src="/images/plus-icon.svg" alt="" onClick={showAddExperience} /> */}
-            <i className="bi bi-plus-lg text-muted" id="addIcon"></i>
+            <i className="bi bi-plus-lg text-muted d-inline-block bg-hover p-3" role="button" id="addIcon" onClick={showAddExperience}></i>
 
-            <i className="edit-profile bi bi-pencil text-muted " id="jumboPencil"></i>
+            <i className=" bi bi-pencil text-muted bg-hover ml-2 mr-2 p-3" role="button"></i>
           </Col>
 
           {props.data &&
