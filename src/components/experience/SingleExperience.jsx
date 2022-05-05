@@ -23,7 +23,7 @@ const SingleExperience = (props) => {
 
   const fetchExpById = async (_id) => {
     let response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences/" +
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences" +
         _id,
       {
         headers: {
