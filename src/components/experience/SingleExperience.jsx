@@ -3,19 +3,22 @@ import "./expstyle.css";
 import { useState } from "react";
 import format from "date-fns/format";
 
-const SingleExperience = (props) => {
-  console.log("THIS IS PROPS", props);
-  console.log("THIS IS ID", props.data._id);
+//i can't write on the exp modal
 
+const SingleExperience = (props) => {
   const [show, setShow] = useState(false);
   const [experience, setExperience] = useState("");
   const [selectedExpId, setSelectedExpId] = useState();
-  const [image, setImage] = useState(null);
-
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [image, setImage] = useState("");
   const handleClose = () => setShow(false);
 
   const handleShow = () => {
-    console.log(props.data._id, "this is exp id");
     setShow(true);
     fetchExpById(props.data._id);
     setSelectedExpId(props.data._id);
@@ -34,8 +37,21 @@ const SingleExperience = (props) => {
       }
     );
     let data = await response.json();
-    console.log("THIS IS DATA", data);
     setExperience(data);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("here");
+    const experience = {
+      role: role,
+      company: company,
+      startDate: startDate,
+      endDate: endDate || null,
+      description: description,
+      area: location,
+      image: image,
+    };
   };
 
   const handleChange = async () => {
@@ -58,16 +74,25 @@ const SingleExperience = (props) => {
       }
     );
     const data = await response.json();
-    console.log(data, "this is experience");
     setExperience(data);
   };
-
   const handleDelete = async () => {
     changeExpById(selectedExpId, "DELETE");
   };
 
+  // const experienceExample = {
+  //   role: "bricklayer",
+  //   company: "Strive",
+  //   startDate: "2019-06-16T22:00:00.000+00:00",
+  //   endDate: "2019-06-16T22:00:00.000+00:00",
+  //   description: "teaching some boring stuff",
+  //   area: "germany",
+  //   image:
+  //     "https://res.cloudinary.com/dar1jmjxk/image/upload/v1651583777/profile_…",
+  // };
+
   const changeExpById = async (_id, method) => {
-    console.log("this is changeExpID", _id);
+    console.log("expr", experience);
     let response = await fetch(
       "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
         _id,
@@ -83,16 +108,13 @@ const SingleExperience = (props) => {
     );
     if (response.ok) {
       handleClose();
-      console.log("helo");
       props.getMyExp();
       fetchExperiences("6270f5980270f1272fff0340");
     } else {
-      console.log(response);
     }
   };
 
   const handleFile = (e) => {
-    console.log(e.target.files);
     let file = e.target.files[0];
     setImage(file);
     // submitPicture(props.data._id);
@@ -144,22 +166,19 @@ const SingleExperience = (props) => {
         </Row>
         <hr className="style-hr" />
       </Container>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Experience</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <div onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Role</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Role"
                 value={experience.role}
-                onChange={(e) =>
-                  setExperience({ ...experience, role: e.target.value })
-                }
+                onChange={(e) => setRole(e.target.value)}
                 required
                 className="mt-1"
               />
@@ -171,9 +190,19 @@ const SingleExperience = (props) => {
                 type="text"
                 placeholder="Company"
                 value={experience.company}
-                onChange={(e) =>
-                  setExperience({ ...experience, company: e.target.value })
-                }
+                onChange={(e) => setCompany(e.target.value)}
+                required
+                className="mt-1"
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>description</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="description"
+                value={experience.description}
+                onChange={(e) => setDescription(e.target.value)}
                 required
                 className="mt-1"
               />
@@ -185,9 +214,7 @@ const SingleExperience = (props) => {
                 type="text"
                 placeholder="Location"
                 value={experience.area}
-                onChange={(e) =>
-                  setExperience({ ...experience, area: e.target.value })
-                }
+                onChange={(e) => setLocation(e.target.value)}
                 required
                 className="mt-1"
               />
@@ -198,9 +225,7 @@ const SingleExperience = (props) => {
               <Form.Control
                 type="date"
                 value={experience.startDate}
-                onChange={(e) =>
-                  setExperience({ ...experience, startDate: e.target.value })
-                }
+                onChange={(e) => setStartDate(e.target.value)}
                 required
                 className="mt-1"
               />
@@ -211,9 +236,7 @@ const SingleExperience = (props) => {
               <Form.Control
                 type="date"
                 value={experience.endDate}
-                onChange={(e) =>
-                  setExperience({ ...experience, endDate: e.target.value })
-                }
+                onChange={(e) => setEndDate(e.target.value)}
                 className="mt-1"
               />
             </Form.Group>
@@ -233,7 +256,7 @@ const SingleExperience = (props) => {
             <Button
               variant="success"
               className="mx-2"
-              type="button"
+              type="submit"
               onClick={() => {
                 handleChange();
                 // if (image) {
@@ -243,7 +266,7 @@ const SingleExperience = (props) => {
             >
               Add
             </Button>
-          </Form>
+          </div>
         </Modal.Body>
       </Modal>
     </>
