@@ -36,7 +36,7 @@ const PostHome = (props) => {
     <>
       <Wrapper>
         <Header>
-          <img alt="profile-avatar" />
+          {myProfile && <img alt="profile-avatar" />}
           <Input
             type="text"
             placeholder="Start post"
