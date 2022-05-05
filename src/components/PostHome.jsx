@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const PostHome = (props) => {
+const PostHome = ({ myProfile, getPosts }) => {
   const [inputValue, setInputValue] = useState("");
-
-  // when you write anything on post and press Enter, this function runs
+  // write new post
   const _handleSubmit = async (e) => {
     if (e.key === "Enter") {
-      // checking: if users press Enter, function will send POST request
       try {
         const response = await fetch(
           "https://linkedin-backend-01.herokuapp.com/post",
@@ -15,20 +13,18 @@ const PostHome = (props) => {
             method: "POST",
             body: JSON.stringify({
               text: inputValue, // inputValue from state
-              user: "6270f5980270f1272fff0340",
+              user: myProfile._id,
             }),
             headers: {
               "Content-Type": "application/json",
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
             },
           }
         );
         if (response.ok) {
-          props.getPosts(); // if we send POST reqeust successfully, we need to get all posts one more time
+          getPosts(); // if we send POST reqeust successfully, we need to get all posts one more time
           setInputValue(""); // Clearing input value
         } else {
-          console.log("fetch failed");
+          console.log("User cannot write new post");
         }
       } catch (error) {
         console.log(error);
@@ -40,10 +36,9 @@ const PostHome = (props) => {
     <>
       <Wrapper>
         <Header>
-          <img
-            src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
-            alt="profile-avatar"
-          />
+
+          {myProfile && <img src={myProfile.image} alt="profile-avatar" />}
+
           <Input
             type="text"
             placeholder="Start post"
@@ -54,7 +49,7 @@ const PostHome = (props) => {
         </Header>
         <Footer>
           <Section>
-            <img src="/images/photo-home.png" alt="photo" />
+            <img src="/images/photo-home.png" alt="yellow-square-mountains" />
             Photo
           </Section>
           <Section>

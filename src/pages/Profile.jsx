@@ -44,7 +44,7 @@ const Profile = (props) => {
 
   const fetchMyExperience = async () => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences",
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences",
       {
         headers: {
           "Content-Type": "application/json",
@@ -78,14 +78,7 @@ const Profile = (props) => {
   const fetchProfileById = async (id) => {
     try {
       let res = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" + id,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
-          },
-        }
+        "https://striveschool-api.herokuapp.com/api/profile/" + id
       );
 
       if (res.ok) {

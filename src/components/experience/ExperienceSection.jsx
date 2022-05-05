@@ -1,29 +1,34 @@
+
 import { Container, Row, Col } from "react-bootstrap"
 import "./expstyle.css"
 import SingleExperience from "./SingleExperience"
 import { useState } from "react"
 import { Modal, Button, Form } from "react-bootstrap"
 
+
 // 6242131ed339840015c883bb
 
 const ExperienceSection = (props) => {
-  const [experiences, setExperiences] = useState(null)
-  // const [experienceChanged, setExperienceChanged] = useState(0);
-  const [addExperience, setAddExperience] = useState(false)
+
+   const [experiences, setExperiences] = useState(null);
+  const [addExperience, setAddExperience] = useState(false);
 
   const closeAddExperience = () => setAddExperience(false)
   const showAddExperience = () => setAddExperience(true)
 
-  const [company, setCompany] = useState("")
-  const [role, setRole] = useState("")
-  const [description, setDescription] = useState("")
-  const [location, setLocation] = useState("")
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
+
+
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [image, setImage] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log("here")
+    e.preventDefault();
+
     const experience = {
       role: role,
       company: company,
@@ -31,26 +36,33 @@ const ExperienceSection = (props) => {
       endDate: endDate || null,
       description: description,
       area: location,
-    }
+
+      image: image,
+    };
 
     try {
-      const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences`, {
-        method: "POST",
-        body: JSON.stringify(experience),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-        },
-      })
+      console.log(experience);
+      const response = await fetch(
+        `https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences`,
+        {
+          method: "POST",
+          body: JSON.stringify(experience),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       if (response.ok) {
         console.log("POSTED")
         props.getMyExp()
       } else {
-        console.error("fetch failed")
+
+        console.log("fetch failed!!!!");
       }
     } catch (error) {
-      console.error(error)
+      console.log(error);
+
     }
   }
 
@@ -132,6 +144,15 @@ const ExperienceSection = (props) => {
               <Form.Label>End Date</Form.Label>
               <Form.Control type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="mt-1" />
             </Form.Group>
+            <Form.Group>
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="text"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                className="mt-1"
+              />
+            </Form.Group>
 
             <Button variant="success" type="submit">
               Add
@@ -140,6 +161,8 @@ const ExperienceSection = (props) => {
         </Modal.Body>
       </Modal>
     </>
-  )
-}
-export default ExperienceSection
+
+  );
+};
+export default ExperienceSection;
+
