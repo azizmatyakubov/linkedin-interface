@@ -6,36 +6,32 @@ import { Link } from "react-router-dom";
 
 const Message = (props) => {
   const [show, setShow] = useState(false); // this is for showing Modal
-  const [postText, setPostText] = useState("there should be post text"); // this is for modal
+  const [postText, setPostText] = useState(""); // this is for modal
+  console.log(postText);
   const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
   const handleClose = () => setShow(false);
 
   // when user click edit post text, this function runs
   const handleShow = (id) => {
-    console.log(id, "this is post id");
     setShow(true); // display modal
     fetchPostById(id);
     setSelectedPostId(id);
-    console.log(props.data[0].user);
   };
 
   // fetch post with id and storing to 'postText' state
   const fetchPostById = async (id) => {
     let res = await fetch(
-      "https://striveschool-api.herokuapp.com/api/posts/" + id,
+      "https://linkedin-backend-01.herokuapp.com/post/" + id,
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
         },
       }
     );
     let data = await res.json();
-    setPostText(data); //setting state
+    setPostText(data.text); //setting state
   };
 
-  // there is button on Modal, when it clicks, this function runs
   const handleChange = async () => {
     changePostById(selectedPostId, "PUT"); //selectedPostId is coming from state
   };
@@ -47,10 +43,10 @@ const Message = (props) => {
   // it will send PUT request to server in order to change POST text
   const changePostById = async (id, method) => {
     let res = await fetch(
-      "https://striveschool-api.herokuapp.com/api/posts/" + id,
+      "https://linkedin-backend-01.herokuapp.com/post/" + id,
       {
         method: method,
-        body: JSON.stringify(postText),
+        body: JSON.stringify({ text: postText }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -60,6 +56,7 @@ const Message = (props) => {
       console.log(method);
       props.getPosts(); // if response is ok, we need to get all posts one more time from server
       handleClose(); // after all operation, we need to close modal
+      setPostText("");
     }
   };
 
@@ -224,12 +221,10 @@ const Message = (props) => {
                     <Form.Label>Your post</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Company"
+                      placeholder="Your text"
                       className="mt-1"
-                      value={postText.text}
-                      onChange={(e) =>
-                        setPostText({ ...postText, text: e.target.value })
-                      }
+                      value={postText}
+                      onChange={(e) => setPostText(e.target.value)}
                     />
                   </Form.Group>
 
