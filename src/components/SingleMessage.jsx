@@ -9,7 +9,7 @@ const SingleMessage = ({ post, getPosts }) => {
   const [show, setShow] = useState(false); // this is for showing Modal
   const [showComment, setShowComment] = useState(false);
   const [postText, setPostText] = useState(""); // this is for modal
-
+  const [image, setImage] = useState();
   const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
   const handleClose = () => setShow(false);
 
@@ -36,6 +36,11 @@ const SingleMessage = ({ post, getPosts }) => {
 
   const handleChange = async () => {
     changePostById(selectedPostId, "PUT"); //selectedPostId is coming from state
+    console.log(image, "image");
+    if (image) {
+      uploadImage(selectedPostId);
+    }
+    setImage("");
   };
 
   const handleDelete = async () => {
@@ -59,6 +64,29 @@ const SingleMessage = ({ post, getPosts }) => {
       getPosts(); // if response is ok, we need to get all posts one more time from server
       handleClose(); // after all operation, we need to close modal
       setPostText("");
+    }
+  };
+
+  const uploadImage = async (id) => {
+    try {
+      const data = new FormData();
+      data.append("post", image);
+      console.log(image);
+      const response = await fetch(
+        `https://linkedin-backend-01.herokuapp.com/post/${id}/uploadImage`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      if (response.ok) {
+        console.log("Image Successfully Uploaded");
+        getPosts();
+      } else {
+        console.error("image uploading failed", response);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -130,6 +158,13 @@ const SingleMessage = ({ post, getPosts }) => {
                 className="mt-1"
                 value={postText}
                 onChange={(e) => setPostText(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group id="formData">
+              <Form.Control
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
               />
             </Form.Group>
 
