@@ -92,34 +92,34 @@ const SingleExperience = (props) => {
     console.log(e.target.files);
     let file = e.target.files[0];
     setImage(file);
-    submitPicture(props.data._id);
+    // submitPicture(props.data._id);
   };
 
-  const submitPicture = async (_id) => {
-    console.log(props.data._id);
-    const data = new FormData();
-    data.append("experience", image);
-    let res = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
-        _id +
-        "/picture",
-      {
-        method: "PUT",
-        body: data,
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-        },
-      }
-    );
-    let resData = await res.json();
-    if (resData.ok) {
-      props.getExp();
-      console.log("picture uploaded");
-    } else {
-      console.log("failed");
-    }
-  };
+  // const submitPicture = async (_id) => {
+  //   console.log(props.data._id);
+  //   const data = new FormData();
+  //   data.append("experience", image);
+  //   let res = await fetch(
+  //     "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
+  //       _id +
+  //       "/picture",
+  //     {
+  //       method: "PUT",
+  //       body: data,
+  //       headers: {
+  //         Authorization:
+  //           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+  //       },
+  //     }
+  //   );
+  //   let resData = await res.json();
+  //   if (resData.ok) {
+  //     props.getExp();
+  //     console.log("picture uploaded");
+  //   } else {
+  //     console.log("failed");
+  //   }
+  // };
 
   return (
     <>
@@ -233,9 +233,9 @@ const SingleExperience = (props) => {
               type="button"
               onClick={() => {
                 handleChange();
-                if (image) {
-                  submitPicture(props.data._id);
-                }
+                // if (image) {
+                //   submitPicture(props.data._id);
+                // }
               }}
             >
               Add
