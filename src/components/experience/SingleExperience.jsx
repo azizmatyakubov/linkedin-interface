@@ -68,7 +68,7 @@ const SingleExperience = (props) => {
 
   const changeExpById = async (_id, method) => {
     console.log("this is changeExpID", _id);
-    let response = fetch(
+    let response = await fetch(
       "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
         _id,
       {
