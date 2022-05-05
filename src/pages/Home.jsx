@@ -10,10 +10,12 @@ import { useState, useEffect } from "react";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
+  const [myProfile, setMyProfile] = useState();
   const [skeleton, setSkeleton] = useState(true);
 
   useEffect(() => {
     getPosts();
+    getMyProfile("6270f5980270f1272fff0340");
   }, []);
 
   // get all posts from API and storing Posts state
@@ -26,6 +28,18 @@ const Home = (props) => {
     setSkeleton(false);
   };
 
+  const getMyProfile = async (id) => {
+    try {
+      const response = await fetch(
+        "https://linkedin-backend-01.herokuapp.com/profile/" + id
+      );
+      const data = await response.json();
+      setMyProfile(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Wrapper>
@@ -34,7 +48,7 @@ const Home = (props) => {
           <CommunityPanel />
         </Left>
         <Main>
-          <PostHome getPosts={getPosts} />
+          <PostHome myProfile={myProfile} getPosts={getPosts} />
           <Message data={posts} getPosts={getPosts} skeleton={skeleton} />
         </Main>
         <Right>

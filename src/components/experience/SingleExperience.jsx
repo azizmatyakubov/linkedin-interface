@@ -23,7 +23,7 @@ const SingleExperience = (props) => {
 
   const fetchExpById = async (_id) => {
     let response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences/" +
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
         _id,
       {
         headers: {
@@ -46,9 +46,7 @@ const SingleExperience = (props) => {
 
   const fetchExperiences = async (id) => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/" +
-        id +
-        "/experiences",
+      "https://linkedin-backend-01.herokuapp.com/profile" + id + "/experiences",
       {
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +67,7 @@ const SingleExperience = (props) => {
   const changeExpById = async (_id, method) => {
     console.log("this is changeExpID", _id);
     let response = fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences/" +
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
         _id,
       {
         method: method,

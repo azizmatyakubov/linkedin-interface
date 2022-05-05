@@ -9,7 +9,6 @@ import { Modal, Button, Form } from "react-bootstrap";
 
 const ExperienceSection = (props) => {
   const [experiences, setExperiences] = useState(null);
-  // const [experienceChanged, setExperienceChanged] = useState(0);
   const [addExperience, setAddExperience] = useState(false);
 
   const closeAddExperience = () => setAddExperience(false);
@@ -24,7 +23,6 @@ const ExperienceSection = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("here");
     const experience = {
       role: role,
       company: company,
@@ -35,15 +33,14 @@ const ExperienceSection = (props) => {
     };
 
     try {
+      console.log(experience);
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences`,
+        `https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences`,
         {
           method: "POST",
           body: JSON.stringify(experience),
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
           },
         }
       );
