@@ -1,72 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ReactTimeAgo from "react-time-ago";
-import { Modal, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import SingleMessage from "./SingleMessage";
 
 const Message = (props) => {
-  const [show, setShow] = useState(false); // this is for showing Modal
-  const [postText, setPostText] = useState(""); // this is for modal
-  console.log(postText);
-  const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
-  const handleClose = () => setShow(false);
-
-  // when user click edit post text, this function runs
-  const handleShow = (id) => {
-    setShow(true); // display modal
-    fetchPostById(id);
-    setSelectedPostId(id);
-  };
-
-  // fetch post with id and storing to 'postText' state
-  const fetchPostById = async (id) => {
-    let res = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/post/" + id,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    let data = await res.json();
-    setPostText(data.text); //setting state
-  };
-
-  const handleChange = async () => {
-    changePostById(selectedPostId, "PUT"); //selectedPostId is coming from state
-  };
-
-  const handleDelete = async () => {
-    changePostById(selectedPostId, "DELETE");
-  };
-
-  // it will send PUT request to server in order to change POST text
-  const changePostById = async (id, method) => {
-    let res = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/post/" + id,
-      {
-        method: method,
-        body: JSON.stringify({ text: postText }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (res.ok) {
-      console.log(method);
-      props.getPosts(); // if response is ok, we need to get all posts one more time from server
-      handleClose(); // after all operation, we need to close modal
-      setPostText("");
-    }
-  };
-
   return (
     <div>
       {props.skeleton && (
         <>
           <Wrapper>
             <Header>
-              <img className="skeleton-profile-pic skeleton" alt="skeleton" />
+              <span
+                className="skeleton-profile-pic skeleton mr-4"
+                alt="skeleton"
+              />
               <div>
                 <h6 className="skeleton-name skeleton"> </h6>
                 <p className="skeleton-text skeleton"></p>
@@ -108,9 +54,9 @@ const Message = (props) => {
           </Wrapper>
           <Wrapper>
             <Header>
-              <img
-                className="skeleton-profile-pic skeleton"
-                alt="skeleton-profile"
+              <span
+                className="skeleton-profile-pic skeleton mr-4"
+                alt="skeleton"
               />
               <div>
                 <h6 className="skeleton-name skeleton"> </h6>
@@ -158,95 +104,12 @@ const Message = (props) => {
         .reverse() // last messages should be on top
         .map((post) => (
           <>
-            <Wrapper>
-              <Header>
-                <img src={post.user.image} alt="img" />
-                <div>
-                  <h6>
-                    <Link to={"/profile/" + post.user._id}>
-                      {post.user.name}
-                    </Link>
-                  </h6>
-                  <p>{post.user.title}</p>
-                  <p>{<ReactTimeAgo date={post.updatedAt} />}</p>
-                </div>
-                {/* {post.user._id === "6242131ed339840015c883bb" && ( */}
-                <Button
-                  variant="outline-dark"
-                  onClick={() => handleShow(post._id)}
-                >
-                  Edit Post
-                </Button>
-                {/* )} */}
-              </Header>
-              <Body>
-                <p>{post.text}</p>
-                <div>
-                  <img
-                    src="https://img.icons8.com/color/48/000000/plus--v3.png"
-                    alt="blue-background"
-                  />
-                  <span>129</span>
-                  <span>1 comments</span>
-                </div>
-              </Body>
-
-              <Footer>
-                <Section>
-                  <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
-                  Like
-                </Section>
-                <Section>
-                  <img src="/images/chat-dots.svg" alt="" srcset="" />
-                  Comment
-                </Section>
-                <Section>
-                  <img src="/images/share.svg" alt="" srcset="" />
-                  Share
-                </Section>
-                <Section>
-                  <img src="/images/send.svg" alt="" srcset="" />
-                  Send
-                </Section>
-              </Footer>
-            </Wrapper>
-
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Update post</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form>
-                  <Form.Group>
-                    <Form.Label>Your post</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Your text"
-                      className="mt-1"
-                      value={postText}
-                      onChange={(e) => setPostText(e.target.value)}
-                    />
-                  </Form.Group>
-
-                  <Button
-                    variant="success"
-                    type="button"
-                    onClick={handleChange}
-                    className="mr-2"
-                  >
-                    Update
-                  </Button>
-                  <Button variant="danger" type="button" onClick={handleDelete}>
-                    Delete
-                  </Button>
-                </Form>
-              </Modal.Body>
-            </Modal>
+            <SingleMessage getPosts={props.getPosts} post={post} />
           </>
         ))}
     </div>
   );
-};;
+};
 
 export default Message;
 
