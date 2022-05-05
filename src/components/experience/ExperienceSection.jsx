@@ -4,7 +4,6 @@ import SingleExperience from "./SingleExperience";
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-
 // 6242131ed339840015c883bb
 
 const ExperienceSection = (props) => {
@@ -36,7 +35,7 @@ const ExperienceSection = (props) => {
 
     try {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences`,
+        `https://dashboard.heroku.com/apps/linkedin-backend-01/profile/6242131ed339840015c883bb/experiences`,
         {
           method: "POST",
           body: JSON.stringify(experience),
