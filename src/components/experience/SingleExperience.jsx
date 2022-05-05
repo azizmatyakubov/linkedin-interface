@@ -46,7 +46,9 @@ const SingleExperience = (props) => {
 
   const fetchExperiences = async (id) => {
     const response = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/profile" + id + "/experiences",
+      "https://linkedin-backend-01.herokuapp.com/profile/" +
+        id +
+        "/experiences",
       {
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +69,7 @@ const SingleExperience = (props) => {
   const changeExpById = async (_id, method) => {
     console.log("this is changeExpID", _id);
     let response = fetch(
-      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences" +
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
         _id,
       {
         method: method,
@@ -98,7 +100,7 @@ const SingleExperience = (props) => {
     const data = new FormData();
     data.append("experience", image);
     let res = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences" +
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
         _id +
         "/picture",
       {
