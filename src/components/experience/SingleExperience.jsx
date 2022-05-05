@@ -104,7 +104,7 @@ const SingleExperience = (props) => {
         _id +
         "/picture",
       {
-        method: "POST",
+        method: "PUT",
         body: data,
         headers: {
           Authorization:
