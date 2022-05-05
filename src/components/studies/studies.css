@@ -1,0 +1,10 @@
+#studyPlaceImage {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+#studyLink:hover {
+  color: rgb(28, 28, 229);
+  cursor: pointer;
+  text-decoration: underline;
+}

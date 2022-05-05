@@ -1,30 +1,29 @@
-import { Container, Row, Col } from "react-bootstrap";
-import "./expstyle.css";
-import SingleExperience from "./SingleExperience";
-import { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
-
+import { Container, Row, Col } from "react-bootstrap"
+import "./expstyle.css"
+import SingleExperience from "./SingleExperience"
+import { useState } from "react"
+import { Modal, Button, Form } from "react-bootstrap"
 
 // 6242131ed339840015c883bb
 
 const ExperienceSection = (props) => {
-  const [experiences, setExperiences] = useState(null);
+  const [experiences, setExperiences] = useState(null)
   // const [experienceChanged, setExperienceChanged] = useState(0);
-  const [addExperience, setAddExperience] = useState(false);
+  const [addExperience, setAddExperience] = useState(false)
 
-  const closeAddExperience = () => setAddExperience(false);
-  const showAddExperience = () => setAddExperience(true);
+  const closeAddExperience = () => setAddExperience(false)
+  const showAddExperience = () => setAddExperience(true)
 
-  const [company, setCompany] = useState("");
-  const [role, setRole] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [company, setCompany] = useState("")
+  const [role, setRole] = useState("")
+  const [description, setDescription] = useState("")
+  const [location, setLocation] = useState("")
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("here");
+    e.preventDefault()
+    console.log("here")
     const experience = {
       role: role,
       company: company,
@@ -32,31 +31,28 @@ const ExperienceSection = (props) => {
       endDate: endDate || null,
       description: description,
       area: location,
-    };
+    }
 
     try {
-      const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences`,
-        {
-          method: "POST",
-          body: JSON.stringify(experience),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-          },
-        }
-      );
+      const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb/experiences`, {
+        method: "POST",
+        body: JSON.stringify(experience),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      })
       if (response.ok) {
-        console.log("POSTED");
-        props.getMyExp();
+        console.log("POSTED")
+        props.getMyExp()
       } else {
-        console.error("fetch failed");
+        console.error("fetch failed")
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   return (
     <>
@@ -67,25 +63,15 @@ const ExperienceSection = (props) => {
           </Col>
 
           <Col className="icons-col">
-            <img
-              src="/images/plus-icon.svg"
-              alt=""
-              onClick={showAddExperience}
-            />
+            {/* <img src="/images/plus-icon.svg" alt="" onClick={showAddExperience} /> */}
+            <i className="bi bi-plus-lg text-muted" id="addIcon"></i>
 
-            <img src="/images/pencil.svg" alt="" id="pencil-icon" />
+            <i className="edit-profile bi bi-pencil text-muted " id="jumboPencil"></i>
           </Col>
 
           {props.data &&
             props.data.map((value) => {
-              return (
-                <SingleExperience
-                  key={value._id}
-                  data={value}
-                  getMyExp={props.getMyExp}
-                  getExp={props.getExp}
-                />
-              );
+              return <SingleExperience key={value._id} data={value} getMyExp={props.getMyExp} getExp={props.getExp} />
             })}
         </Row>
       </Container>
@@ -110,14 +96,7 @@ const ExperienceSection = (props) => {
 
             <Form.Group>
               <Form.Label>Role</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                required
-                className="mt-1"
-              />
+              <Form.Control type="text" placeholder="Role" value={role} onChange={(e) => setRole(e.target.value)} required className="mt-1" />
             </Form.Group>
 
             <Form.Group>
@@ -146,23 +125,12 @@ const ExperienceSection = (props) => {
 
             <Form.Group>
               <Form.Label>Start Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                required
-                className="mt-1"
-              />
+              <Form.Control type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} required className="mt-1" />
             </Form.Group>
 
             <Form.Group>
               <Form.Label>End Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                className="mt-1"
-              />
+              <Form.Control type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="mt-1" />
             </Form.Group>
 
             <Button variant="success" type="submit">
@@ -172,6 +140,6 @@ const ExperienceSection = (props) => {
         </Modal.Body>
       </Modal>
     </>
-  );
-};
-export default ExperienceSection;
+  )
+}
+export default ExperienceSection

@@ -5,16 +5,15 @@
 }
 
 .edit-profile {
-  margin-left: 10rem;
   cursor: pointer;
-  width: 4rem;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 0.5rem !important;
 }
 
 .edit-profile:hover {
   background-color: #f3f2ef;
 
+  padding: 0.5rem;
+  border-radius: 50%;
 }
 
 .jumbotron-img {
@@ -67,41 +66,46 @@
   margin-bottom: 0;
 }
 
-
 .jumbotron-body p {
   margin-bottom: 0;
-  
 }
 
+#jumboPencil {
+  right: 0;
+  margin: 1rem;
+}
 
 /*RESPONSIVNESS*/
 
-@media (min-width:768px) and (max-width:1024px) {
-
+@media (min-width: 768px) and (max-width: 1024px) {
   .sc-papXJ {
     margin-bottom: 0px;
   }
-
 }
 
 @media (max-width: 425px) {
-
-  #root > div > div:nth-child(2) > div > div > div.col-md-8 > div.sc-bczRLJ.fTpyZl.border-round-pill > div.sc-dkzDqf.kFPMoi > div.mt-3.container > div > div:nth-child(2) {
+  #root
+    > div
+    > div:nth-child(2)
+    > div
+    > div
+    > div.col-md-8
+    > div.sc-bczRLJ.fTpyZl.border-round-pill
+    > div.sc-dkzDqf.kFPMoi
+    > div.mt-3.container
+    > div
+    > div:nth-child(2) {
     margin-top: 1rem;
   }
-
-
-
 }
 
 @media (max-width: 768px) {
   #text-col {
-    margin-left: 0!important;
+    margin-left: 0 !important;
   }
 }
 
 @media (min-width: 320px) {
-
   .edit-profile {
     margin-left: 0;
     padding: 0;
