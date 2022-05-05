@@ -84,7 +84,7 @@ const SingleExperience = (props) => {
     if (response.ok) {
       handleClose();
       props.getMyExp();
-      fetchExperiences("6242131ed339840015c883bb");
+      fetchExperiences("6270f5980270f1272fff0340");
     }
   };
 
