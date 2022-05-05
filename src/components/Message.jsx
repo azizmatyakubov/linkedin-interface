@@ -1,81 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import TimeAgo from "timeago-react";
-import { Modal, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import SingleMessage from "./SingleMessage";
 
 const Message = (props) => {
-  console.log("THIS IS PROPS", props.data);
-  const [show, setShow] = useState(false); // this is for showing Modal
-  const [postText, setPostText] = useState("there should be post text"); // this is for modal
-  const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
-
-  const handleClose = () => setShow(false);
-
-  // when user click edit post text, this function runs
-  const handleShow = (id) => {
-    console.log(id, "this is post id");
-    setShow(true); // display modal
-    fetchPostById(id);
-    setSelectedPostId(id);
-    console.log(props.data[0].user);
-  };
-
-  // fetch post with id and storing to 'postText' state
-  const fetchPostById = async (id) => {
-    let res = await fetch(
-      "https://striveschool-api.herokuapp.com/api/posts/" + id,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-        },
-      }
-    );
-    let data = await res.json();
-    setPostText(data); //setting state
-  };
-
-  // there is button on Modal, when it clicks, this function runs
-  const handleChange = async () => {
-    changePostById(selectedPostId, "PUT"); //selectedPostId is coming from state
-  };
-
-  const handleDelete = async () => {
-    changePostById(selectedPostId, "DELETE");
-  };
-
-  // it will send PUT request to server in order to change POST text
-  const changePostById = async (id, method) => {
-    let res = await fetch(
-      "https://striveschool-api.herokuapp.com/api/posts/" + id,
-      {
-        method: method,
-        body: JSON.stringify(postText),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-        },
-      }
-    );
-    if (res.ok) {
-      console.log(method);
-      props.getPosts(); // if response is ok, we need to get all posts one more time from server
-      handleClose(); // after all operation, we need to close modal
-    }
-  };
-
   return (
     <div>
       {props.skeleton && (
         <>
           <Wrapper>
             <Header>
-              <img className="skeleton-profile-pic skeleton" />
+              <span
+                className="skeleton-profile-pic skeleton mr-4"
+                alt="skeleton"
+              />
               <div>
-                <h6 className="skeleton-name skeleton"></h6>
+                <h6 className="skeleton-name skeleton"> </h6>
                 <p className="skeleton-text skeleton"></p>
               </div>
             </Header>
@@ -85,7 +24,10 @@ const Message = (props) => {
               <p className="skeleton-text mb-2 skeleton"></p>
 
               <div>
-                <img className="skeleton skeleton-text mr-2" />
+                <img
+                  className="skeleton skeleton-text mr-2"
+                  alt="skeleton-text"
+                />
                 <p className="skeleton skeleton-text ml-2 mr-2"></p>
                 <p className="skeleton skeleton-text"></p>
               </div>
@@ -112,9 +54,12 @@ const Message = (props) => {
           </Wrapper>
           <Wrapper>
             <Header>
-              <img className="skeleton-profile-pic skeleton" />
+              <span
+                className="skeleton-profile-pic skeleton mr-4"
+                alt="skeleton"
+              />
               <div>
-                <h6 className="skeleton-name skeleton"></h6>
+                <h6 className="skeleton-name skeleton"> </h6>
                 <p className="skeleton-text skeleton"></p>
               </div>
             </Header>
@@ -124,7 +69,10 @@ const Message = (props) => {
               <p className="skeleton-text mb-2 skeleton"></p>
 
               <div>
-                <img className="skeleton skeleton-text mr-2" />
+                <img
+                  className="skeleton skeleton-text mr-2"
+                  alt="skeleton-body"
+                />
                 <p className="skeleton skeleton-text ml-2 mr-2"></p>
                 <p className="skeleton skeleton-text"></p>
               </div>
@@ -156,96 +104,12 @@ const Message = (props) => {
         .reverse() // last messages should be on top
         .map((post) => (
           <>
-            <Wrapper>
-              <Header>
-                <img src={post.user.image} alt="img" />
-                <div>
-                  <h6>
-                    <Link to={"/profile/" + post.user._id}>
-                      {post.user.name}
-                    </Link>
-                  </h6>
-                  <p>{post.user.title}</p>
-                  <p>
-                    <TimeAgo datetime={post.updatedAt} />
-                  </p>
-                </div>
-                {/* {post.user._id === "6242131ed339840015c883bb" && ( */}
-                <Button
-                  variant="outline-dark"
-                  onClick={() => handleShow(post._id)}
-                >
-                  Edit Post
-                </Button>
-                {/* )} */}
-              </Header>
-              <Body>
-                <p>{post.text}</p>
-                <div>
-                  <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
-                  <span>129</span>
-                  <span>1 comments</span>
-                </div>
-              </Body>
-
-              <Footer>
-                <Section>
-                  <img src="/images/hand-thumbs-up.svg" alt="" srcset="" />
-                  Like
-                </Section>
-                <Section>
-                  <img src="/images/chat-dots.svg" alt="" srcset="" />
-                  Comment
-                </Section>
-                <Section>
-                  <img src="/images/share.svg" alt="" srcset="" />
-                  Share
-                </Section>
-                <Section>
-                  <img src="/images/send.svg" alt="" srcset="" />
-                  Send
-                </Section>
-              </Footer>
-            </Wrapper>
-
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Update post</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form>
-                  <Form.Group>
-                    <Form.Label>Your post</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Company"
-                      className="mt-1"
-                      value={postText.text}
-                      onChange={(e) =>
-                        setPostText({ ...postText, text: e.target.value })
-                      }
-                    />
-                  </Form.Group>
-
-                  <Button
-                    variant="success"
-                    type="button"
-                    onClick={handleChange}
-                    className="mr-2"
-                  >
-                    Update
-                  </Button>
-                  <Button variant="danger" type="button" onClick={handleDelete}>
-                    Delete
-                  </Button>
-                </Form>
-              </Modal.Body>
-            </Modal>
+            <SingleMessage getPosts={props.getPosts} post={post} />
           </>
         ))}
     </div>
   );
-};;
+};
 
 export default Message;
 
