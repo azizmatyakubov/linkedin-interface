@@ -4,7 +4,6 @@ import SingleExperience from "./SingleExperience";
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-
 // 6242131ed339840015c883bb
 
 const ExperienceSection = (props) => {
@@ -20,6 +19,7 @@ const ExperienceSection = (props) => {
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [image, setImage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +30,7 @@ const ExperienceSection = (props) => {
       endDate: endDate || null,
       description: description,
       area: location,
+      image: image,
     };
 
     try {
@@ -48,10 +49,10 @@ const ExperienceSection = (props) => {
         console.log("POSTED");
         props.getMyExp();
       } else {
-        console.error("fetch failed");
+        console.log("fetch failed!!!!");
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -158,6 +159,15 @@ const ExperienceSection = (props) => {
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
+                className="mt-1"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="text"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
                 className="mt-1"
               />
             </Form.Group>
