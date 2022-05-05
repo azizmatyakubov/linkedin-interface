@@ -35,7 +35,7 @@ const ExperienceSection = (props) => {
 
     try {
       const response = await fetch(
-        `https://dashboard.heroku.com/apps/linkedin-backend-01/profile/6242131ed339840015c883bb/experiences`,
+        `https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences`,
         {
           method: "POST",
           body: JSON.stringify(experience),
