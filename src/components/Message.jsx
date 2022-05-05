@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TimeAgo from "timeago-react";
+import ReactTimeAgo from "react-time-ago";
 import { Modal, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Message = (props) => {
-  console.log("THIS IS PROPS", props.data);
   const [show, setShow] = useState(false); // this is for showing Modal
   const [postText, setPostText] = useState("there should be post text"); // this is for modal
   const [selectedPostId, setSelectedPostId] = useState(); // this is storing selected post id
-
   const handleClose = () => setShow(false);
 
   // when user click edit post text, this function runs
@@ -55,8 +53,6 @@ const Message = (props) => {
         body: JSON.stringify(postText),
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
         },
       }
     );
@@ -73,9 +69,9 @@ const Message = (props) => {
         <>
           <Wrapper>
             <Header>
-              <img className="skeleton-profile-pic skeleton" />
+              <img className="skeleton-profile-pic skeleton" alt="skeleton" />
               <div>
-                <h6 className="skeleton-name skeleton"></h6>
+                <h6 className="skeleton-name skeleton"> </h6>
                 <p className="skeleton-text skeleton"></p>
               </div>
             </Header>
@@ -85,7 +81,10 @@ const Message = (props) => {
               <p className="skeleton-text mb-2 skeleton"></p>
 
               <div>
-                <img className="skeleton skeleton-text mr-2" />
+                <img
+                  className="skeleton skeleton-text mr-2"
+                  alt="skeleton-text"
+                />
                 <p className="skeleton skeleton-text ml-2 mr-2"></p>
                 <p className="skeleton skeleton-text"></p>
               </div>
@@ -112,9 +111,12 @@ const Message = (props) => {
           </Wrapper>
           <Wrapper>
             <Header>
-              <img className="skeleton-profile-pic skeleton" />
+              <img
+                className="skeleton-profile-pic skeleton"
+                alt="skeleton-profile"
+              />
               <div>
-                <h6 className="skeleton-name skeleton"></h6>
+                <h6 className="skeleton-name skeleton"> </h6>
                 <p className="skeleton-text skeleton"></p>
               </div>
             </Header>
@@ -124,7 +126,10 @@ const Message = (props) => {
               <p className="skeleton-text mb-2 skeleton"></p>
 
               <div>
-                <img className="skeleton skeleton-text mr-2" />
+                <img
+                  className="skeleton skeleton-text mr-2"
+                  alt="skeleton-body"
+                />
                 <p className="skeleton skeleton-text ml-2 mr-2"></p>
                 <p className="skeleton skeleton-text"></p>
               </div>
@@ -166,9 +171,7 @@ const Message = (props) => {
                     </Link>
                   </h6>
                   <p>{post.user.title}</p>
-                  <p>
-                    <TimeAgo datetime={post.updatedAt} />
-                  </p>
+                  <p>{<ReactTimeAgo date={post.updatedAt} />}</p>
                 </div>
                 {/* {post.user._id === "6242131ed339840015c883bb" && ( */}
                 <Button
@@ -182,7 +185,10 @@ const Message = (props) => {
               <Body>
                 <p>{post.text}</p>
                 <div>
-                  <img src="https://img.icons8.com/color/48/000000/plus--v3.png" />
+                  <img
+                    src="https://img.icons8.com/color/48/000000/plus--v3.png"
+                    alt="blue-background"
+                  />
                   <span>129</span>
                   <span>1 comments</span>
                 </div>
