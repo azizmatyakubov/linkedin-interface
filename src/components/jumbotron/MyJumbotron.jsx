@@ -9,8 +9,7 @@ import Studies from "../studies/Studies";
 
 const MyJumbotron = (props) => {
   const [show, setShow] = useState(false); // this is for showing Modal
-  const useParam = useParams();
-  const param = useParam.id || "6270f5980270f1272fff0340";
+  const param = useParams();
   const [image, setImage] = useState(null);
   const [showImg, setShowImg] = useState(false);
 
@@ -20,38 +19,39 @@ const MyJumbotron = (props) => {
   const handleSHow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [profileDetails, setProfileDetails] = useState({
-    profileName: props.me.name,
-    surname: props.me.surname,
-    email: props.me.email,
-    bio: props.me.bio,
-    title: props.me.title,
-    area: props.me.area,
-    images: props.me.images,
+    profileName: props.profile.name,
+    surname: props.profile.surname,
+    email: props.profile.email,
+    bio: props.profile.bio,
+    title: props.profile.title,
+    area: props.profile.area,
+    images: props.profile.images,
   });
 
-  const handleChangeProfile = () => {
+  const handleChangeProfile = async () => {
+    console.log(props.profile);
     handleSHow();
   };
 
   const updateProfile = () => {
     updateProfileDetails();
-    props.getMe();
+    props.fetchProfileById(param.id || "6270f5980270f1272fff0340");
     handleClose();
   };
 
-  const body = {
-    name: profileDetails.profileName,
-    surname: profileDetails.surname,
-    email: profileDetails.email,
-    bio: profileDetails.bio,
-    title: profileDetails.title,
-    area: profileDetails.area,
-    image: profileDetails.image,
-  };
-
   const updateProfileDetails = async () => {
+    const body = {
+      name: profileDetails.profileName,
+      surname: profileDetails.surname,
+      email: profileDetails.email,
+      bio: profileDetails.bio,
+      title: profileDetails.title,
+      area: profileDetails.area,
+      image: profileDetails.image,
+    };
+
     let res = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/profile" + param,
+      "https://linkedin-backend-01.herokuapp.com/profile" + param.id,
       {
         method: "PUT",
         body: JSON.stringify(body),
@@ -97,7 +97,7 @@ const MyJumbotron = (props) => {
         <AvatarLogo>
           <img
             className="jumbotron-img"
-            src={props.me.image}
+            src={props.profile.image}
             alt="avatar"
             onClick={setShowImg}
           />
@@ -113,12 +113,12 @@ const MyJumbotron = (props) => {
               <Col md={8}>
                 <div className="jumbotron-body">
                   <h3>
-                    {props.me.name} {props.me.surname}
+                    {profileDetails.profileName} {props.profile.surname}
                     <span className="text-muted">(Him/He)</span>
                   </h3>
-                  <p>{props.me.title}</p>
+                  <p>{props.profile.title}</p>
                   <p>
-                    <span className="text-muted">{props.me.area}</span>
+                    <span className="text-muted">{props.profile.area}</span>
                     <b>
                       <a href="asd#" target="_blank" className="ml-2">
                         Contact Info
