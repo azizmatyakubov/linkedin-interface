@@ -85,7 +85,7 @@ const MyNavbar = ({ profile }) => {
               <span className="brownColor">
                 Get Hired Faster,
                 <br />
-                Try Premium Free{" "}
+                Try Premium Free
               </span>
             </ul>
           </Container>
