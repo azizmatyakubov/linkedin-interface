@@ -1,6 +1,7 @@
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import "./expstyle.css";
 import { useState } from "react";
+import moment from "moment";
 
 const SingleExperience = (props) => {
   const [show, setShow] = useState(false);
@@ -28,8 +29,6 @@ const SingleExperience = (props) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
         },
       }
     );
@@ -119,7 +118,7 @@ const SingleExperience = (props) => {
 
   const submitPicture = async (_id) => {
     const data = new FormData();
-    data.append("experience", image);
+    data.append("expImage", image);
     let res = await fetch(
       "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
         _id +
@@ -153,7 +152,9 @@ const SingleExperience = (props) => {
             </h6>
             <span>{props.data.company}</span>
             <p>
-              {props.data.startDate} - {props.data.endDate} - {props.data.area}
+              {moment(props.data.startDate).format("MMMM YYYY")} -
+              {moment(props.data.endDate).format(" MMMM YYYY - ")}
+              {props.data.area}
             </p>
           </Col>
         </Row>
@@ -212,7 +213,7 @@ const SingleExperience = (props) => {
               <Form.Label>Start Date</Form.Label>
               <Form.Control
                 type="date"
-                value={experience.startDate}
+                value={moment(experience.startDate).format("yyyy-MM-DD")}
                 onChange={(e) =>
                   setExperience({ ...experience, startDate: e.target.value })
                 }
@@ -225,7 +226,7 @@ const SingleExperience = (props) => {
               <Form.Label>End Date</Form.Label>
               <Form.Control
                 type="date"
-                value={experience.endDate}
+                value={moment(experience.endDate).format("yyyy-MM-DD")}
                 onChange={(e) =>
                   setExperience({ ...experience, endDate: e.target.value })
                 }
