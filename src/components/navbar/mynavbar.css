@@ -91,15 +91,20 @@
     display: none;
   }
 }
+/* // */
 @media only screen and (max-width: 1000px) {
   .brownColor {
     display: none;
   }
+  nav {
+    justify-content: start;
+  }
+
   .searchPadding {
     padding-right: 3rem !important;
   }
-  nav > ul {
-    font-size: 10px;
+  .spanNavLinks {
+    font-size: 12px !important;
   }
   #icons-container {
     justify-content: flex-end;
@@ -113,6 +118,16 @@
     font-size: 10px;
   }
 }
+@media only screen and (max-width: 767px) {
+  .bi-caret-down-fill {
+    display: none;
+  }
+  .spanNavLinks {
+    display: none;
+  }
+}
+
+/* // */
 
 @media only screen and (max-width: 768px) {
   #search > div > input {

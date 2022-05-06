@@ -27,7 +27,7 @@ const MyNavbar = ({ profile }) => {
                   <div className="text-center text-muted">
                     <i className="bi bi-house-door-fill toBlack"></i>
                   </div>
-                  <span className="text-muted">Home</span>
+                  <span className="text-muted spanNavLinks">Home</span>
                 </Link>
               </li>
               <li>
@@ -35,7 +35,7 @@ const MyNavbar = ({ profile }) => {
                   <div className="text-center text-muted">
                     <i className="bi bi-people-fill toBlack"></i>
                   </div>
-                  <span className="text-muted">My Network</span>
+                  <span className="text-muted spanNavLinks">My Network</span>
                 </Link>
               </li>
               <li>
@@ -43,7 +43,7 @@ const MyNavbar = ({ profile }) => {
                   <div className="text-center text-muted">
                     <i className="bi bi-briefcase-fill toBlack"></i>
                   </div>
-                  <span className="text-muted">Jobs</span>
+                  <span className="text-muted spanNavLinks">Jobs</span>
                 </Link>
               </li>
               <li>
@@ -51,7 +51,7 @@ const MyNavbar = ({ profile }) => {
                   <div className="text-center text-muted">
                     <i className="bi bi-chat-dots-fill toBlack"></i>
                   </div>
-                  <span className="text-muted">Messaging</span>
+                  <span className="text-muted spanNavLinks">Messaging</span>
                 </Link>
               </li>
               <li>
@@ -59,7 +59,7 @@ const MyNavbar = ({ profile }) => {
                   <div className="text-center text-muted">
                     <i className="bi bi-bell-fill toBlack"></i>
                   </div>
-                  <span className="text-muted">Notifications</span>
+                  <span className="text-muted spanNavLinks">Notifications</span>
                 </Link>
               </li>
               <li>
@@ -67,8 +67,8 @@ const MyNavbar = ({ profile }) => {
                   <div>
                     <img src={profile.image} alt="" id="user-icon" />
                   </div>
-                  <span className="text-muted">
-                    Me<i class="bi bi-caret-down-fill"></i>
+                  <span className="text-muted spanNavLinks">
+                    Me<i class="bi bi-caret-down-fill "></i>
                   </span>
                 </Link>
               </li>
@@ -77,7 +77,7 @@ const MyNavbar = ({ profile }) => {
                   <div className="text-center text-muted">
                     <i className="bi bi-grid-3x3-gap-fill toBlack"></i>
                   </div>
-                  <span className="text-muted">
+                  <span className="text-muted spanNavLinks">
                     Work<i class="bi bi-caret-down-fill"></i>
                   </span>
                 </Link>
