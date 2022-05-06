@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const PostHome = (props) => {
+const PostHome = ({ myProfile, getPosts }) => {
+  
   const [inputValue, setInputValue] = useState("");
   // write new post
   const _handleSubmit = async (e) => {
@@ -21,7 +22,7 @@ const PostHome = (props) => {
           }
         );
         if (response.ok) {
-          props.getPosts(); // if we send POST reqeust successfully, we need to get all posts one more time
+          getPosts(); // if we send POST reqeust successfully, we need to get all posts one more time
           setInputValue(""); // Clearing input value
         } else {
           console.log("User cannot write new post");
@@ -36,7 +37,7 @@ const PostHome = (props) => {
     <>
       <Wrapper>
         <Header>
-          {myProfile && <img alt="profile-avatar" />}
+          {/* {myProfile && <img src={myProfile.image} alt="profile-avatar" />} */}
           <Input
             type="text"
             placeholder="Start post"

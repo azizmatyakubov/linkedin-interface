@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <MyNavbar />
+        <MyNavbar myProfile={myProfile} />
         <Routes>
           <Route
             path="/profile/"

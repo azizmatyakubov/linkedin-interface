@@ -12,7 +12,7 @@ const SingleExperience = (props) => {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
+  const [area, setArea] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [image, setImage] = useState("");
@@ -49,7 +49,7 @@ const SingleExperience = (props) => {
       startDate: startDate,
       endDate: endDate || null,
       description: description,
-      area: location,
+      area: area,
       image: image,
     };
   };
@@ -177,7 +177,7 @@ const SingleExperience = (props) => {
               <Form.Control
                 type="text"
                 placeholder="Role"
-                value={experience.role}
+                value={role}
                 onChange={(e) => setRole(e.target.value)}
                 required
                 className="mt-1"
@@ -189,7 +189,7 @@ const SingleExperience = (props) => {
               <Form.Control
                 type="text"
                 placeholder="Company"
-                value={experience.company}
+                value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 required
                 className="mt-1"
@@ -201,7 +201,7 @@ const SingleExperience = (props) => {
               <Form.Control
                 type="text"
                 placeholder="description"
-                value={experience.description}
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
                 className="mt-1"
@@ -213,8 +213,8 @@ const SingleExperience = (props) => {
               <Form.Control
                 type="text"
                 placeholder="Location"
-                value={experience.area}
-                onChange={(e) => setLocation(e.target.value)}
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
                 required
                 className="mt-1"
               />
@@ -224,7 +224,7 @@ const SingleExperience = (props) => {
               <Form.Label>Start Date</Form.Label>
               <Form.Control
                 type="date"
-                value={experience.startDate}
+                value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 required
                 className="mt-1"
@@ -235,7 +235,7 @@ const SingleExperience = (props) => {
               <Form.Label>End Date</Form.Label>
               <Form.Control
                 type="date"
-                value={experience.endDate}
+                value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 className="mt-1"
               />
