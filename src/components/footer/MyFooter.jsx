@@ -1,42 +1,44 @@
-import "./myfooter.css";
-import { Container, Row, Col } from "react-bootstrap";
+import "./myfooter.css"
+import { Container, Row, Col } from "react-bootstrap"
 
 const MyFooter = () => {
   return (
-    <div className="wrapper-container sticky-bottom">
+    <div className="wrapper-container sticky-bottom ml-4">
       <Container>
-        <Row>
+        <Row className="mb-3">
           <img src="/images/login-logo.svg" alt="" />
         </Row>
         <Row className="mt-2">
           <Col xs={4} md={2} className="px-0">
             <ul id="list-footer">
-              <li>About</li>
-              <li>Community Guidelines</li>
-              <li>Privacy and Terms</li>
-              <li>Sales Solutions</li>
-              <li>Safety Center</li>
+              <li className="mb-1">About</li>
+              <li className="mb-1">Community Guidelines</li>
+              <l className="mb-1" i>
+                Privacy and Terms
+              </l>
+              <li className="mb-1">Sales Solutions</li>
+              <li className="mb-1">Safety Center</li>
             </ul>
           </Col>
           <Col xs={4} md={2} className="px-0">
             <ul id="list-footer">
-              <li>Accessibility</li>
-              <li>Careers</li>
-              <li>Ad Choices</li>
-              <li>Mobile</li>
+              <li className="mb-1">Accessibility</li>
+              <li className="mb-1">Careers</li>
+              <li className="mb-1">Ad Choices</li>
+              <li className="mb-1">Mobile</li>
             </ul>
           </Col>
           <Col xs={4} md={2} className="px-0">
             <ul id="list-footer">
-              <li>Talent Solutions</li>
-              <li>Marketing Solutions</li>
-              <li>Advertising</li>
-              <li>Small Business</li>
+              <li className="mb-1">Talent Solutions</li>
+              <li className="mb-1">Marketing Solutions</li>
+              <li className="mb-1">Advertising</li>
+              <li className="mb-1">Small Business</li>
             </ul>
           </Col>
           <Col xs={6} md={3} className="col-md-3-footer">
             <Row>
-              <div>
+              <div className="mr-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -54,15 +56,8 @@ const MyFooter = () => {
               </div>
             </Row>
             <Row>
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-gear-fill"
-                  viewBox="0 0 16 16"
-                >
+              <div className="mr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
                   <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                 </svg>
               </div>
@@ -78,10 +73,7 @@ const MyFooter = () => {
                 <label for="language-picker-select">Select language</label>
 
                 <div>
-                  <select
-                    name="language-picker-select"
-                    id="language-picker-select"
-                  >
+                  <select name="language-picker-select" id="language-picker-select">
                     <option lang="de" value="english">
                       English
                     </option>
@@ -102,13 +94,11 @@ const MyFooter = () => {
               </form>
             </div>
           </Col>
-          <p style={{ color: "grey", fontSize: "12px" }}>
-            LinkedIn Corporation ©2022
-          </p>
+          <p style={{ color: "grey", fontSize: "12px" }}>LinkedIn Corporation ©2022</p>
         </Row>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default MyFooter;
+export default MyFooter
