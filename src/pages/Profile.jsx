@@ -28,7 +28,7 @@ const Profile = (props) => {
   const fetchExperiences = async (id) => {
     const response = await fetch(
       "https://linkedin-backend-01.herokuapp.com/profile/" +
-        id +
+        myID +
         "/experiences",
       {
         headers: {
