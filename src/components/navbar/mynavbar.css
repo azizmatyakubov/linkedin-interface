@@ -91,6 +91,28 @@
     display: none;
   }
 }
+@media only screen and (max-width: 1000px) {
+  .brownColor {
+    display: none;
+  }
+  .searchPadding {
+    padding-right: 3rem !important;
+  }
+  nav > ul {
+    font-size: 10px;
+  }
+  #icons-container {
+    justify-content: flex-end;
+    margin-left: 2rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #icons-container {
+    justify-content: flex-end;
+    margin-left: 1rem;
+    font-size: 10px;
+  }
+}
 
 @media only screen and (max-width: 768px) {
   #search > div > input {
