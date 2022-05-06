@@ -38,7 +38,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+
         <MyNavbar profile={myProfile} />
+
         <Routes>
           <Route path="/profile/" element={<Profile data={profile} me={myProfile} />} />
           <Route path="/profile/:id" element={<Profile data={profile} />} />

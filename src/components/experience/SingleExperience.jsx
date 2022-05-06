@@ -1,9 +1,7 @@
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
 import "./expstyle.css";
 import { useState } from "react";
-import format from "date-fns/format";
-
-//i can't write on the exp modal
+import moment from "moment";
 
 const SingleExperience = (props) => {
   const [show, setShow] = useState(false);
@@ -12,7 +10,7 @@ const SingleExperience = (props) => {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
+  const [area, setArea] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [image, setImage] = useState("");
@@ -31,8 +29,6 @@ const SingleExperience = (props) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
         },
       }
     );
@@ -49,7 +45,7 @@ const SingleExperience = (props) => {
       startDate: startDate,
       endDate: endDate || null,
       description: description,
-      area: location,
+      area: area,
       image: image,
     };
   };
@@ -57,94 +53,91 @@ const SingleExperience = (props) => {
   const handleChange = async () => {
     changeExpById(selectedExpId, "PUT");
     handleClose();
-    fetchExperiences("6242131ed339840015c883bb");
+    fetchExperiences("6270f5980270f1272fff0340");
   };
 
   const fetchExperiences = async (id) => {
-    const response = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/profile" + id + "/experiences",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
-        },
-      }
-    );
-    const data = await response.json();
-    setExperience(data);
-  };
-  const handleDelete = async () => {
-    changeExpById(selectedExpId, "DELETE");
+    console.log("isssd:", props.data._id);
+    try {
+      const response = await fetch(
+        "https://linkedin-backend-01.herokuapp.com/profile/" +
+          id +
+          "/experiences",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
+          },
+        }
+      );
+      const data = await response.json();
+      setExperience(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // const experienceExample = {
-  //   role: "bricklayer",
-  //   company: "Strive",
-  //   startDate: "2019-06-16T22:00:00.000+00:00",
-  //   endDate: "2019-06-16T22:00:00.000+00:00",
-  //   description: "teaching some boring stuff",
-  //   area: "germany",
-  //   image:
-  //     "https://res.cloudinary.com/dar1jmjxk/image/upload/v1651583777/profile_…",
-  // };
+  const handleDelete = async (method) => {
+    changeExpById(selectedExpId, method);
+  };
 
   const changeExpById = async (_id, method) => {
-
-    console.log("expr", experience);
-    let response = await fetch(
-
-      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
-        _id,
-      {
-        method: method,
-        body: JSON.stringify(experience),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-        },
+    console.log("_id", _id);
+    try {
+      let response = await fetch(
+        "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
+          _id,
+        {
+          method: method,
+          body: JSON.stringify(experience),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+          },
+        }
+      );
+      if (response.ok) {
+        console.log("id:", _id);
+        props.getExp();
+        handleClose();
+      } else {
+        console.log(response);
       }
-    );
-    if (response.ok) {
-      handleClose();
-      props.getMyExp();
-      fetchExperiences("6270f5980270f1272fff0340");
-    } else {
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const handleFile = (e) => {
     let file = e.target.files[0];
     setImage(file);
-    // submitPicture(props.data._id);
+    submitPicture(props.data._id);
   };
 
-  // const submitPicture = async (_id) => {
-  //   console.log(props.data._id);
-  //   const data = new FormData();
-  //   data.append("experience", image);
-  //   let res = await fetch(
-  //     "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
-  //       _id +
-  //       "/picture",
-  //     {
-  //       method: "PUT",
-  //       body: data,
-  //       headers: {
-  //         Authorization:
-  //           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-  //       },
-  //     }
-  //   );
-  //   let resData = await res.json();
-  //   if (resData.ok) {
-  //     props.getExp();
-  //     console.log("picture uploaded");
-  //   } else {
-  //     console.log("failed");
-  //   }
-  // };
+  const submitPicture = async (_id) => {
+    const data = new FormData();
+    data.append("expImage", image);
+    let res = await fetch(
+      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
+        _id +
+        "/picture",
+      {
+        method: "PUT",
+        body: data,
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
+        },
+      }
+    );
+    let resData = await res.json();
+    if (resData.ok) {
+      props.getExp();
+    } else {
+    }
+  };
 
   return (
     <>
@@ -159,26 +152,30 @@ const SingleExperience = (props) => {
             </h6>
             <span>{props.data.company}</span>
             <p>
-              {format(new Date(props.data.startDate), "LLLL yyyy")}
-              <p>{props.data.area}</p>
+              {moment(props.data.startDate).format("MMMM YYYY")} -
+              {moment(props.data.endDate).format(" MMMM YYYY - ")}
+              {props.data.area}
             </p>
           </Col>
         </Row>
         <hr className="style-hr" />
       </Container>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Experience</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div onSubmit={handleSubmit}>
+          <Form>
             <Form.Group>
               <Form.Label>Role</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Role"
                 value={experience.role}
-                onChange={(e) => setRole(e.target.value)}
+                onChange={(e) =>
+                  setExperience({ ...experience, role: e.target.value })
+                }
                 required
                 className="mt-1"
               />
@@ -190,19 +187,9 @@ const SingleExperience = (props) => {
                 type="text"
                 placeholder="Company"
                 value={experience.company}
-                onChange={(e) => setCompany(e.target.value)}
-                required
-                className="mt-1"
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>description</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="description"
-                value={experience.description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) =>
+                  setExperience({ ...experience, company: e.target.value })
+                }
                 required
                 className="mt-1"
               />
@@ -214,7 +201,9 @@ const SingleExperience = (props) => {
                 type="text"
                 placeholder="Location"
                 value={experience.area}
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={(e) =>
+                  setExperience({ ...experience, area: e.target.value })
+                }
                 required
                 className="mt-1"
               />
@@ -224,8 +213,10 @@ const SingleExperience = (props) => {
               <Form.Label>Start Date</Form.Label>
               <Form.Control
                 type="date"
-                value={experience.startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={moment(experience.startDate).format("yyyy-MM-DD")}
+                onChange={(e) =>
+                  setExperience({ ...experience, startDate: e.target.value })
+                }
                 required
                 className="mt-1"
               />
@@ -235,8 +226,10 @@ const SingleExperience = (props) => {
               <Form.Label>End Date</Form.Label>
               <Form.Control
                 type="date"
-                value={experience.endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                value={moment(experience.endDate).format("yyyy-MM-DD")}
+                onChange={(e) =>
+                  setExperience({ ...experience, endDate: e.target.value })
+                }
                 className="mt-1"
               />
             </Form.Group>
@@ -250,23 +243,29 @@ const SingleExperience = (props) => {
               />
             </Form.Group>
 
-            <Button variant="danger" type="button" onClick={handleDelete}>
+            <Button
+              variant="danger"
+              type="button"
+              onClick={() => {
+                handleDelete("DELETE");
+              }}
+            >
               Delete
             </Button>
             <Button
               variant="success"
               className="mx-2"
-              type="submit"
+              type="button"
               onClick={() => {
-                handleChange();
-                // if (image) {
-                //   submitPicture(props.data._id);
-                // }
+                handleChange("PUT");
+                if (image) {
+                  submitPicture(props.data._id);
+                }
               }}
             >
               Add
             </Button>
-          </div>
+          </Form>
         </Modal.Body>
       </Modal>
     </>

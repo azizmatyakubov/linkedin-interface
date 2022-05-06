@@ -16,6 +16,7 @@ const Profile = (props) => {
 
   // check if url has id then show data related to id else show data related to myID
   useEffect(() => {
+    console.log(param);
     if (param.id) {
       fetchProfileById(param.id);
       fetchExperiences(param.id);
@@ -28,7 +29,7 @@ const Profile = (props) => {
   const fetchExperiences = async (id) => {
     const response = await fetch(
       "https://linkedin-backend-01.herokuapp.com/profile/" +
-        id +
+        myID +
         "/experiences",
       {
         headers: {

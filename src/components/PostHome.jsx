@@ -36,7 +36,6 @@ const PostHome = ({ myProfile, getPosts }) => {
     <>
       <Wrapper>
         <Header>
-
           {myProfile && <img src={myProfile.image} alt="profile-avatar" />}
 
           <Input
