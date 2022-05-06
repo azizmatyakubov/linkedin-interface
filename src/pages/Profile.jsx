@@ -79,7 +79,7 @@ const Profile = (props) => {
   const fetchProfileById = async (id) => {
     try {
       let res = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" + id
+        "https://linkedin-backend-01.herokuapp.com/profile/" + id
       );
 
       if (res.ok) {

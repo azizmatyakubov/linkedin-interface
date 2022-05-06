@@ -1,21 +1,24 @@
 import { Container, Row, Col, Modal, Form, Button } from "react-bootstrap"
-import React, { useState } from "react"
-import styled from "styled-components"
-import "./MyJumbotron.css"
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import "./MyJumbotron.css";
+
 // import MyModal from "../MyModal"
-import Studies from "../studies/Studies"
+import Studies from "../studies/Studies";
 
 const MyJumbotron = (props) => {
-  const [show, setShow] = useState(false) // this is for showing Modal
+  const [show, setShow] = useState(false); // this is for showing Modal
+  const useParam = useParams();
+  const param = useParam.id || "6270f5980270f1272fff0340";
+  const [image, setImage] = useState(null);
+  const [showImg, setShowImg] = useState(false);
 
-  const [image, setImage] = useState(null)
-  const [showImg, setShowImg] = useState(false)
+  const handleShowImg = () => setShowImg(true);
+  const handleCloseImg = () => setShowImg(false);
 
-  const handleShowImg = () => setShowImg(true)
-  const handleCloseImg = () => setShowImg(false)
-
-  const handleSHow = () => setShow(true)
-  const handleClose = () => setShow(false)
+  const handleSHow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const [profileDetails, setProfileDetails] = useState({
     profileName: props.me.name,
     surname: props.me.surname,
@@ -24,17 +27,17 @@ const MyJumbotron = (props) => {
     title: props.me.title,
     area: props.me.area,
     images: props.me.images,
-  })
+  });
 
   const handleChangeProfile = () => {
-    handleSHow()
-  }
+    handleSHow();
+  };
 
   const updateProfile = () => {
-    updateProfileDetails()
-    props.getMe()
-    handleClose()
-  }
+    updateProfileDetails();
+    props.getMe();
+    handleClose();
+  };
 
   const body = {
     name: profileDetails.profileName,
@@ -44,53 +47,66 @@ const MyJumbotron = (props) => {
     title: profileDetails.title,
     area: profileDetails.area,
     image: profileDetails.image,
-  }
+  };
 
   const updateProfileDetails = async () => {
-    let res = await fetch("https://striveschool-api.herokuapp.com/api/profile/6242131ed339840015c883bb", {
-      method: "PUT",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
-      },
-    })
+    let res = await fetch(
+      "https://linkedin-backend-01.herokuapp.com/profile" + param,
+      {
+        method: "PUT",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (res.ok) {
-      alert("updated")
+      alert("updated");
     }
-  }
+  };
 
   const uploadImage = async () => {
     try {
-      const data = new FormData()
-      data.append("avatar", image)
-      const response = await fetch("https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/uploadAvatar", {
-        method: "PUT",
-        body: data,
-      })
+      const data = new FormData();
+      data.append("avatar", image);
+      const response = await fetch(
+        `https://linkedin-backend-01.herokuapp.com/profile/${param}/uploadAvatar`,
+        {
+          method: "PUT",
+          body: data,
+        }
+      );
       if (response.ok) {
         // setProfilePicture(image);
-        props.getMe()
-        handleCloseImg()
-        console.log("Image Successfully Uploaded")
+        props.getMe();
+        handleCloseImg();
+        console.log("Image Successfully Uploaded");
       } else {
-        console.error("image uploading failed")
+        console.error("image uploading failed");
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   return (
     <>
       <Wrapper className="border-round-pill">
         <Header></Header>
         <AvatarLogo>
-          <img className="jumbotron-img" src={props.me.image} alt="avatar" onClick={setShowImg} />
+          <img
+            className="jumbotron-img"
+            src={props.me.image}
+            alt="avatar"
+            onClick={setShowImg}
+          />
         </AvatarLogo>
-        <i className="edit-profile bi bi-pencil position-absolute text-muted p-3 mr-4" id="jumboPencil" onClick={handleChangeProfile}></i>
+        <i
+          className="edit-profile bi bi-pencil position-absolute text-muted p-3 mr-4"
+          id="jumboPencil"
+          onClick={handleChangeProfile}
+        ></i>
         <Body>
           <Container className="jumbotron-container">
             <Row>
@@ -121,14 +137,30 @@ const MyJumbotron = (props) => {
               </Col>
               <Col md={4}>
                 {/* studyPlaceImage needs the corrects image */}
-                <Studies study={"Harvard"} studyPlaceImage={"http://www.lyon-ortho-clinic.com/files/cto_layout/img/placeholder/book.jpg"} />
-                <Studies study={"School"} studyPlaceImage={"http://www.lyon-ortho-clinic.com/files/cto_layout/img/placeholder/book.jpg"} />
+                <Studies
+                  study={"Harvard"}
+                  studyPlaceImage={
+                    "http://www.lyon-ortho-clinic.com/files/cto_layout/img/placeholder/book.jpg"
+                  }
+                />
+                <Studies
+                  study={"School"}
+                  studyPlaceImage={
+                    "http://www.lyon-ortho-clinic.com/files/cto_layout/img/placeholder/book.jpg"
+                  }
+                />
               </Col>
             </Row>
             <ButtonsClick>
-              <button className="jumbotron-btn mr-2  rounded-pill bg-primary text-white text-center px-3 py-1 font-weight-bold">Open to</button>
-              <button className="jumbotron-btn  mr-2 rounded-pill bg-light border-primary text-primary text-center px-3">Add profile section</button>
-              <button className="jumbotron-btn mr-2 rounded-pill text-center px-3">More</button>
+              <button className="jumbotron-btn mr-2  rounded-pill bg-primary text-white text-center px-3 py-1 font-weight-bold">
+                Open to
+              </button>
+              <button className="jumbotron-btn  mr-2 rounded-pill bg-light border-primary text-primary text-center px-3">
+                Add profile section
+              </button>
+              <button className="jumbotron-btn mr-2 rounded-pill text-center px-3">
+                More
+              </button>
             </ButtonsClick>
           </Container>
           <Container className="mt-3">
@@ -136,7 +168,8 @@ const MyJumbotron = (props) => {
               <Col md={6}>
                 <div className="jumbotron-footer-left">
                   <p>
-                    <strong> Lorem ipsum dolor</strong> sit amet consectetur adipisicing elit.
+                    <strong> Lorem ipsum dolor</strong> sit amet consectetur
+                    adipisicing elit.
                   </p>
                   <b>
                     <a href="asd#" target="_blank" className="">
@@ -149,7 +182,8 @@ const MyJumbotron = (props) => {
               <Col md={6}>
                 <div className="jumbotron-footer-right">
                   <p>
-                    <strong> Lorem ipsum dolor</strong> sit amet consectetur adipisicing elit.
+                    <strong> Lorem ipsum dolor</strong> sit amet consectetur
+                    adipisicing elit.
                   </p>
                   <b className="mt-2">
                     <a href="asd#" target="_blank" className="">
@@ -230,7 +264,9 @@ const MyJumbotron = (props) => {
                 className="mt-1"
                 required
                 value={profileDetails.bio}
-                onChange={(e) => setProfileDetails({ ...profileDetails, bio: e.target.value })}
+                onChange={(e) =>
+                  setProfileDetails({ ...profileDetails, bio: e.target.value })
+                }
               />
             </Form.Group>
             {/* TITLE  */}
@@ -259,7 +295,9 @@ const MyJumbotron = (props) => {
                 className="mt-1"
                 required
                 value={profileDetails.area}
-                onChange={(e) => setProfileDetails({ ...profileDetails, area: e.target.value })}
+                onChange={(e) =>
+                  setProfileDetails({ ...profileDetails, area: e.target.value })
+                }
               />
             </Form.Group>
             {/* IMAGE  */}
@@ -279,7 +317,12 @@ const MyJumbotron = (props) => {
                 }
               />
             </Form.Group>
-            <Button variant="success" type="button" onClick={updateProfile} className="mr-2">
+            <Button
+              variant="success"
+              type="button"
+              onClick={updateProfile}
+              className="mr-2"
+            >
               Update
             </Button>
           </Form>
@@ -300,7 +343,10 @@ const MyJumbotron = (props) => {
             /> */}
           <Form.Group id="formData">
             <Form.Label> Upload Image </Form.Label>
-            <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} />
+            <Form.Control
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
@@ -313,8 +359,8 @@ const MyJumbotron = (props) => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default MyJumbotron
 
