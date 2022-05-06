@@ -1,8 +1,8 @@
-import { Container, Navbar, InputGroup, FormControl } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import "./mynavbar.css";
+import { Container, Navbar, InputGroup, FormControl } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import "./mynavbar.css"
 
-const MyNavbar = () => {
+const MyNavbar = ({ profile }) => {
   return (
     <div className="wrapper-nav">
       <Container id="nav-container">
@@ -11,59 +11,88 @@ const MyNavbar = () => {
             <img src="/images/home-logo.svg" alt="" />
           </Link>
           <div id="search">
-            <InputGroup size="sm" className="mx-2">
+            <InputGroup size="sm" className="mx-2 ">
               <InputGroup.Prepend>
                 <InputGroup.Text id="inputGroup-sizing-sm">
-                  <img src="/images/search-icon.svg" alt="" />
+                  <i className=" text-muted bi bi-search"></i>
                 </InputGroup.Text>
               </InputGroup.Prepend>
-              <FormControl
-                aria-label="Small"
-                aria-describedby="inputGroup-sizing-sm"
-              />
+              <FormControl className="searchPadding" aria-label="Small" placeholder="Search" aria-describedby="inputGroup-sizing-sm" />
             </InputGroup>
           </div>
           <Container id="icons-container">
             <ul id="ul-nav">
               <li>
-                <img src="images/nav-home.svg" alt="" />
-                <span>Home</span>
-              </li>
-              <li>
-                <img src="images/nav-network.svg" alt="" />
-                <span>My Network</span>
-              </li>
-              <li>
-                <img src="images/nav-jobs.svg" alt="" />
-                <span>Jobs</span>
-              </li>
-              <li>
-                <img src="images/nav-messaging.svg" alt="" />
-                <span>Messaging</span>
-              </li>
-              <li>
-                <img src="images/nav-notifications.svg" alt="" />
-                <span>Notifications</span>
-              </li>
-              <li>
-                <Link to="/profile" className="text-center text-dark">
-                  <div>
-                    <img src="images/user.svg" alt="" id="user-icon" />
+                <Link to="/">
+                  <div className="text-center text-muted">
+                    <i className="bi bi-house-door-fill toBlack"></i>
                   </div>
-                  <span>Me</span>
+                  <span className="text-muted">Home</span>
                 </Link>
               </li>
               <li>
-                <img src="images/nav-work.svg" alt="" />
-                <span>Work</span>
+                <Link to="/">
+                  <div className="text-center text-muted">
+                    <i className="bi bi-people-fill toBlack"></i>
+                  </div>
+                  <span className="text-muted">My Network</span>
+                </Link>
               </li>
-              <span>Get Sales Navigator</span>
+              <li>
+                <Link to="/">
+                  <div className="text-center text-muted">
+                    <i className="bi bi-briefcase-fill toBlack"></i>
+                  </div>
+                  <span className="text-muted">Jobs</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <div className="text-center text-muted">
+                    <i className="bi bi-chat-dots-fill toBlack"></i>
+                  </div>
+                  <span className="text-muted">Messaging</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <div className="text-center text-muted">
+                    <i className="bi bi-bell-fill toBlack"></i>
+                  </div>
+                  <span className="text-muted">Notifications</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile" className="text-center text-muted">
+                  <div>
+                    <img src={profile.image} alt="" id="user-icon" />
+                  </div>
+                  <span className="text-muted">
+                    Me<i class="bi bi-caret-down-fill"></i>
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/" className="text-center text-muted">
+                  <div className="text-center text-muted">
+                    <i className="bi bi-grid-3x3-gap-fill toBlack"></i>
+                  </div>
+                  <span className="text-muted">
+                    Work<i class="bi bi-caret-down-fill"></i>
+                  </span>
+                </Link>
+              </li>
+              <span className="brownColor">
+                Get Hired Faster,
+                <br />
+                Try Premium Free{" "}
+              </span>
             </ul>
           </Container>
         </Navbar>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default MyNavbar;
+export default MyNavbar
