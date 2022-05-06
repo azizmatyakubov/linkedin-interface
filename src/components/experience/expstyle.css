@@ -1,90 +1,87 @@
 #container-wrapper {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #e6e6e6;
-    border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
 }
 
-#container-wrapper h4  {
-    color:#363636;
+#container-wrapper h4 {
+  color: #363636;
 }
 
 .col-md-2 img {
-    width:60px;
-    height:60px
+  width: 60px;
+  height: 60px;
 }
 
 .icons-col {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
-.icons-col >img {
-    width: 30px;
-    padding-left: 5px;
-    transform: translateX(-20px)
+.icons-col > img {
+  width: 30px;
+  padding-left: 5px;
+  transform: translateX(-20px);
 }
 
 #pencil-icon {
-    width:22px;
-    transform: translateY(4px)
+  width: 22px;
+  transform: translateY(4px);
 }
 
 #pencil-icon:hover {
-    background-color: #e6e6e6;
-    border-radius: 50%;
-    
+  background-color: #e6e6e6;
+  border-radius: 50%;
 }
-
-
+.bg-hover:hover {
+  background-color: #e6e6e6;
+  border-radius: 50%;
+}
 #text-col {
-    margin-left: -2.5rem;
+  margin-left: -2.5rem;
 }
 
-#text-col>h6 {
-    font-size: 1.2rem;
+#text-col > h6 {
+  font-size: 1.2rem;
 }
 
-#text-col>p{
-    color:#616161;
-    margin-bottom: 0px
+#text-col > p {
+  color: #616161;
+  margin-bottom: 0px;
 }
 
-
-
-#text-col >span {
-    font-weight: 500;
-    font-size: 16px;
-
+#text-col > span {
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .style-hr {
-    border-top: 1px solid #cecece96;
+  border-top: 1px solid #cecece96;
 }
-
 
 /*SINGLE-EXPERIENCE STYLE*/
 
 .modal-body > form > div {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
-.modal-body > form > div> input, select{
-    margin-top: -1.5rem;
-    border:1px solid #e6e6e6;
+.modal-body > form > div > input,
+select {
+  margin-top: -1.5rem;
+  border: 1px solid #e6e6e6;
 }
 
-.icons-col >img:first-of-type:hover {
-    background-color: #e6e6e6;
-    border-radius: 50%;
-    cursor: pointer;
+.icons-col > img:first-of-type:hover {
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  cursor: pointer;
 }
-
 
 /*EXPERIENCE DETAILS PAGE*/
 
 #container-exp-details {
-    display: flex;
-    flex-direction: row;
-    column-gap: 1.8rem;
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.8rem;
 }

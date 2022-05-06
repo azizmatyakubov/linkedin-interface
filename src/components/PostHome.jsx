@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const PostHome = ({ myProfile, getPosts }) => {
+<<<<<<< HEAD
   
+=======
+>>>>>>> 75221658f6b408b72e0c7459a50f932fc2edceff
   const [inputValue, setInputValue] = useState("");
   // write new post
   const _handleSubmit = async (e) => {
@@ -14,7 +17,7 @@ const PostHome = ({ myProfile, getPosts }) => {
             method: "POST",
             body: JSON.stringify({
               text: inputValue, // inputValue from state
-              user: "6270f5980270f1272fff0340",
+              user: myProfile._id,
             }),
             headers: {
               "Content-Type": "application/json",
@@ -37,7 +40,13 @@ const PostHome = ({ myProfile, getPosts }) => {
     <>
       <Wrapper>
         <Header>
+<<<<<<< HEAD
           {/* {myProfile && <img src={myProfile.image} alt="profile-avatar" />} */}
+=======
+
+          {myProfile && <img src={myProfile.image} alt="profile-avatar" />}
+
+>>>>>>> 75221658f6b408b72e0c7459a50f932fc2edceff
           <Input
             type="text"
             placeholder="Start post"
