@@ -6,8 +6,13 @@ const SingleExperience = (props) => {
   const [show, setShow] = useState(false);
   const [experience, setExperience] = useState("");
   const [selectedExpId, setSelectedExpId] = useState();
-  const [image, setImage] = useState(null);
-
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [description, setDescription] = useState("");
+  const [area, setArea] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [image, setImage] = useState("");
   const handleClose = () => setShow(false);
 
   const handleShow = () => {
@@ -32,8 +37,22 @@ const SingleExperience = (props) => {
     setExperience(data);
   };
 
-  const handleChange = async (method) => {
-    changeExpById(selectedExpId, method);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("here");
+    const experience = {
+      role: role,
+      company: company,
+      startDate: startDate,
+      endDate: endDate || null,
+      description: description,
+      area: area,
+      image: image,
+    };
+  };
+
+  const handleChange = async () => {
+    changeExpById(selectedExpId, "PUT");
     handleClose();
     fetchExperiences("6270f5980270f1272fff0340");
   };
