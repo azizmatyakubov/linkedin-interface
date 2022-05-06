@@ -1,9 +1,12 @@
 import { Container, Row, Col, Modal, Button, Form } from "react-bootstrap";
+import { useParams } from "react-router";
 import "./expstyle.css";
 import { useState } from "react";
 import moment from "moment";
 
 const SingleExperience = (props) => {
+  const param = useParams();
+
   const [show, setShow] = useState(false);
   const [experience, setExperience] = useState("");
   const [selectedExpId, setSelectedExpId] = useState();
@@ -24,8 +27,9 @@ const SingleExperience = (props) => {
 
   const fetchExpById = async (_id) => {
     let response = await fetch(
-      "https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences/" +
-        _id,
+      `https://linkedin-backend-01.herokuapp.com/profile/${
+        param.id || "6270f5980270f1272fff0340"
+      }/experiences/` + _id,
       {
         headers: {
           "Content-Type": "application/json",
@@ -34,48 +38,14 @@ const SingleExperience = (props) => {
     );
     let data = await response.json();
     setExperience(data);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("here");
-    const experience = {
-      role: role,
-      company: company,
-      startDate: startDate,
-      endDate: endDate || null,
-      description: description,
-      area: area,
-      image: image,
-    };
+    console.log(experience);
   };
 
   const handleChange = async () => {
     changeExpById(selectedExpId, "PUT");
+    props.fetchProfileById(param.id);
     handleClose();
-    fetchExperiences("6270f5980270f1272fff0340");
-  };
-
-  const fetchExperiences = async (id) => {
-    console.log("isssd:", props.data._id);
-    try {
-      const response = await fetch(
-        "https://linkedin-backend-01.herokuapp.com/profile/" +
-          id +
-          "/experiences",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzOGQyY2MzNjA3MDAwMTVmNmZkMzMiLCJpYXQiOjE2NDg1OTQyMjAsImV4cCI6MTY0OTgwMzgyMH0.VHqhiens_PkTS2JO-8hNQOytWeTf7PkUQsG9GfchqhY",
-          },
-        }
-      );
-      const data = await response.json();
-      setExperience(data);
-    } catch (error) {
-      console.log(error);
-    }
+    //fetchExperiences(param.id);
   };
 
   const handleDelete = async (method) => {
@@ -93,14 +63,12 @@ const SingleExperience = (props) => {
           body: JSON.stringify(experience),
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQyMTMxZWQzMzk4NDAwMTVjODgzYmIiLCJpYXQiOjE2NDg0OTc0MzgsImV4cCI6MTY0OTcwNzAzOH0.sLkbyZFjVCiLvfgrcA9MnJiefoO2BW2iMooxrirJlnU",
           },
         }
       );
       if (response.ok) {
-        console.log("id:", _id);
-        props.getExp();
+        console.log(param.id);
+        props.fetchProfileById(param.id);
         handleClose();
       } else {
         console.log(response);
@@ -130,7 +98,7 @@ const SingleExperience = (props) => {
     );
     let resData = await res.json();
     if (resData.ok) {
-      props.getExp();
+      props.fetchProfileById("345544");
     } else {
     }
   };
@@ -167,7 +135,7 @@ const SingleExperience = (props) => {
               <Form.Label>Role</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Role"
+                placeholder="Role1"
                 value={experience.role}
                 onChange={(e) =>
                   setExperience({ ...experience, role: e.target.value })

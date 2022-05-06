@@ -2,15 +2,26 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./expstyle.css";
 import SingleExperience from "./SingleExperience";
 import { useState } from "react";
+import { useParams } from "react-router";
 import { Modal, Button, Form } from "react-bootstrap";
 
 // 6242131ed339840015c883bb
 
 const ExperienceSection = (props) => {
+  const param = useParams();
   const [experiences, setExperiences] = useState(null);
   const [addExperience, setAddExperience] = useState(false);
 
-  const closeAddExperience = () => setAddExperience(false);
+  const closeAddExperience = () => {
+    setAddExperience(false);
+    setCompany("");
+    setRole("");
+    setDescription("");
+    setLocation("");
+    setStartDate("");
+    setEndDate("");
+    setImage("");
+  };
   const showAddExperience = () => setAddExperience(true);
 
   const [company, setCompany] = useState("");
@@ -31,14 +42,15 @@ const ExperienceSection = (props) => {
       endDate: endDate || null,
       description: description,
       area: location,
-
       image: image,
     };
 
     try {
       console.log(experience);
       const response = await fetch(
-        `https://linkedin-backend-01.herokuapp.com/profile/6270f5980270f1272fff0340/experiences`,
+        `https://linkedin-backend-01.herokuapp.com/profile/${
+          param.id || "6270f5980270f1272fff0340"
+        }/experiences`,
         {
           method: "POST",
           body: JSON.stringify(experience),
@@ -49,8 +61,8 @@ const ExperienceSection = (props) => {
       );
 
       if (response.ok) {
-        console.log("POSTED");
-        props.getMyExp();
+        props.fetchProfileById(param.id || "6270f5980270f1272fff0340");
+        closeAddExperience();
       } else {
         console.log("fetch failed!!!!");
       }
@@ -89,7 +101,7 @@ const ExperienceSection = (props) => {
                   key={value._id}
                   data={value}
                   getMyExp={props.getMyExp}
-                  getExp={props.getExp}
+                  fetchProfileById={props.fetchProfileById}
                 />
               );
             })}
